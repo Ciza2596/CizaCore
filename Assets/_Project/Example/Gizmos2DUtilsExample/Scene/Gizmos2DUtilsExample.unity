@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 0.5
-  _eulerAngle: 90
+  _eulerAngle: 180
   _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &519420028
 GameObject:
