@@ -19,17 +19,31 @@ namespace CizaCore
 
 		public static async UniTask PlayAtStart(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
 		{
-			animator.PlayAtStart(stateNameHash, speedRate, layerIndex);
-			await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
-			animator.SetSpeedRate(0);
+			try
+			{
+				animator.PlayAtStart(stateNameHash, speedRate, layerIndex);
+				await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
+				animator.SetSpeedRate(0);
+			}
+			catch (Exception e)
+			{
+				// ignored
+			}
 		}
 
 		public static async UniTask Play(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
 		{
-			animator.SetSpeedRate(speedRate);
-			animator.Play(stateNameHash, layerIndex);
-			await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
-			animator.SetSpeedRate(0);
+			try
+			{
+				animator.SetSpeedRate(speedRate);
+				animator.Play(stateNameHash, layerIndex);
+				await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
+				animator.SetSpeedRate(0);
+			}
+			catch (Exception e)
+			{
+				// ignored
+			}
 		}
 
 		public static void Play(this Animator animator, int stateNameHash, float time, ref float duration, float speedRate = 1, int layerIndex = 0)
