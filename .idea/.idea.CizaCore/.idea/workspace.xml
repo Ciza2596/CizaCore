@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CizaCore.Editor.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CizaCore.Editor.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/AnimatorUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/AnimatorUtils.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/Gizmos2DUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/Gizmos2DUtils.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/GuidUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/GuidUtils.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/ObjectUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/ObjectUtils.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/TimeUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/TimeUtils.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/UiUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Utility/UiUtils.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/FluentAssertions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/FluentAssertions.dll.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/NSubstitute.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/NSubstitute.dll.meta" beforeDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +91,7 @@
       <workItem from="1693377944265" duration="1703000" />
       <workItem from="1693380276995" duration="12922000" />
       <workItem from="1693401727221" duration="481000" />
-      <workItem from="1693497554040" duration="1595000" />
+      <workItem from="1693497554040" duration="3362000" />
     </task>
     <servers />
   </component>

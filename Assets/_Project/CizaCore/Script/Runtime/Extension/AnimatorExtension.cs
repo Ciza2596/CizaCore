@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -52,21 +53,42 @@ namespace CizaCore
 
 		public static async UniTask WaitChangeStateByStateNameHash(this Animator animator, int stateNameHash, CancellationToken cancellationToken)
 		{
-			while (animator.GetCurrentStateNameHash() != stateNameHash)
-				await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+			try
+			{
+				while (animator.GetCurrentStateNameHash() != stateNameHash)
+					await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+			}
+			catch (Exception e)
+			{
+				// ignored
+			}
 		}
 
 		public static async UniTask WaitChangeStateByTagHash(this Animator animator, int tagHash, CancellationToken cancellationToken)
 		{
-			while (animator.GetCurrentTagHash() != tagHash)
-				await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+			try
+			{
+				while (animator.GetCurrentTagHash() != tagHash)
+					await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+			}
+			catch (Exception e)
+			{
+				// ignored
+			}
 		}
 
 		public static async UniTask WaitAnimCompleted(this Animator animator, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
 		{
 			TimeUtils.CheckNormalizedTime(ref endNormalizedTime);
-			while (animator.GetCurrentNormalizedTime() < endNormalizedTime)
-				await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+			try
+			{
+				while (animator.GetCurrentNormalizedTime() < endNormalizedTime)
+					await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+			}
+			catch (Exception e)
+			{
+				// ignored
+			}
 		}
 
 		public static Animator AdjustSpeedRateByDuration(this Animator animator, ref float duration, int layerIndex = 0)
