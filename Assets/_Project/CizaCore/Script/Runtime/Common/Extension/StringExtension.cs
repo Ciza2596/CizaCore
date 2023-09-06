@@ -12,12 +12,14 @@ namespace CizaCore
 
 		public static List<string> ToList(this string str)
 		{
-			var list      = new List<string>();
-			var splitStrs = str.Split(',');
+			var list = new List<string>();
+			if (!str.HasValue())
+				return list;
 
+			var splitStrs = str.Split(',');
 			foreach (var splitStr in splitStrs)
 			{
-				if (string.IsNullOrEmpty(splitStr))
+				if (!splitStr.HasValue())
 					continue;
 
 				var strWithoutSpace = splitStr.Replace(" ", "");
