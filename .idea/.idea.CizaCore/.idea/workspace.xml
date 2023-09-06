@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Test.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Test/CizaCore.Test.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Test/CizaCore.Test.asmdef.meta" beforeDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +95,7 @@
       <workItem from="1693575234049" duration="1740000" />
       <workItem from="1693879393630" duration="1888000" />
       <workItem from="1693985535508" duration="223000" />
-      <workItem from="1694009264824" duration="334000" />
+      <workItem from="1694009264824" duration="668000" />
     </task>
     <servers />
   </component>
