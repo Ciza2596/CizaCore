@@ -8,16 +8,16 @@ namespace CizaCore
 		{
 			var bounds = new Bounds(boundPosition, boundSize);
 
-			var topLeft = GetTopLeft(addBoundPosition, addBoundSize);
+			var topLeft = GetTopLeftPosition(addBoundPosition, addBoundSize);
 			bounds.Expand(topLeft);
 
-			var topRight = GetTopRight(addBoundPosition, addBoundSize);
+			var topRight = GetTopRightPosition(addBoundPosition, addBoundSize);
 			bounds.Expand(topRight);
 
-			var bottomLeft = GetBottomLeft(addBoundPosition, addBoundSize);
+			var bottomLeft = GetBottomLeftPosition(addBoundPosition, addBoundSize);
 			bounds.Expand(bottomLeft);
 
-			var bottomRight = GetBottomRight(addBoundPosition, addBoundSize);
+			var bottomRight = GetBottomRightPosition(addBoundPosition, addBoundSize);
 			bounds.Expand(bottomRight);
 
 			var center  = bounds.center;
@@ -25,28 +25,28 @@ namespace CizaCore
 			return (new Vector2(center.x, center.y), new Vector2(extents.x, extents.y));
 		}
 
-		public static Vector2 GetTopLeft(Vector2 position, Vector2 size)
+		public static Vector2 GetTopLeftPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
 			return new Vector2(position.x - halfWidth, position.x + halfHeight);
 		}
 
-		public static Vector2 GetTopRight(Vector2 position, Vector2 size)
+		public static Vector2 GetTopRightPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
 			return new Vector2(position.x + halfWidth, position.x + halfHeight);
 		}
 
-		public static Vector2 GetBottomLeft(Vector2 position, Vector2 size)
+		public static Vector2 GetBottomLeftPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
 			return new Vector2(position.x - halfWidth, position.x - halfHeight);
 		}
 
-		public static Vector2 GetBottomRight(Vector2 position, Vector2 size)
+		public static Vector2 GetBottomRightPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
