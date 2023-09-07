@@ -4,7 +4,7 @@ namespace CizaCore
 {
 	public class BoundUtils
 	{
-		public (Vector2, Vector2) Expand(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
+		public static (Vector2, Vector2) Expand(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
 		{
 			var bounds = new Bounds(boundPosition, boundSize);
 
