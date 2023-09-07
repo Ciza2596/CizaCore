@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace CizaCore.Editor
 {
-	public class OpenBuildMenu : MonoBehaviour
+	public class OpenBuildFolderMenu : MonoBehaviour
 	{
 		public const string BuildPath = "Build";
 
-		[MenuItem("Tools/Ciza/OpenAddressablesAaFolder", false, 10000)]
+		[MenuItem("Tools/Ciza/OpenBuildFolder", false, 10000)]
 		private static void OpenBuildFolder()
 		{
 			var fullPath = Application.dataPath.Replace("Assets", "") + BuildPath;
