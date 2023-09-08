@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CizaCore
 {
-	public class BoundUtils
+	public class Bound2DUtils
 	{
 		public static (Vector2, Vector2) Encapsulate(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
 		{
@@ -15,7 +15,7 @@ namespace CizaCore
 
 			var center  = bounds.center;
 			var extents = bounds.extents;
-			return (new Vector2(center.x, center.y), new Vector2(extents.x, extents.y));
+			return (new Vector2(center.x, center.y), new Vector2(extents.x * 2, extents.y * 2));
 		}
 
 		public static Vector2 GetTopLeftPosition(Vector2 position, Vector2 size)
