@@ -20,28 +20,28 @@ namespace CizaCore
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
-			return new Vector2(position.x - halfWidth, position.x + halfHeight);
+			return new Vector2(position.x - halfWidth, position.y + halfHeight);
 		}
 
 		public static Vector2 GetTopRightPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
-			return new Vector2(position.x + halfWidth, position.x + halfHeight);
+			return new Vector2(position.x + halfWidth, position.y + halfHeight);
 		}
 
 		public static Vector2 GetBottomLeftPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
-			return new Vector2(position.x - halfWidth, position.x - halfHeight);
+			return new Vector2(position.x - halfWidth, position.y - halfHeight);
 		}
 
 		public static Vector2 GetBottomRightPosition(Vector2 position, Vector2 size)
 		{
 			var halfWidth  = size.x / 2;
 			var halfHeight = size.y / 2;
-			return new Vector2(position.x + halfWidth, position.x - halfHeight);
+			return new Vector2(position.x + halfWidth, position.y - halfHeight);
 		}
 	}
 }
