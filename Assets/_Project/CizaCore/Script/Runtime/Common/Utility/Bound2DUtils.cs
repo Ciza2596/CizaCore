@@ -13,9 +13,7 @@ namespace CizaCore
 			mergedBounds.Encapsulate(bounds);
 			mergedBounds.Encapsulate(addBounds);
 
-			var center  = bounds.center;
-			var extents = bounds.extents;
-			return (new Vector2(center.x, center.y), new Vector2(extents.x * 2, extents.y * 2));
+			return (mergedBounds.center, mergedBounds.extents * 2);
 		}
 
 		public static Vector2 GetTopLeftPosition(Vector2 position, Vector2 size)
