@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Example/_Test/Bound2DUtilsTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/Bound2DUtilsTest.cs" afterDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +102,7 @@
       <workItem from="1694058683415" duration="152000" />
       <workItem from="1694058954338" duration="264000" />
       <workItem from="1694100139311" duration="3679000" />
-      <workItem from="1694143831369" duration="10116000" />
+      <workItem from="1694143831369" duration="11618000" />
     </task>
     <servers />
   </component>
@@ -181,13 +171,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs</url>
-          <line>10</line>
+          <line>13</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs" initialLine="10" containingFunctionPresentation="Method '_01_GetNormalizedTime'">
             <startOffsets>
-              <option value="294" />
+              <option value="351" />
             </startOffsets>
             <endOffsets>
-              <option value="408" />
+              <option value="467" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
