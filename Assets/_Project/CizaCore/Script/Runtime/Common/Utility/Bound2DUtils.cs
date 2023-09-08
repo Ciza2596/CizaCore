@@ -4,16 +4,32 @@ namespace CizaCore
 {
 	public class Bound2DUtils
 	{
-		public static (Vector2, Vector2) Encapsulate(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
+		public static Vector2 GetTopLeftPosition(Vector2 position, Vector2 size)
 		{
-			var bounds    = new Bounds(boundPosition, boundSize);
-			var addBounds = new Bounds(addBoundPosition, addBoundSize);
+			var halfWidth  = size.x / 2;
+			var halfHeight = size.y / 2;
+			return new Vector2(position.x - halfWidth, position.y + halfHeight);
+		}
 
-			var mergedBounds = new Bounds(Vector3.zero, Vector3.zero);
-			mergedBounds.Encapsulate(bounds);
-			mergedBounds.Encapsulate(addBounds);
+		public static Vector2 GetTopRightPosition(Vector2 position, Vector2 size)
+		{
+			var halfWidth  = size.x / 2;
+			var halfHeight = size.y / 2;
+			return new Vector2(position.x + halfWidth, position.y + halfHeight);
+		}
 
-			return (mergedBounds.center, mergedBounds.extents * 2);
+		public static Vector2 GetBottomLeftPosition(Vector2 position, Vector2 size)
+		{
+			var halfWidth  = size.x / 2;
+			var halfHeight = size.y / 2;
+			return new Vector2(position.x - halfWidth, position.y - halfHeight);
+		}
+
+		public static Vector2 GetBottomRightPosition(Vector2 position, Vector2 size)
+		{
+			var halfWidth  = size.x / 2;
+			var halfHeight = size.y / 2;
+			return new Vector2(position.x + halfWidth, position.y - halfHeight);
 		}
 
 		public static (Vector2, Vector2) Limit(Vector2 boundPosition, Vector2 boundSize, Vector2 limitBoundPosition, Vector2 limitBoundSize)
@@ -51,32 +67,16 @@ namespace CizaCore
 			return (new Vector2(m_targetBottomLeftPosition.x + size.x / 2, m_targetBottomLeftPosition.y + size.y / 2), size);
 		}
 
-		public static Vector2 GetTopLeftPosition(Vector2 position, Vector2 size)
+		public static (Vector2, Vector2) Encapsulate(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
 		{
-			var halfWidth  = size.x / 2;
-			var halfHeight = size.y / 2;
-			return new Vector2(position.x - halfWidth, position.y + halfHeight);
-		}
+			var bounds    = new Bounds(boundPosition, boundSize);
+			var addBounds = new Bounds(addBoundPosition, addBoundSize);
 
-		public static Vector2 GetTopRightPosition(Vector2 position, Vector2 size)
-		{
-			var halfWidth  = size.x / 2;
-			var halfHeight = size.y / 2;
-			return new Vector2(position.x + halfWidth, position.y + halfHeight);
-		}
+			var mergedBounds = new Bounds(Vector3.zero, Vector3.zero);
+			mergedBounds.Encapsulate(bounds);
+			mergedBounds.Encapsulate(addBounds);
 
-		public static Vector2 GetBottomLeftPosition(Vector2 position, Vector2 size)
-		{
-			var halfWidth  = size.x / 2;
-			var halfHeight = size.y / 2;
-			return new Vector2(position.x - halfWidth, position.y - halfHeight);
-		}
-
-		public static Vector2 GetBottomRightPosition(Vector2 position, Vector2 size)
-		{
-			var halfWidth  = size.x / 2;
-			var halfHeight = size.y / 2;
-			return new Vector2(position.x + halfWidth, position.y - halfHeight);
+			return (mergedBounds.center, mergedBounds.extents * 2);
 		}
 	}
 }

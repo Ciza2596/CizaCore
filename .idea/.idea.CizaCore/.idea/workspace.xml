@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Example/_Test/Bound2DUtilsTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/Bound2DUtilsTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +80,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="63312">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="63312" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -104,7 +112,7 @@
       <workItem from="1694058683415" duration="152000" />
       <workItem from="1694058954338" duration="264000" />
       <workItem from="1694100139311" duration="3679000" />
-      <workItem from="1694143831369" duration="3279000" />
+      <workItem from="1694143831369" duration="10116000" />
     </task>
     <servers />
   </component>
@@ -115,5 +123,76 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs</url>
+          <line>65</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" initialLine="65" containingFunctionPresentation="Method 'Limit'">
+            <startOffsets>
+              <option value="3390" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3490" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" initialLine="31" containingFunctionPresentation="Method 'ToList'">
+            <startOffsets>
+              <option value="749" />
+            </startOffsets>
+            <endOffsets>
+              <option value="784" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs</url>
+          <line>30</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" initialLine="30" containingFunctionPresentation="Method '_03_ToArray'">
+            <startOffsets>
+              <option value="976" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1065" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs</url>
+          <line>39</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" initialLine="39" containingFunctionPresentation="Method 'ToList'">
+            <startOffsets>
+              <option value="869" />
+            </startOffsets>
+            <endOffsets>
+              <option value="881" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs</url>
+          <line>10</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs" initialLine="10" containingFunctionPresentation="Method '_01_GetNormalizedTime'">
+            <startOffsets>
+              <option value="294" />
+            </startOffsets>
+            <endOffsets>
+              <option value="408" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -34,7 +34,7 @@ namespace CizaCore
 				if (!splitStr.HasValue())
 					continue;
 
-				list.Add(strWithoutSpace);
+				list.Add(splitStr);
 			}
 
 			return list;
