@@ -4,21 +4,21 @@ namespace CizaCore
 {
 	public class BoundUtils
 	{
-		public static (Vector2, Vector2) Expand(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
+		public static (Vector2, Vector2) Encapsulate(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
 		{
 			var bounds = new Bounds(boundPosition, boundSize);
 
 			var topLeft = GetTopLeftPosition(addBoundPosition, addBoundSize);
-			bounds.Expand(topLeft);
+			bounds.Encapsulate(topLeft);
 
 			var topRight = GetTopRightPosition(addBoundPosition, addBoundSize);
-			bounds.Expand(topRight);
+			bounds.Encapsulate(topRight);
 
 			var bottomLeft = GetBottomLeftPosition(addBoundPosition, addBoundSize);
-			bounds.Expand(bottomLeft);
+			bounds.Encapsulate(bottomLeft);
 
 			var bottomRight = GetBottomRightPosition(addBoundPosition, addBoundSize);
-			bounds.Expand(bottomRight);
+			bounds.Encapsulate(bottomRight);
 
 			var center  = bounds.center;
 			var extents = bounds.extents;
