@@ -6,19 +6,12 @@ namespace CizaCore
 	{
 		public static (Vector2, Vector2) Encapsulate(Vector2 boundPosition, Vector2 boundSize, Vector2 addBoundPosition, Vector2 addBoundSize)
 		{
-			var bounds = new Bounds(boundPosition, boundSize);
+			var bounds    = new Bounds(boundPosition, boundSize);
+			var addBounds = new Bounds(addBoundPosition, addBoundSize);
 
-			var topLeft = GetTopLeftPosition(addBoundPosition, addBoundSize);
-			bounds.Encapsulate(topLeft);
-
-			var topRight = GetTopRightPosition(addBoundPosition, addBoundSize);
-			bounds.Encapsulate(topRight);
-
-			var bottomLeft = GetBottomLeftPosition(addBoundPosition, addBoundSize);
-			bounds.Encapsulate(bottomLeft);
-
-			var bottomRight = GetBottomRightPosition(addBoundPosition, addBoundSize);
-			bounds.Encapsulate(bottomRight);
+			var mergedBounds = new Bounds(Vector3.zero, Vector3.zero);
+			mergedBounds.Encapsulate(bounds);
+			mergedBounds.Encapsulate(addBounds);
 
 			var center  = bounds.center;
 			var extents = bounds.extents;
