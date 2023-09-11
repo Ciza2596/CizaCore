@@ -56,7 +56,7 @@ namespace CizaCore
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionKey       = optionKeys[j];
-					var optionReadModel = optionReadModelList.FirstOrDefault(m_option => m_option.Key == optionKey);
+					var optionReadModel = optionReadModelList.FirstOrDefault(m_optionReadModel => m_optionReadModel.Key == optionKey);
 
 					optionReadModels[j] = optionReadModel;
 				}
