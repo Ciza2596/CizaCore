@@ -1,0 +1,190 @@
+using System;
+using System.Linq;
+using UnityEngine;
+
+namespace CizaCore
+{
+	public class SelectOptionLogic<TOption> where TOption : class, IOptionReadModel
+	{
+		private IOptionReadModel[][] _optionReadModelRows;
+
+		public const int ErrorIndex = -1;
+
+		public event Action<Vector2Int, TOption> OnSetCurrentCoordinate;
+
+		public bool IsInitialized { get; private set; }
+
+		/// <summary>
+		/// x:column
+		/// y:row
+		/// </summary>
+		public Vector2Int CurrentCoordinate { get; private set; }
+
+		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
+		{
+			if (IsInitialized)
+				return;
+
+			_optionReadModelRows = new IOptionReadModel[optionRows.Length][];
+			var rowLength = optionRows[0].OptionKeys.Length;
+
+			for (var i = 0; i < _optionReadModelRows.Length; i++)
+			{
+				_optionReadModelRows[i] = new IOptionReadModel[rowLength];
+
+				var optionReadModels = _optionReadModelRows[i];
+				var optionKeys       = optionRows[i].OptionKeys;
+				for (var j = 0; j < optionReadModels.Length; j++)
+				{
+					var optionKey       = optionKeys[j];
+					var optionReadModel = optionReadModelList.FirstOrDefault(m_option => m_option.Key == optionKey);
+
+					optionReadModels[j] = optionReadModel;
+				}
+			}
+
+			if (!TrySetCurrentCoordinate(currentCoordinate))
+			{
+				TrySetCurrentCoordinate(GetDefaultCoordinate());
+			}
+
+			IsInitialized = true;
+		}
+
+		public void Release()
+		{
+			if (!IsInitialized)
+				return;
+
+			CurrentCoordinate    = Vector2Int.zero;
+			_optionReadModelRows = null;
+			IsInitialized        = false;
+		}
+
+		public bool TrySetCurrentCoordinate(Vector2Int coordinate)
+		{
+			var optionReadModel = _optionReadModelRows[coordinate.x][coordinate.y];
+			if (optionReadModel is null)
+				return false;
+
+			if (!optionReadModel.IsEnable)
+				return false;
+
+			CurrentCoordinate = coordinate;
+			OnSetCurrentCoordinate?.Invoke(CurrentCoordinate, optionReadModel as TOption);
+			return true;
+		}
+
+		public bool TryMoveToLeft() =>
+			TryHorizontalMove(-1);
+
+		public bool TryMoveToRight() =>
+			TryHorizontalMove(1);
+
+		public bool TryMoveToUp() =>
+			TryVerticalMove(-1);
+
+		public bool TryMoveToDown() =>
+			TryVerticalMove(1);
+
+		private bool TryHorizontalMove(int unit)
+		{
+			var x = CheckXMinMax(CurrentCoordinate.x + unit);
+			if (!CheckRowIsEnable(x))
+				return false;
+
+			var y = GetYCoordinate(x, CurrentCoordinate.y, -1);
+
+			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
+				return false;
+
+			return TrySetCurrentCoordinate(new Vector2Int(x, y));
+		}
+
+		private bool TryVerticalMove(int unit)
+		{
+			var x = CurrentCoordinate.x;
+			var y = GetYCoordinate(x, CurrentCoordinate.y + unit, unit > 0 ? 1 : -1);
+			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
+				return false;
+
+			return TrySetCurrentCoordinate(new Vector2Int(x, y));
+		}
+
+		private int GetYCoordinate(int x, int y, int direction)
+		{
+			var length = _optionReadModelRows[x].Length;
+			for (var i = 0; i < length; i++)
+			{
+				y = CheckYMinMax(y);
+				var checkOptionIsEnable = CheckOptionIsEnable(x, y);
+				if (checkOptionIsEnable)
+					return y;
+
+				y += direction;
+			}
+
+			return ErrorIndex;
+		}
+
+		private int CheckXMinMax(int x)
+		{
+			var length = _optionReadModelRows.Length;
+			if (x >= length)
+				return length - 1;
+
+			if (x < 0)
+				return 0;
+
+			return x;
+		}
+
+		private int CheckYMinMax(int y)
+		{
+			var length = _optionReadModelRows[0].Length;
+			if (y >= length)
+				return 0;
+
+			if (y < 0)
+				return length - 1;
+
+			return y;
+		}
+
+		private bool CheckRowIsEnable(int x)
+		{
+			var optionReadModels = _optionReadModelRows[x];
+			foreach (var optionReadModel in optionReadModels)
+				if (optionReadModel != null && optionReadModel.IsEnable)
+					return true;
+
+			return false;
+		}
+
+		private bool CheckOptionIsEnable(int x, int y)
+		{
+			var optionReadModel = _optionReadModelRows[x][y];
+			if (optionReadModel is null)
+				return false;
+
+			return optionReadModel.IsEnable;
+		}
+
+		private Vector2Int GetDefaultCoordinate()
+		{
+			for (var i = 0; i < _optionReadModelRows.Length; i++)
+			{
+				var optionReadModels = _optionReadModelRows[i];
+				for (var j = 0; j < optionReadModels.Length; j++)
+				{
+					var optionReadModel = optionReadModels[j];
+					if (optionReadModel != null && optionReadModel.IsEnable)
+						return new Vector2Int(i, j);
+				}
+			}
+
+			Debug.LogError("[SelectOptionLogic::GetDefaultCoordinate] Not find defaultCoordinate.");
+			return Vector2Int.zero;
+		}
+	}
+}

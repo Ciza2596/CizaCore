@@ -12,10 +12,10 @@ namespace CizaCore
 		public static string WithoutSpace(this string str) =>
 			str.Replace(" ", "");
 
-		public static string[] ToArray(this string str) =>
-			str.ToList().ToArray();
+		public static string[] ToArray(this string str, bool isIgnoreEmpty = true) =>
+			str.ToList(isIgnoreEmpty).ToArray();
 
-		public static List<string> ToList(this string str)
+		public static List<string> ToList(this string str, bool isIgnoreEmpty = true)
 		{
 			var list = new List<string>();
 			if (!str.HasValue())
@@ -32,7 +32,11 @@ namespace CizaCore
 			foreach (var splitStr in splitStrs)
 			{
 				if (!splitStr.HasValue())
+				{
+					if (!isIgnoreEmpty)
+						list.AddEmptyItem(1);
 					continue;
+				}
 
 				list.Add(splitStr);
 			}
@@ -40,10 +44,10 @@ namespace CizaCore
 			return list;
 		}
 
-		public static string[] ToArray(this string str, int length) =>
-			str.ToList(length).ToArray();
+		public static string[] ToArray(this string str, int length, bool isIgnoreEmpty = true) =>
+			str.ToList(length, isIgnoreEmpty).ToArray();
 
-		public static List<string> ToList(this string str, int count)
+		public static List<string> ToList(this string str, int count, bool isIgnoreEmpty = true)
 		{
 			var list = new List<string>();
 			if (!str.HasValue())
@@ -60,7 +64,11 @@ namespace CizaCore
 			foreach (var splitStr in splitStrs)
 			{
 				if (!splitStr.HasValue())
+				{
+					if (!isIgnoreEmpty)
+						list.AddEmptyItem(1);
 					continue;
+				}
 
 				list.Add(splitStr);
 			}

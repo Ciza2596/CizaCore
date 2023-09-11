@@ -9,6 +9,7 @@ public class StringExtensionTest
 	private const           string arrayString1 = "";
 	private static readonly string arrayString2 = $"{string1},";
 	private static readonly string arrayString3 = $"{string1}, {string2}";
+	private static readonly string arrayString4 = $"{string1}, ,{string2}";
 
 	[TestCase("hasValue", true)]
 	[TestCase("", false)]
@@ -28,11 +29,20 @@ public class StringExtensionTest
 		Assert.AreEqual(0, strings1.Length, "Strings1's length should be zero.");
 
 		var strings2 = arrayString2.ToArray();
-		Assert.AreEqual(string1, strings2[0], $"String2: {strings2[0]} should equal {strings1}");
+		Assert.AreEqual(string1, strings2[0], $"String2: {strings2[0]} should equal {strings1}.");
 
 		var strings3 = arrayString3.ToArray();
-		Assert.AreEqual(string1, strings3[0], $"Strings3: {strings3[0]} should equal {strings1}");
-		Assert.AreEqual(string2, strings3[1], $"Strings3: {strings3[1]} should equal {strings2}");
+		Assert.AreEqual(string1, strings3[0], $"Strings3: {strings3[0]} should equal {strings1}.");
+		Assert.AreEqual(string2, strings3[1], $"Strings3: {strings3[1]} should equal {strings2}.");
+
+		var strings4WithIsIgnoreEmpty = arrayString4.ToArray(true);
+		Assert.AreEqual(string1, strings4WithIsIgnoreEmpty[0], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string2, strings4WithIsIgnoreEmpty[1], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[1]} should equal {strings2}.");
+
+		var strings4WithoutIsIgnoreEmpty = arrayString4.ToArray(false);
+		Assert.AreEqual(string1, strings4WithoutIsIgnoreEmpty[0], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string.Empty, strings4WithoutIsIgnoreEmpty[1], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[1]} should equal empty.");
+		Assert.AreEqual(string2, strings4WithoutIsIgnoreEmpty[2], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[2]} should equal {strings2}.");
 	}
 
 	[Test]
@@ -47,6 +57,15 @@ public class StringExtensionTest
 		var strings3 = arrayString3.ToList();
 		Assert.AreEqual(string1, strings3[0], $"Strings3: {strings3[0]} should equal {strings1}");
 		Assert.AreEqual(string2, strings3[1], $"Strings3: {strings3[1]} should equal {strings2}");
+
+		var strings4WithIsIgnoreEmpty = arrayString4.ToList(true);
+		Assert.AreEqual(string1, strings4WithIsIgnoreEmpty[0], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string2, strings4WithIsIgnoreEmpty[1], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[1]} should equal {strings2}.");
+
+		var strings4WithoutIsIgnoreEmpty = arrayString4.ToList(false);
+		Assert.AreEqual(string1, strings4WithoutIsIgnoreEmpty[0], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string.Empty, strings4WithoutIsIgnoreEmpty[1], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[1]} should equal empty.");
+		Assert.AreEqual(string2, strings4WithoutIsIgnoreEmpty[2], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[2]} should equal {strings2}.");
 	}
 
 	[Test]
@@ -65,6 +84,16 @@ public class StringExtensionTest
 		Assert.AreEqual(string1, strings3[0], $"Strings3: {strings3[0]} should equal {strings1}");
 		Assert.AreEqual(string2, strings3[1], $"Strings3: {strings3[1]} should equal {strings2}");
 		CheckIsEmpty(strings3, 2, 2, "String3");
+
+		var strings4WithIsIgnoreEmpty = arrayString4.ToArray(length, true);
+		Assert.AreEqual(string1, strings4WithIsIgnoreEmpty[0], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string2, strings4WithIsIgnoreEmpty[1], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[1]} should equal {strings2}.");
+		CheckIsEmpty(strings4WithIsIgnoreEmpty, 2, 2, "strings4WithIsIgnoreEmpty");
+
+		var strings4WithoutIsIgnoreEmpty = arrayString4.ToArray(length, false);
+		Assert.AreEqual(string1, strings4WithoutIsIgnoreEmpty[0], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string.Empty, strings4WithoutIsIgnoreEmpty[1], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[1]} should equal empty.");
+		Assert.AreEqual(string2, strings4WithoutIsIgnoreEmpty[2], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[2]} should equal {strings2}.");
 	}
 
 	[Test]
@@ -83,6 +112,16 @@ public class StringExtensionTest
 		Assert.AreEqual(string1, strings3[0], $"Strings3: {strings3[0]} should equal {strings1}");
 		Assert.AreEqual(string2, strings3[1], $"Strings3: {strings3[1]} should equal {strings2}");
 		CheckIsEmpty(strings3.ToArray(), 2, 2, "String3");
+
+		var strings4WithIsIgnoreEmpty = arrayString4.ToList(length, true);
+		Assert.AreEqual(string1, strings4WithIsIgnoreEmpty[0], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string2, strings4WithIsIgnoreEmpty[1], $"strings4WithIsIgnoreEmpty: {strings4WithIsIgnoreEmpty[1]} should equal {strings2}.");
+		CheckIsEmpty(strings4WithIsIgnoreEmpty.ToArray(), 2, 2, "strings4WithIsIgnoreEmpty");
+
+		var strings4WithoutIsIgnoreEmpty = arrayString4.ToList(length, false);
+		Assert.AreEqual(string1, strings4WithoutIsIgnoreEmpty[0], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[0]} should equal {strings1}.");
+		Assert.AreEqual(string.Empty, strings4WithoutIsIgnoreEmpty[1], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[1]} should equal empty.");
+		Assert.AreEqual(string2, strings4WithoutIsIgnoreEmpty[2], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[2]} should equal {strings2}.");
 	}
 
 	private void CheckIsEmpty(string[] strings, int start, int end, string stringsName)

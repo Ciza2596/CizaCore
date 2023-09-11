@@ -74,10 +74,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="4175">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="4175" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -108,7 +108,8 @@
       <workItem from="1694100139311" duration="3679000" />
       <workItem from="1694143831369" duration="11618000" />
       <workItem from="1694173294089" duration="604000" />
-      <workItem from="1694407465351" duration="2122000" />
+      <workItem from="1694407465351" duration="2762000" />
+      <workItem from="1694412014068" duration="3295000" />
     </task>
     <servers />
   </component>
@@ -141,36 +142,36 @@
           <line>31</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" initialLine="31" containingFunctionPresentation="Method 'ToList'">
             <startOffsets>
-              <option value="749" />
+              <option value="816" />
             </startOffsets>
             <endOffsets>
-              <option value="784" />
+              <option value="851" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs</url>
-          <line>30</line>
+          <line>31</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" initialLine="30" containingFunctionPresentation="Method '_03_ToArray'">
             <startOffsets>
-              <option value="976" />
+              <option value="1049" />
             </startOffsets>
             <endOffsets>
-              <option value="1065" />
+              <option value="1139" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs</url>
-          <line>39</line>
+          <line>43</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" initialLine="39" containingFunctionPresentation="Method 'ToList'">
             <startOffsets>
-              <option value="869" />
+              <option value="1001" />
             </startOffsets>
             <endOffsets>
-              <option value="881" />
+              <option value="1013" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
@@ -190,16 +191,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs</url>
-          <line>61</line>
+          <line>80</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" initialLine="61" containingFunctionPresentation="Method '_05_ToArray_With_Length'">
             <startOffsets>
-              <option value="2116" />
+              <option value="3954" />
             </startOffsets>
             <endOffsets>
-              <option value="2156" />
+              <option value="3994" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs</url>
+          <line>47</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/StringExtension.cs" initialLine="43" containingFunctionPresentation="Method 'ToArray'">
+            <startOffsets>
+              <option value="1114" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1157" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
