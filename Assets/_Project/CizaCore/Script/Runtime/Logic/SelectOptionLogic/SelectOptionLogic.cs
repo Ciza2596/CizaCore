@@ -20,6 +20,25 @@ namespace CizaCore
 		/// </summary>
 		public Vector2Int CurrentCoordinate { get; private set; }
 
+		public Vector2Int GetDefaultCoordinate(string optionKey)
+		{
+			if (!IsInitialized)
+				return Vector2Int.zero;
+
+			for (var i = 0; i < _optionReadModelColumn.Length; i++)
+			{
+				var optionReadModels = _optionReadModelColumn[i];
+				for (var j = 0; j < optionReadModels.Length; j++)
+				{
+					var optionReadModel = optionReadModels[j];
+					if (optionReadModel != null && optionReadModel.Key == optionKey)
+						return new Vector2Int(i, j);
+				}
+			}
+
+			return Vector2Int.zero;
+		}
+
 		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
 		{
 			if (IsInitialized)
@@ -56,9 +75,9 @@ namespace CizaCore
 			if (!IsInitialized)
 				return;
 
-			CurrentCoordinate    = Vector2Int.zero;
+			CurrentCoordinate      = Vector2Int.zero;
 			_optionReadModelColumn = null;
-			IsInitialized        = false;
+			IsInitialized          = false;
 		}
 
 		public bool TrySetCurrentCoordinate(Vector2Int coordinate)

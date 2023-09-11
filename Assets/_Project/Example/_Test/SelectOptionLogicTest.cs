@@ -150,6 +150,24 @@ public class SelectOptionLogicTest
 			CheckCurrentCoordinate(x, y);
 	}
 
+	[TestCase("Option_1", 0, 1)]
+	[TestCase("Option_2", 1, 0)]
+	[TestCase("Option_3", 1, 1)]
+	[TestCase("Option_4", 1, 2)]
+	[TestCase("Option_5", 2, 2)]
+	[TestCase("Option_6", 3, 0)]
+	[TestCase("Option_7", 3, 1)]
+	[TestCase("Option_8", 3, 2)]
+	public void _09_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
+	{
+		// act
+		var defaultCoordinate = _selectOptionLogic.GetDefaultCoordinate(optionKey);
+
+		// assert
+		var expectedCoordinate = new Vector2Int(expectedX, expectedY);
+		Assert.AreEqual(expectedCoordinate, defaultCoordinate, $"DefaultCoordinate: {defaultCoordinate} should be {expectedCoordinate}.");
+	}
+
 	private void CreateNewAndInitializedSelectOptionLogic()
 	{
 		_selectOptionLogic.Initialize(CreateDefaultOptionRows(), CreateDefaultOptionReadModels(), Vector2Int.zero);
