@@ -29,11 +29,12 @@ namespace CizaCore
 			}
 
 			var splitStrs = strWithoutSpace.Split(SplitTag);
-			foreach (var splitStr in splitStrs)
+			for (var i = 0; i < splitStrs.Length; i++)
 			{
+				var splitStr = splitStrs[i];
 				if (!splitStr.HasValue())
 				{
-					if (!isIgnoreEmpty)
+					if (!isIgnoreEmpty && i != splitStrs.Length - 1)
 						list.AddEmptyItem(1);
 					continue;
 				}
@@ -61,11 +62,12 @@ namespace CizaCore
 			}
 
 			var splitStrs = strWithoutSpace.Split(SplitTag);
-			foreach (var splitStr in splitStrs)
+			for (var i = 0; i < splitStrs.Length; i++)
 			{
+				var splitStr = splitStrs[i];
 				if (!splitStr.HasValue())
 				{
-					if (!isIgnoreEmpty)
+					if (!isIgnoreEmpty && i != splitStrs.Length - 1)
 						list.AddEmptyItem(1);
 					continue;
 				}
