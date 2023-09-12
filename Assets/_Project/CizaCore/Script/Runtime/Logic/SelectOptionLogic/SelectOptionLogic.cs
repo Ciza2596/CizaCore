@@ -20,6 +20,15 @@ namespace CizaCore
 		/// </summary>
 		public Vector2Int CurrentCoordinate { get; private set; }
 
+		public string CurrentOptionKey
+		{
+			get
+			{
+				TryGetOptionKey(CurrentCoordinate, out var optionKey);
+				return optionKey;
+			}
+		}
+
 		public Vector2Int GetDefaultCoordinate(string optionKey)
 		{
 			if (!IsInitialized)
@@ -37,6 +46,38 @@ namespace CizaCore
 			}
 
 			return Vector2Int.zero;
+		}
+
+		public bool TryGetOptionKey(Vector2Int coordinate, out string optionKey)
+		{
+			if (!IsInitialized)
+			{
+				optionKey = string.Empty;
+				return false;
+			}
+
+			if (coordinate.x >= _optionReadModelColumn.Length)
+			{
+				optionKey = string.Empty;
+				return false;
+			}
+
+			var optionReadModels = _optionReadModelColumn[coordinate.x];
+			if (coordinate.y >= optionReadModels.Length)
+			{
+				optionKey = string.Empty;
+				return false;
+			}
+
+			var optionReadModel = optionReadModels[coordinate.y];
+			if (optionReadModel is null)
+			{
+				optionKey = string.Empty;
+				return false;
+			}
+
+			optionKey = optionReadModel.Key;
+			return true;
 		}
 
 		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, string optionKey)
@@ -68,9 +109,9 @@ namespace CizaCore
 				}
 			}
 
-			TrySetCurrentCoordinate(GetDefaultCoordinate());
-
 			IsInitialized = true;
+
+			TrySetCurrentCoordinate(GetDefaultCoordinate());
 		}
 
 		public void Release()
@@ -112,19 +153,19 @@ namespace CizaCore
 			return true;
 		}
 
-		public bool TryMoveToLeft() =>
-			TryHorizontalMove(-1);
+		public bool TryMoveToLeft(bool isSameOptionNotMove = false) =>
+			TryHorizontalMove(-1, isSameOptionNotMove);
 
-		public bool TryMoveToRight() =>
-			TryHorizontalMove(1);
+		public bool TryMoveToRight(bool isSameOptionNotMove = false) =>
+			TryHorizontalMove(1, isSameOptionNotMove);
 
-		public bool TryMoveToUp() =>
-			TryVerticalMove(-1);
+		public bool TryMoveToUp(bool isSameOptionNotMove = false) =>
+			TryVerticalMove(-1, isSameOptionNotMove);
 
-		public bool TryMoveToDown() =>
-			TryVerticalMove(1);
+		public bool TryMoveToDown(bool isSameOptionNotMove = false) =>
+			TryVerticalMove(1, isSameOptionNotMove);
 
-		private bool TryHorizontalMove(int unit)
+		private bool TryHorizontalMove(int unit, bool isSameOptionNotMove = false)
 		{
 			if (!IsInitialized)
 				return false;
@@ -138,10 +179,14 @@ namespace CizaCore
 			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
 				return false;
 
-			return TrySetCurrentCoordinate(new Vector2Int(x, y));
+			var coordinate = new Vector2Int(x, y);
+			if (isSameOptionNotMove && TryGetOptionKey(coordinate, out var optionKey) && CurrentOptionKey == optionKey)
+				return false;
+
+			return TrySetCurrentCoordinate(coordinate);
 		}
 
-		private bool TryVerticalMove(int unit)
+		private bool TryVerticalMove(int unit, bool isSameOptionNotMove = false)
 		{
 			if (!IsInitialized)
 				return false;
@@ -151,7 +196,11 @@ namespace CizaCore
 			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
 				return false;
 
-			return TrySetCurrentCoordinate(new Vector2Int(x, y));
+			var coordinate = new Vector2Int(x, y);
+			if (isSameOptionNotMove && TryGetOptionKey(coordinate, out var optionKey) && CurrentOptionKey == optionKey)
+				return false;
+
+			return TrySetCurrentCoordinate(coordinate);
 		}
 
 		private int GetYCoordinate(int x, int y, int direction)

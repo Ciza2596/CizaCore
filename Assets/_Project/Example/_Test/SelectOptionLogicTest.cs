@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class SelectOptionLogicTest
 {
-	//       = Column_0       = Column_1         = Column_2       = Column_3
+	//       = Column_0        = Column_1         = Column_2        = Column_3
 	// ==========================================================================
-	// Row_0 = None           = Option_2 (true)  = None           = Option_6(true)
-	// Row_1 = Option_1(true) = Option_3 (false) = None           = Option_7(true)
-	// Row_2 = None           = Option_4 (true)  = Option_5(true) = Option_8(false)
+	// Row_0 = None            = Option_2 (true)  = Option_2 (true) = Option_6 (true)
+	// Row_1 = Option_1 (true) = Option_3 (false) = None            = Option_7 (true)
+	// Row_2 = None            = Option_4 (true)  = Option_5 (true) = Option_8 (false)
 
 	private const           string      None     = "None";
 	private static readonly OptionImp[] Column_0 = new[] { OptionImp.None, new OptionImp("Option_1", true), OptionImp.None };
 	private static readonly OptionImp[] Column_1 = new[] { new OptionImp("Option_2", true), new OptionImp("Option_3", false), new OptionImp("Option_4", true) };
-	private static readonly OptionImp[] Column_2 = new[] { OptionImp.None, OptionImp.None, new OptionImp("Option_5", true) };
+	private static readonly OptionImp[] Column_2 = new[] { new OptionImp("Option_2", true), OptionImp.None, new OptionImp("Option_5", true) };
 	private static readonly OptionImp[] Column_4 = new[] { new OptionImp("Option_6", true), new OptionImp("Option_7", true), new OptionImp("Option_8", false) };
 
 	private static readonly Vector2Int InitializedCurrentCoordinate = new Vector2Int(0, 1);
@@ -110,6 +110,24 @@ public class SelectOptionLogicTest
 			CheckCurrentCoordinate(x, y);
 	}
 
+	[TestCase(1, 0, false, 2, 0)]
+	public void _06_TryMoveToRight_With_IsSameOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	{
+		// arrange
+		SetAndCheckCurrentCoordinate(x, y);
+
+		// act
+		var isSucceed = _selectOptionLogic.TryMoveToRight(true);
+
+		// assert
+		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
+
+		if (isSucceed)
+			CheckCurrentCoordinate(targetX, targetY);
+		else
+			CheckCurrentCoordinate(x, y);
+	}
+
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
@@ -166,6 +184,25 @@ public class SelectOptionLogicTest
 		// assert
 		var expectedCoordinate = new Vector2Int(expectedX, expectedY);
 		Assert.AreEqual(expectedCoordinate, defaultCoordinate, $"DefaultCoordinate: {defaultCoordinate} should be {expectedCoordinate}.");
+	}
+
+	[TestCase(0, 0, false, "")]
+	[TestCase(0, 1, true, "Option_1")]
+	[TestCase(1, 0, true, "Option_2")]
+	[TestCase(1, 1, true, "Option_3")]
+	[TestCase(1, 2, true, "Option_4")]
+	[TestCase(2, 2, true, "Option_5")]
+	[TestCase(3, 0, true, "Option_6")]
+	[TestCase(3, 1, true, "Option_7")]
+	[TestCase(3, 2, true, "Option_8")]
+	public void _10_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	{
+		// act
+		var isSucceed = _selectOptionLogic.TryGetOptionKey(new Vector2Int(x, y), out var optionKey);
+
+		// assert
+		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed: {isSucceed} should be {expectedIsSucceed}.");
+		Assert.AreEqual(expectedOptionKey, optionKey, $"optionKey: {optionKey} should be {optionKey}.");
 	}
 
 	private void CreateNewAndInitializedSelectOptionLogic()
