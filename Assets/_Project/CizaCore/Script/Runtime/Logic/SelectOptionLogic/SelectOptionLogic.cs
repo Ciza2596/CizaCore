@@ -86,7 +86,13 @@ namespace CizaCore
 		public bool TrySetCurrentCoordinate(string optionKey) =>
 			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey));
 
-		public bool TrySetCurrentCoordinate(Vector2Int coordinate)
+		public bool TrySetCurrentCoordinate(string optionKey, bool isTriggerCallback) =>
+			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey), isTriggerCallback);
+
+		public bool TrySetCurrentCoordinate(Vector2Int coordinate) =>
+			TrySetCurrentCoordinate(coordinate, true);
+
+		public bool TrySetCurrentCoordinate(Vector2Int coordinate, bool isTriggerCallback)
 		{
 			if (!IsInitialized)
 				return false;
@@ -99,7 +105,10 @@ namespace CizaCore
 				return false;
 
 			CurrentCoordinate = coordinate;
-			OnSetCurrentCoordinate?.Invoke(CurrentCoordinate, optionReadModel as TOption);
+
+			if (isTriggerCallback)
+				OnSetCurrentCoordinate?.Invoke(CurrentCoordinate, optionReadModel as TOption);
+
 			return true;
 		}
 
