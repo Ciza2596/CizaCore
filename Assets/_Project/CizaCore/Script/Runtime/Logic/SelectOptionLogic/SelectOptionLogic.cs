@@ -88,6 +88,9 @@ namespace CizaCore
 
 		public bool TrySetCurrentCoordinate(Vector2Int coordinate)
 		{
+			if (!IsInitialized)
+				return false;
+
 			var optionReadModel = _optionReadModelColumn[coordinate.x][coordinate.y];
 			if (optionReadModel is null)
 				return false;
@@ -114,6 +117,9 @@ namespace CizaCore
 
 		private bool TryHorizontalMove(int unit)
 		{
+			if (!IsInitialized)
+				return false;
+
 			var x = CheckXMinMax(CurrentCoordinate.x + unit);
 			if (!CheckRowIsEnable(x))
 				return false;
@@ -128,6 +134,9 @@ namespace CizaCore
 
 		private bool TryVerticalMove(int unit)
 		{
+			if (!IsInitialized)
+				return false;
+
 			var x = CurrentCoordinate.x;
 			var y = GetYCoordinate(x, CurrentCoordinate.y + unit, unit > 0 ? 1 : -1);
 			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
