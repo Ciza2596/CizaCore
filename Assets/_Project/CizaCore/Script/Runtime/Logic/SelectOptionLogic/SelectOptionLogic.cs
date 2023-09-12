@@ -39,7 +39,13 @@ namespace CizaCore
 			return Vector2Int.zero;
 		}
 
-		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
+		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, string optionKey)
+		{
+			Initialize(optionRows, optionReadModelList);
+			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey));
+		}
+
+		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList)
 		{
 			if (IsInitialized)
 				return;
@@ -62,10 +68,7 @@ namespace CizaCore
 				}
 			}
 
-			if (!TrySetCurrentCoordinate(currentCoordinate))
-			{
-				TrySetCurrentCoordinate(GetDefaultCoordinate());
-			}
+			TrySetCurrentCoordinate(GetDefaultCoordinate());
 
 			IsInitialized = true;
 		}

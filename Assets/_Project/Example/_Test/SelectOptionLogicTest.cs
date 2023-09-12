@@ -170,7 +170,7 @@ public class SelectOptionLogicTest
 
 	private void CreateNewAndInitializedSelectOptionLogic()
 	{
-		_selectOptionLogic.Initialize(CreateDefaultOptionRows(), CreateDefaultOptionReadModels(), Vector2Int.zero);
+		_selectOptionLogic.Initialize(CreateDefaultOptionRows(), CreateDefaultOptionReadModels());
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}
