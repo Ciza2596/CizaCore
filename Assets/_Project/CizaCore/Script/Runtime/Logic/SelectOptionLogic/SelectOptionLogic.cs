@@ -42,7 +42,7 @@ namespace CizaCore
 		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, string optionKey)
 		{
 			Initialize(optionRows, optionReadModelList);
-			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey));
+			TrySetCurrentCoordinate(optionKey);
 		}
 
 		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList)
@@ -82,6 +82,9 @@ namespace CizaCore
 			_optionReadModelColumn = null;
 			IsInitialized          = false;
 		}
+
+		public bool TrySetCurrentCoordinate(string optionKey) =>
+			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey));
 
 		public bool TrySetCurrentCoordinate(Vector2Int coordinate)
 		{
