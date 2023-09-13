@@ -86,6 +86,12 @@ namespace CizaCore
 			TrySetCurrentCoordinate(optionKey);
 		}
 
+		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
+		{
+			Initialize(optionRows, optionReadModelList);
+			TrySetCurrentCoordinate(currentCoordinate);
+		}
+
 		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList)
 		{
 			if (IsInitialized)
