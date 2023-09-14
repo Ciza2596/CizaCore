@@ -142,6 +142,11 @@ public class StringExtensionTest
 		Assert.AreEqual(string2, strings4WithoutIsIgnoreEmpty[2], $"Strings4WithoutIsIgnoreEmpty: {strings4WithoutIsIgnoreEmpty[2]} should equal {strings2}.");
 	}
 
+	public void _07_ToToOptionColumns(string optionKeysString, int columnNumber, int rowNumber, bool isIgnoreEmpty, string expectedOptionKeysString)
+	{
+		
+	}
+
 	private void CheckLength(int expectedLength, int length, string stringsName) =>
 		Assert.AreEqual(expectedLength, length, $"{stringsName}'s length: {length} should equal {expectedLength}.");
 
