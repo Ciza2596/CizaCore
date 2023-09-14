@@ -1,6 +1,6 @@
 namespace CizaCore
 {
-	public interface IOptionRow
+	public interface IOptionColumn
 	{
 		string[] OptionKeys { get; }
 	}

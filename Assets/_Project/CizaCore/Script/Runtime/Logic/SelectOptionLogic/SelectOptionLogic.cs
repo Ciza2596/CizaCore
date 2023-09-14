@@ -6,7 +6,7 @@ namespace CizaCore
 {
 	public class SelectOptionLogic<TOption> where TOption : class, IOptionReadModel
 	{
-		private IOptionReadModel[][] _optionReadModelColumn;
+		private IOptionReadModel[][] _optionReadModelColumns;
 
 		public const int ErrorIndex = -1;
 
@@ -34,9 +34,9 @@ namespace CizaCore
 			if (!IsInitialized)
 				return Vector2Int.zero;
 
-			for (var i = 0; i < _optionReadModelColumn.Length; i++)
+			for (var i = 0; i < _optionReadModelColumns.Length; i++)
 			{
-				var optionReadModels = _optionReadModelColumn[i];
+				var optionReadModels = _optionReadModelColumns[i];
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionReadModel = optionReadModels[j];
@@ -56,13 +56,13 @@ namespace CizaCore
 				return false;
 			}
 
-			if (coordinate.x >= _optionReadModelColumn.Length)
+			if (coordinate.x >= _optionReadModelColumns.Length)
 			{
 				optionKey = string.Empty;
 				return false;
 			}
 
-			var optionReadModels = _optionReadModelColumn[coordinate.x];
+			var optionReadModels = _optionReadModelColumns[coordinate.x];
 			if (coordinate.y >= optionReadModels.Length)
 			{
 				optionKey = string.Empty;
@@ -80,32 +80,32 @@ namespace CizaCore
 			return true;
 		}
 
-		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, string optionKey)
+		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, string optionKey)
 		{
-			Initialize(optionRows, optionReadModelList);
+			Initialize(optionColumns, optionReadModelList);
 			TrySetCurrentCoordinate(optionKey);
 		}
 
-		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
+		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
 		{
-			Initialize(optionRows, optionReadModelList);
+			Initialize(optionColumns, optionReadModelList);
 			TrySetCurrentCoordinate(currentCoordinate);
 		}
 
-		public void Initialize(IOptionRow[] optionRows, IOptionReadModel[] optionReadModelList)
+		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList)
 		{
 			if (IsInitialized)
 				return;
 
-			_optionReadModelColumn = new IOptionReadModel[optionRows.Length][];
-			var rowLength = optionRows[0].OptionKeys.Length;
+			_optionReadModelColumns = new IOptionReadModel[optionColumns.Length][];
+			var rowLength = optionColumns[0].OptionKeys.Length;
 
-			for (var i = 0; i < _optionReadModelColumn.Length; i++)
+			for (var i = 0; i < _optionReadModelColumns.Length; i++)
 			{
-				_optionReadModelColumn[i] = new IOptionReadModel[rowLength];
+				_optionReadModelColumns[i] = new IOptionReadModel[rowLength];
 
-				var optionReadModels = _optionReadModelColumn[i];
-				var optionKeys       = optionRows[i].OptionKeys;
+				var optionReadModels = _optionReadModelColumns[i];
+				var optionKeys       = optionColumns[i].OptionKeys;
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionKey       = optionKeys[j];
@@ -126,7 +126,7 @@ namespace CizaCore
 				return;
 
 			CurrentCoordinate      = Vector2Int.zero;
-			_optionReadModelColumn = null;
+			_optionReadModelColumns = null;
 			IsInitialized          = false;
 		}
 
@@ -144,7 +144,7 @@ namespace CizaCore
 			if (!IsInitialized)
 				return false;
 
-			var optionReadModel = _optionReadModelColumn[coordinate.x][coordinate.y];
+			var optionReadModel = _optionReadModelColumns[coordinate.x][coordinate.y];
 			if (optionReadModel is null)
 				return false;
 
@@ -177,7 +177,7 @@ namespace CizaCore
 				return false;
 
 			var x = CheckXMinMax(CurrentCoordinate.x + unit);
-			if (!CheckRowIsEnable(x))
+			if (!CheckColumnIsEnable(x))
 				return false;
 
 			var y = GetYCoordinate(x, CurrentCoordinate.y, -1);
@@ -211,7 +211,7 @@ namespace CizaCore
 
 		private int GetYCoordinate(int x, int y, int direction)
 		{
-			var length = _optionReadModelColumn[x].Length;
+			var length = _optionReadModelColumns[x].Length;
 			for (var i = 0; i < length; i++)
 			{
 				y = CheckYMinMax(y);
@@ -227,7 +227,7 @@ namespace CizaCore
 
 		private int CheckXMinMax(int x)
 		{
-			var length = _optionReadModelColumn.Length;
+			var length = _optionReadModelColumns.Length;
 			if (x >= length)
 				return length - 1;
 
@@ -239,7 +239,7 @@ namespace CizaCore
 
 		private int CheckYMinMax(int y)
 		{
-			var length = _optionReadModelColumn[0].Length;
+			var length = _optionReadModelColumns[0].Length;
 			if (y >= length)
 				return 0;
 
@@ -249,9 +249,9 @@ namespace CizaCore
 			return y;
 		}
 
-		private bool CheckRowIsEnable(int x)
+		private bool CheckColumnIsEnable(int x)
 		{
-			var optionReadModels = _optionReadModelColumn[x];
+			var optionReadModels = _optionReadModelColumns[x];
 			foreach (var optionReadModel in optionReadModels)
 				if (optionReadModel != null && optionReadModel.IsEnable)
 					return true;
@@ -261,7 +261,7 @@ namespace CizaCore
 
 		private bool CheckOptionIsEnable(int x, int y)
 		{
-			var optionReadModel = _optionReadModelColumn[x][y];
+			var optionReadModel = _optionReadModelColumns[x][y];
 			if (optionReadModel is null)
 				return false;
 
@@ -270,9 +270,9 @@ namespace CizaCore
 
 		private Vector2Int GetDefaultCoordinate()
 		{
-			for (var i = 0; i < _optionReadModelColumn.Length; i++)
+			for (var i = 0; i < _optionReadModelColumns.Length; i++)
 			{
-				var optionReadModels = _optionReadModelColumn[i];
+				var optionReadModels = _optionReadModelColumns[i];
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionReadModel = optionReadModels[j];

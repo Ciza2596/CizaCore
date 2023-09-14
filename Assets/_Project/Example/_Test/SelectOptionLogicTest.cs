@@ -207,7 +207,7 @@ public class SelectOptionLogicTest
 
 	private void CreateNewAndInitializedSelectOptionLogic()
 	{
-		_selectOptionLogic.Initialize(CreateDefaultOptionRows(), CreateDefaultOptionReadModels());
+		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionReadModels());
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}
@@ -226,23 +226,23 @@ public class SelectOptionLogicTest
 		Assert.AreEqual(targetCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {targetCoordinate}.");
 	}
 
-	private IOptionRow[] CreateDefaultOptionRows()
+	private IOptionColumn[] CreateDefaultOptionColumns()
 	{
-		var optionRows = new List<IOptionRow>();
+		var optionColumns = new List<IOptionColumn>();
 
-		optionRows.Add(m_CreateDefaultOptionRow(Column_0));
-		optionRows.Add(m_CreateDefaultOptionRow(Column_1));
-		optionRows.Add(m_CreateDefaultOptionRow(Column_2));
-		optionRows.Add(m_CreateDefaultOptionRow(Column_4));
+		optionColumns.Add(m_CreateDefaultOptiowColumn(Column_0));
+		optionColumns.Add(m_CreateDefaultOptiowColumn(Column_1));
+		optionColumns.Add(m_CreateDefaultOptiowColumn(Column_2));
+		optionColumns.Add(m_CreateDefaultOptiowColumn(Column_4));
 
-		return optionRows.ToArray();
+		return optionColumns.ToArray();
 
-		IOptionRow m_CreateDefaultOptionRow(OptionImp[] m_options)
+		IOptionColumn m_CreateDefaultOptiowColumn(OptionImp[] m_options)
 		{
-			var m_optionRow = Substitute.For<IOptionRow>();
-			m_optionRow.OptionKeys.Returns(m_GetOptionKeys(m_options));
+			var m_optionColumn = Substitute.For<IOptionColumn>();
+			m_optionColumn.OptionKeys.Returns(m_GetOptionKeys(m_options));
 
-			return m_optionRow;
+			return m_optionColumn;
 		}
 
 		string[] m_GetOptionKeys(OptionImp[] m_options)
