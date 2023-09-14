@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace CizaCore
 {
-	public class OptionColumnsMono<TOption> : MonoBehaviour where TOption : IOptionReadModel
+	[Serializable]
+	public class OptionColumnsSettings<TOption> where TOption : IOptionReadModel
 	{
 		[SerializeField]
 		private int _optionKeysLength = 2;
