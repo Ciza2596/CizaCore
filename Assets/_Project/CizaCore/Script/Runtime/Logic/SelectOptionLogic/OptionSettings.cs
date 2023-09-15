@@ -5,13 +5,15 @@ using UnityEngine;
 namespace CizaCore
 {
 	[Serializable]
-	public class OptionSettings<TOption> where TOption : IOptionReadModel
+	public abstract class OptionSettings<TOption> where TOption : IOptionReadModel
 	{
 		[SerializeField]
 		private int _optionKeysLength = 2;
 
 		[SerializeField]
 		private OptionColumn[] _optionColumns;
+
+		public int OptionKeysLength => _optionKeysLength;
 
 		public IOptionColumn[] OptionColumns => GetOptionColumns().ToArray();
 
