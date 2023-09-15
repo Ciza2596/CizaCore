@@ -32,6 +32,9 @@ namespace CizaCore
 			}
 		}
 
+		public int MaxColumn { get; private set; }
+		public int MaxRow    { get; private set; }
+
 		public Vector2Int GetDefaultCoordinate(string optionKey)
 		{
 			if (!IsInitialized)
@@ -100,12 +103,14 @@ namespace CizaCore
 			if (IsInitialized)
 				return;
 
-			_optionReadModelColumns = new IOptionReadModel[optionColumns.Length][];
-			var rowLength = optionColumns[0].OptionKeys.Length;
+			MaxColumn = optionColumns.Length;
+
+			_optionReadModelColumns = new IOptionReadModel[MaxColumn][];
+			MaxRow                  = optionColumns[0].OptionKeys.Length;
 
 			for (var i = 0; i < _optionReadModelColumns.Length; i++)
 			{
-				_optionReadModelColumns[i] = new IOptionReadModel[rowLength];
+				_optionReadModelColumns[i] = new IOptionReadModel[MaxRow];
 
 				var optionReadModels = _optionReadModelColumns[i];
 				var optionKeys       = optionColumns[i].OptionKeys;
