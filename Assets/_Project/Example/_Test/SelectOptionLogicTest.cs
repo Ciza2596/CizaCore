@@ -207,7 +207,7 @@ public class SelectOptionLogicTest
 
 	private void CreateNewAndInitializedSelectOptionLogic()
 	{
-		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionReadModels());
+		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionReadModels(), false, true);
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}

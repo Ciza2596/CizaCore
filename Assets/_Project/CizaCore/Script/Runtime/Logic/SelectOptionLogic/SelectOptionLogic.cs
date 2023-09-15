@@ -14,6 +14,9 @@ namespace CizaCore
 
 		public bool IsInitialized { get; private set; }
 
+		public bool IsColumnCircle { get; private set; }
+		public bool IsRowCircle    { get; private set; }
+
 		/// <summary>
 		/// x:column
 		/// y:row
@@ -80,19 +83,19 @@ namespace CizaCore
 			return true;
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, string optionKey)
+		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, string optionKey, bool isColumnCircle, bool isRowCircle)
 		{
-			Initialize(optionColumns, optionReadModelList);
+			Initialize(optionColumns, optionReadModelList, isColumnCircle, isRowCircle);
 			TrySetCurrentCoordinate(optionKey);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate)
+		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle)
 		{
-			Initialize(optionColumns, optionReadModelList);
+			Initialize(optionColumns, optionReadModelList, isColumnCircle, isRowCircle);
 			TrySetCurrentCoordinate(currentCoordinate);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList)
+		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, bool isColumnCircle, bool isRowCircle)
 		{
 			if (IsInitialized)
 				return;
@@ -115,6 +118,9 @@ namespace CizaCore
 				}
 			}
 
+			IsColumnCircle = isColumnCircle;
+			IsRowCircle    = isRowCircle;
+
 			IsInitialized = true;
 
 			TrySetCurrentCoordinate(GetDefaultCoordinate());
@@ -125,9 +131,9 @@ namespace CizaCore
 			if (!IsInitialized)
 				return;
 
-			CurrentCoordinate      = Vector2Int.zero;
+			CurrentCoordinate       = Vector2Int.zero;
 			_optionReadModelColumns = null;
-			IsInitialized          = false;
+			IsInitialized           = false;
 		}
 
 		public bool TrySetCurrentCoordinate(string optionKey) =>
@@ -225,29 +231,11 @@ namespace CizaCore
 			return ErrorIndex;
 		}
 
-		private int CheckXMinMax(int x)
-		{
-			var length = _optionReadModelColumns.Length;
-			if (x >= length)
-				return length - 1;
+		private int CheckXMinMax(int x) =>
+			MathUtils.Clamp(x, 0, _optionReadModelColumns.Length - 1, IsColumnCircle);
 
-			if (x < 0)
-				return 0;
-
-			return x;
-		}
-
-		private int CheckYMinMax(int y)
-		{
-			var length = _optionReadModelColumns[0].Length;
-			if (y >= length)
-				return 0;
-
-			if (y < 0)
-				return length - 1;
-
-			return y;
-		}
+		private int CheckYMinMax(int y) =>
+			MathUtils.Clamp(y, 0, _optionReadModelColumns[0].Length - 1, IsRowCircle);
 
 		private bool CheckColumnIsEnable(int x)
 		{

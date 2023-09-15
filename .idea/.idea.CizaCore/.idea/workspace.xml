@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/FloatExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/FloatExtension.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/IntExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Extension/IntExtension.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/MathUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/MathUtils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/MethUtilsTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/MethUtilsTest.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/OptionColumnsMono.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/OptionColumnsSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/OptionColumnsMono.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/OptionColumnsSettings.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,10 +87,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="12383">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="12383" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -126,6 +133,8 @@
       <workItem from="1694694243113" duration="257000" />
       <workItem from="1694694508661" duration="2743000" />
       <workItem from="1694699821931" duration="38000" />
+      <workItem from="1694700151212" duration="213000" />
+      <workItem from="1694759082911" duration="2420000" />
     </task>
     <servers />
   </component>
@@ -204,6 +213,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
+          <line>251</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="251" containingFunctionPresentation="Method 'CheckOptionIsEnable'">
+            <startOffsets>
+              <option value="6938" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6990" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
