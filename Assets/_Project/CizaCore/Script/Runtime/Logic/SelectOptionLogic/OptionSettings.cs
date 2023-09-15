@@ -19,6 +19,8 @@ namespace CizaCore
 
 		public IOptionReadModel[] OptionReadModels => GetOptionReadModels().ToArray();
 
+		public TOption[] OptionsIncludeNull => GetOptionsIncludeNull().ToArray();
+
 		private List<IOptionColumn> GetOptionColumns()
 		{
 			var optionColumns = new List<IOptionColumn>();
@@ -45,6 +47,16 @@ namespace CizaCore
 			}
 
 			return optionReadModels;
+		}
+
+		private List<TOption> GetOptionsIncludeNull()
+		{
+			var optionsIncludeNull = new List<TOption>();
+			foreach (var optionColumn in _optionColumns)
+				foreach (var option in optionColumn.Options)
+					optionsIncludeNull.Add(option);
+
+			return optionsIncludeNull;
 		}
 
 		private bool Contains(List<IOptionReadModel> optionReadModels, TOption option)
