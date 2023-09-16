@@ -56,33 +56,45 @@ namespace CizaCore
 
 		public bool TryGetOptionKey(Vector2Int coordinate, out string optionKey)
 		{
-			if (!IsInitialized)
+			if (!TryGetOption(coordinate, out var option))
 			{
 				optionKey = string.Empty;
 				return false;
 			}
 
+			optionKey = option.Key;
+			return true;
+		}
+
+		public bool TryGetOption(Vector2Int coordinate, out TOption option)
+		{
+			if (!IsInitialized)
+			{
+				option = null;
+				return false;
+			}
+
 			if (coordinate.x >= _optionReadModelColumns.Length)
 			{
-				optionKey = string.Empty;
+				option = null;
 				return false;
 			}
 
 			var optionReadModels = _optionReadModelColumns[coordinate.x];
 			if (coordinate.y >= optionReadModels.Length)
 			{
-				optionKey = string.Empty;
+				option = null;
 				return false;
 			}
 
 			var optionReadModel = optionReadModels[coordinate.y];
 			if (optionReadModel is null)
 			{
-				optionKey = string.Empty;
+				option = null;
 				return false;
 			}
 
-			optionKey = optionReadModel.Key;
+			option = optionReadModel as TOption;
 			return true;
 		}
 
@@ -102,11 +114,11 @@ namespace CizaCore
 		{
 			if (IsInitialized)
 				return;
-			
+
 			_optionReadModelColumns = new IOptionReadModel[optionColumns.Length][];
-			
-			MaxColumnLength         = _optionReadModelColumns.Length;
-			MaxRowLength            = optionColumns[0].OptionKeys.Length;
+
+			MaxColumnLength = _optionReadModelColumns.Length;
+			MaxRowLength    = optionColumns[0].OptionKeys.Length;
 
 			for (var i = 0; i < _optionReadModelColumns.Length; i++)
 			{
