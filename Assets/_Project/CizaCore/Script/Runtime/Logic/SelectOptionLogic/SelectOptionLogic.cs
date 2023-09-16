@@ -10,12 +10,10 @@ namespace CizaCore
 
 		public const int ErrorIndex = -1;
 
-		/// <summary>
-		/// PreviousCoordinate
-		/// PreviousOption
-		/// CurrentCoordinate
-		/// CurrentOption
-		/// </summary>
+		/// <param name="Vector2Int"> PreviousCoordinate </param>
+		/// <param name="TOption"> PreviousOption </param>
+		/// <param name="Vector2Int"> CurrentCoordinate </param>
+		/// <param name="TOption"> CurrentOption </param>
 		public event Action<Vector2Int, TOption, Vector2Int, TOption> OnSetCurrentCoordinate;
 
 		public bool IsInitialized { get; private set; }
