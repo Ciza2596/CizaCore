@@ -17,7 +17,7 @@ namespace CizaCore
 
 		public IOptionColumn[] OptionColumns => GetOptionColumns().ToArray();
 
-		public TOption[] OptionReadModels => GetOptions().ToArray();
+		public TOption[] Options => GetOptions().ToArray();
 
 		public TOption[] OptionsIncludeNull => GetOptionsIncludeNull().ToArray();
 
