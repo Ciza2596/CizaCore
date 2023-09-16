@@ -17,7 +17,7 @@ namespace CizaCore
 
 		public IOptionColumn[] OptionColumns => GetOptionColumns().ToArray();
 
-		public IOptionReadModel[] OptionReadModels => GetOptionReadModels().ToArray();
+		public TOption[] OptionReadModels => GetOptions().ToArray();
 
 		public TOption[] OptionsIncludeNull => GetOptionsIncludeNull().ToArray();
 
@@ -29,9 +29,9 @@ namespace CizaCore
 			return optionColumns;
 		}
 
-		private List<IOptionReadModel> GetOptionReadModels()
+		private List<TOption> GetOptions()
 		{
-			var optionReadModels = new List<IOptionReadModel>();
+			var options = new List<TOption>();
 			foreach (var optionColumn in _optionColumns)
 			{
 				foreach (var option in optionColumn.Options)
@@ -39,14 +39,14 @@ namespace CizaCore
 					if (option is null)
 						continue;
 
-					if (Contains(optionReadModels, option))
+					if (Contains(options, option))
 						continue;
 
-					optionReadModels.Add(option);
+					options.Add(option);
 				}
 			}
 
-			return optionReadModels;
+			return options;
 		}
 
 		private List<TOption> GetOptionsIncludeNull()
@@ -59,9 +59,9 @@ namespace CizaCore
 			return optionsIncludeNull;
 		}
 
-		private bool Contains(List<IOptionReadModel> optionReadModels, TOption option)
+		private bool Contains(List<TOption> options, TOption option)
 		{
-			foreach (var optionReadModel in optionReadModels)
+			foreach (var optionReadModel in options)
 				if (optionReadModel.Key == option.Key)
 					return true;
 

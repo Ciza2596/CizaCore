@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs" afterDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +129,7 @@
       <workItem from="1694857263662" duration="325000" />
       <workItem from="1694861821132" duration="264000" />
       <workItem from="1694862301531" duration="1773000" />
-      <workItem from="1694865402891" duration="2316000" />
+      <workItem from="1694865402891" duration="3309000" />
     </task>
     <servers />
   </component>
@@ -218,49 +214,36 @@
           <line>68</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="68" containingFunctionPresentation="Method 'TryGetOptionKey'">
             <startOffsets>
-              <option value="1766" />
+              <option value="1676" />
             </startOffsets>
             <endOffsets>
-              <option value="1789" />
+              <option value="1699" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
-          <line>94</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="101" containingFunctionPresentation="Method 'TryGetOption'">
-            <startOffsets>
-              <option value="2278" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2300" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>95</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="102" containingFunctionPresentation="Method 'TryGetOption'">
             <startOffsets>
-              <option value="2303" />
+              <option value="2157" />
             </startOffsets>
             <endOffsets>
-              <option value="2304" />
+              <option value="2158" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs</url>
-          <line>223</line>
+          <line>224</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs" initialLine="223" containingFunctionPresentation="Method '_12_TryGetOption'">
             <startOffsets>
-              <option value="6998" />
+              <option value="7024" />
             </startOffsets>
             <endOffsets>
-              <option value="7110" />
+              <option value="7136" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
