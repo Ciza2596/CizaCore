@@ -124,6 +124,7 @@
       <workItem from="1694700151212" duration="213000" />
       <workItem from="1694759082911" duration="2744000" />
       <workItem from="1694766516521" duration="693000" />
+      <workItem from="1694782545049" duration="532000" />
     </task>
     <servers />
   </component>
@@ -202,32 +203,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
-          <line>224</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="224" containingFunctionPresentation="Method 'GetYCoordinate'">
-            <startOffsets>
-              <option value="6309" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6333" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
-          <line>223</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="223" containingFunctionPresentation="Method 'GetYCoordinate'">
-            <startOffsets>
-              <option value="6252" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6304" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

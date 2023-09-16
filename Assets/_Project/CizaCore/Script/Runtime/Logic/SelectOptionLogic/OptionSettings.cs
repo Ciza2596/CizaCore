@@ -96,6 +96,12 @@ namespace CizaCore
 					}
 
 					var menuOption = _options[i];
+					if (menuOption is null)
+					{
+						optionKeys.Add(string.Empty);
+						continue;
+					}
+
 					optionKeys.Add(menuOption.Key);
 				}
 
