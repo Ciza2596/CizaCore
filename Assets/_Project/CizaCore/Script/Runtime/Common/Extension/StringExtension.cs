@@ -1,10 +1,22 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CizaCore
 {
 	public static class StringExtension
 	{
 		public const char SplitTag = ',';
+
+		public static bool IsContains(this string[] strs, string[] targetStrs)
+		{
+			foreach (var targetStr in targetStrs)
+			{
+				if (!strs.Contains(targetStr))
+					return false;
+			}
+
+			return true;
+		}
 
 		public static bool HasValue(this string str) =>
 			!string.IsNullOrEmpty(str) && !string.IsNullOrWhiteSpace(str);
