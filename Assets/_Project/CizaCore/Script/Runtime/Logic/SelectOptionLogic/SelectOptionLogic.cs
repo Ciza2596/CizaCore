@@ -6,7 +6,7 @@ namespace CizaCore
 {
 	public class SelectOptionLogic<TOption> where TOption : class, IOptionReadModel
 	{
-		private IOptionReadModel[][] _optionReadModelColumns;
+		private TOption[][] _optionColumns;
 
 		public const int ErrorIndex = -1;
 
@@ -44,9 +44,9 @@ namespace CizaCore
 			if (!IsInitialized)
 				return Vector2Int.zero;
 
-			for (var i = 0; i < _optionReadModelColumns.Length; i++)
+			for (var i = 0; i < _optionColumns.Length; i++)
 			{
-				var optionReadModels = _optionReadModelColumns[i];
+				var optionReadModels = _optionColumns[i];
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionReadModel = optionReadModels[j];
@@ -78,13 +78,13 @@ namespace CizaCore
 				return false;
 			}
 
-			if (coordinate.x >= _optionReadModelColumns.Length)
+			if (coordinate.x >= _optionColumns.Length)
 			{
 				option = null;
 				return false;
 			}
 
-			var optionReadModels = _optionReadModelColumns[coordinate.x];
+			var optionReadModels = _optionColumns[coordinate.x];
 			if (coordinate.y >= optionReadModels.Length)
 			{
 				option = null;
@@ -102,38 +102,38 @@ namespace CizaCore
 			return true;
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, string optionKey, bool isColumnCircle, bool isRowCircle)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, string optionKey, bool isColumnCircle, bool isRowCircle)
 		{
-			Initialize(optionColumns, optionReadModelList, isColumnCircle, isRowCircle);
+			Initialize(optionColumns, options, isColumnCircle, isRowCircle);
 			TrySetCurrentCoordinate(optionKey);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle)
 		{
-			Initialize(optionColumns, optionReadModelList, isColumnCircle, isRowCircle);
+			Initialize(optionColumns, options, isColumnCircle, isRowCircle);
 			TrySetCurrentCoordinate(currentCoordinate);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, IOptionReadModel[] optionReadModelList, bool isColumnCircle, bool isRowCircle)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, bool isColumnCircle, bool isRowCircle)
 		{
 			if (IsInitialized)
 				return;
 
-			_optionReadModelColumns = new IOptionReadModel[optionColumns.Length][];
+			_optionColumns = new TOption[optionColumns.Length][];
 
-			MaxColumnLength = _optionReadModelColumns.Length;
+			MaxColumnLength = _optionColumns.Length;
 			MaxRowLength    = optionColumns[0].OptionKeys.Length;
 
-			for (var i = 0; i < _optionReadModelColumns.Length; i++)
+			for (var i = 0; i < _optionColumns.Length; i++)
 			{
-				_optionReadModelColumns[i] = new IOptionReadModel[MaxRowLength];
+				_optionColumns[i] = new TOption[MaxRowLength];
 
-				var optionReadModels = _optionReadModelColumns[i];
+				var optionReadModels = _optionColumns[i];
 				var optionKeys       = optionColumns[i].OptionKeys;
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionKey       = optionKeys[j];
-					var optionReadModel = optionReadModelList.FirstOrDefault(m_optionReadModel => m_optionReadModel.Key == optionKey);
+					var optionReadModel = options.FirstOrDefault(m_optionReadModel => m_optionReadModel.Key == optionKey);
 
 					optionReadModels[j] = optionReadModel;
 				}
@@ -152,9 +152,9 @@ namespace CizaCore
 			if (!IsInitialized)
 				return;
 
-			CurrentCoordinate       = Vector2Int.zero;
-			_optionReadModelColumns = null;
-			IsInitialized           = false;
+			CurrentCoordinate = Vector2Int.zero;
+			_optionColumns    = null;
+			IsInitialized     = false;
 		}
 
 		public bool TrySetCurrentCoordinate(string optionKey) =>
@@ -171,7 +171,7 @@ namespace CizaCore
 			if (!IsInitialized)
 				return false;
 
-			var currentOptionReadModel = _optionReadModelColumns[coordinate.x][coordinate.y];
+			var currentOptionReadModel = _optionColumns[coordinate.x][coordinate.y];
 			if (currentOptionReadModel is null)
 				return false;
 
@@ -179,7 +179,7 @@ namespace CizaCore
 				return false;
 
 			var previousCoordinate      = CurrentCoordinate;
-			var previousOptionReadModel = _optionReadModelColumns[previousCoordinate.x][previousCoordinate.y];
+			var previousOptionReadModel = _optionColumns[previousCoordinate.x][previousCoordinate.y];
 
 			CurrentCoordinate = coordinate;
 
@@ -241,7 +241,7 @@ namespace CizaCore
 
 		private int GetYCoordinate(int x, int y, int direction)
 		{
-			var length = _optionReadModelColumns[x].Length;
+			var length = _optionColumns[x].Length;
 			for (var i = 0; i < length; i++)
 			{
 				y = CheckYMinMax(y);
@@ -256,14 +256,14 @@ namespace CizaCore
 		}
 
 		private int CheckXMinMax(int x) =>
-			MathUtils.Clamp(x, 0, _optionReadModelColumns.Length - 1, IsColumnCircle);
+			MathUtils.Clamp(x, 0, _optionColumns.Length - 1, IsColumnCircle);
 
 		private int CheckYMinMax(int y) =>
-			MathUtils.Clamp(y, 0, _optionReadModelColumns[0].Length - 1, IsRowCircle);
+			MathUtils.Clamp(y, 0, _optionColumns[0].Length - 1, IsRowCircle);
 
 		private bool CheckColumnIsEnable(int x)
 		{
-			var optionReadModels = _optionReadModelColumns[x];
+			var optionReadModels = _optionColumns[x];
 			foreach (var optionReadModel in optionReadModels)
 				if (optionReadModel != null && optionReadModel.IsEnable)
 					return true;
@@ -273,7 +273,7 @@ namespace CizaCore
 
 		private bool CheckOptionIsEnable(int x, int y)
 		{
-			var optionReadModel = _optionReadModelColumns[x][y];
+			var optionReadModel = _optionColumns[x][y];
 			if (optionReadModel is null)
 				return false;
 
@@ -282,9 +282,9 @@ namespace CizaCore
 
 		private Vector2Int GetDefaultCoordinate()
 		{
-			for (var i = 0; i < _optionReadModelColumns.Length; i++)
+			for (var i = 0; i < _optionColumns.Length; i++)
 			{
-				var optionReadModels = _optionReadModelColumns[i];
+				var optionReadModels = _optionColumns[i];
 				for (var j = 0; j < optionReadModels.Length; j++)
 				{
 					var optionReadModel = optionReadModels[j];

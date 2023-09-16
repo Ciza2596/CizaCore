@@ -111,7 +111,7 @@ public class SelectOptionLogicTest
 	}
 
 	[TestCase(1, 0, false, 2, 0)]
-	public void _06_TryMoveToRight_With_IsSameOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _07_TryMoveToRight_With_IsSameOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -131,7 +131,7 @@ public class SelectOptionLogicTest
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
-	public void _07_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _08_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -151,7 +151,7 @@ public class SelectOptionLogicTest
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
-	public void _08_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _09_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -176,7 +176,7 @@ public class SelectOptionLogicTest
 	[TestCase("Option_6", 3, 0)]
 	[TestCase("Option_7", 3, 1)]
 	[TestCase("Option_8", 3, 2)]
-	public void _09_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
+	public void _10_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
 	{
 		// act
 		var defaultCoordinate = _selectOptionLogic.GetDefaultCoordinate(optionKey);
@@ -195,19 +195,39 @@ public class SelectOptionLogicTest
 	[TestCase(3, 0, true, "Option_6")]
 	[TestCase(3, 1, true, "Option_7")]
 	[TestCase(3, 2, true, "Option_8")]
-	public void _10_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	public void _11_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
 	{
 		// act
 		var isSucceed = _selectOptionLogic.TryGetOptionKey(new Vector2Int(x, y), out var optionKey);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed: {isSucceed} should be {expectedIsSucceed}.");
-		Assert.AreEqual(expectedOptionKey, optionKey, $"optionKey: {optionKey} should be {optionKey}.");
+		Assert.AreEqual(expectedOptionKey, optionKey, $"optionKey: {optionKey} should be {expectedOptionKey}.");
+	}
+
+	[TestCase(0, 0, false, "")]
+	[TestCase(0, 1, true, "Option_1")]
+	[TestCase(1, 0, true, "Option_2")]
+	[TestCase(1, 1, true, "Option_3")]
+	[TestCase(1, 2, true, "Option_4")]
+	[TestCase(2, 2, true, "Option_5")]
+	[TestCase(3, 0, true, "Option_6")]
+	[TestCase(3, 1, true, "Option_7")]
+	[TestCase(3, 2, true, "Option_8")]
+	public void _12_TryGetOption(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	{
+		// act
+		var isSucceed = _selectOptionLogic.TryGetOption(new Vector2Int(x, y), out var optionImp);
+
+		// assert
+		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed: {isSucceed} should be {expectedIsSucceed}.");
+		if (expectedIsSucceed)
+			Assert.AreEqual(expectedOptionKey, optionImp.Key, $"optionKey: {optionImp.Key} should be {expectedOptionKey}.");
 	}
 
 	private void CreateNewAndInitializedSelectOptionLogic()
 	{
-		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionReadModels(), false, true);
+		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), false, true);
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}
@@ -255,9 +275,9 @@ public class SelectOptionLogicTest
 		}
 	}
 
-	private IOptionReadModel[] CreateDefaultOptionReadModels()
+	private OptionImp[] CreateDefaultOptionImp()
 	{
-		var options = new List<IOptionReadModel>();
+		var options = new List<OptionImp>();
 		options.AddRange(m_CreateDefaultOptions(Column_0));
 		options.AddRange(m_CreateDefaultOptions(Column_1));
 		options.AddRange(m_CreateDefaultOptions(Column_2));
@@ -265,33 +285,29 @@ public class SelectOptionLogicTest
 
 		return options.ToArray();
 
-		IOptionReadModel[] m_CreateDefaultOptions(OptionImp[] m_options)
+		OptionImp[] m_CreateDefaultOptions(OptionImp[] m_options)
 		{
-			var m_optionReadModels = new List<IOptionReadModel>();
+			var m_defaultOptions = new List<OptionImp>();
 			foreach (var m_option in m_options)
 			{
-				var m_optionReadModel = m_CreateDefaultOptionReadModel(m_option);
+				var m_optionReadModel = m_CreateDefaultOption(m_option);
 				if (m_optionReadModel != null)
-					m_optionReadModels.Add(m_optionReadModel);
+					m_defaultOptions.Add(m_optionReadModel);
 			}
 
-			return m_optionReadModels.ToArray();
+			return m_defaultOptions.ToArray();
 		}
 
-		IOptionReadModel m_CreateDefaultOptionReadModel(OptionImp m_option)
+		OptionImp m_CreateDefaultOption(OptionImp m_option)
 		{
 			if (m_option.Key == None)
 				return null;
 
-			var m_optionReadModel = Substitute.For<IOptionReadModel>();
-			m_optionReadModel.Key.Returns(m_option.Key);
-			m_optionReadModel.IsEnable.Returns(m_option.IsEnable);
-
-			return m_optionReadModel;
+			return new OptionImp(m_option.Key, m_option.IsEnable);
 		}
 	}
 
-	private class OptionImp : IOptionReadModel
+	public class OptionImp : IOptionReadModel
 	{
 		public static OptionImp None => new OptionImp(SelectOptionLogicTest.None, false);
 
@@ -305,5 +321,5 @@ public class SelectOptionLogicTest
 		}
 	}
 
-	private class ExampleSelectOptionLogic : SelectOptionLogic<OptionImp> { }
+	public class ExampleSelectOptionLogic : SelectOptionLogic<OptionImp> { }
 }
