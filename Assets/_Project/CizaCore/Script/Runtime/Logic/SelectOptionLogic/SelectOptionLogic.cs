@@ -10,7 +10,13 @@ namespace CizaCore
 
 		public const int ErrorIndex = -1;
 
-		public event Action<Vector2Int, TOption> OnSetCurrentCoordinate;
+		/// <summary>
+		/// PreviousCoordinate
+		/// PreviousOption
+		/// CurrentCoordinate
+		/// CurrentOption
+		/// </summary>
+		public event Action<Vector2Int, TOption, Vector2Int, TOption> OnSetCurrentCoordinate;
 
 		public bool IsInitialized { get; private set; }
 
@@ -167,17 +173,20 @@ namespace CizaCore
 			if (!IsInitialized)
 				return false;
 
-			var optionReadModel = _optionReadModelColumns[coordinate.x][coordinate.y];
-			if (optionReadModel is null)
+			var currentOptionReadModel = _optionReadModelColumns[coordinate.x][coordinate.y];
+			if (currentOptionReadModel is null)
 				return false;
 
-			if (!optionReadModel.IsEnable)
+			if (!currentOptionReadModel.IsEnable)
 				return false;
+
+			var previousCoordinate      = CurrentCoordinate;
+			var previousOptionReadModel = _optionReadModelColumns[previousCoordinate.x][previousCoordinate.y];
 
 			CurrentCoordinate = coordinate;
 
 			if (isTriggerCallback)
-				OnSetCurrentCoordinate?.Invoke(CurrentCoordinate, optionReadModel as TOption);
+				OnSetCurrentCoordinate?.Invoke(previousCoordinate, previousOptionReadModel as TOption, CurrentCoordinate, currentOptionReadModel as TOption);
 
 			return true;
 		}
