@@ -136,6 +136,8 @@
       <workItem from="1694865402891" duration="3309000" />
       <workItem from="1694868966719" duration="92000" />
       <workItem from="1694869143880" duration="26000" />
+      <workItem from="1694920984825" duration="2716000" />
+      <workItem from="1694929276838" duration="303000" />
     </task>
     <servers />
   </component>
@@ -214,32 +216,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
-          <line>68</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="68" containingFunctionPresentation="Method 'TryGetOptionKey'">
-            <startOffsets>
-              <option value="1676" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1699" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
-          <line>95</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="102" containingFunctionPresentation="Method 'TryGetOption'">
-            <startOffsets>
-              <option value="2157" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2158" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs</url>

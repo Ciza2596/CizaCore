@@ -8,12 +8,20 @@ namespace CizaCore
 	public abstract class OptionSettings<TOption> where TOption : IOptionReadModel
 	{
 		[SerializeField]
-		private int _optionKeysLength = 2;
-
-		[SerializeField]
 		private OptionColumn[] _optionColumns;
 
-		public int OptionKeysLength => _optionKeysLength;
+		public int OptionKeysLength
+		{
+			get
+			{
+				if (_optionColumns is null || _optionColumns.Length <= 0)
+					return 0;
+				var options = _optionColumns[0].Options;
+				if (options is null || options.Length <= 0)
+					return 0;
+				return options.Length;
+			}
+		}
 
 		public IOptionColumn[] OptionColumns => GetOptionColumns().ToArray();
 
@@ -25,7 +33,7 @@ namespace CizaCore
 		{
 			var optionColumns = new List<IOptionColumn>();
 			foreach (var optionColumn in _optionColumns)
-				optionColumns.Add(new OptionColumnImp(optionColumn.GetOptionKeys(_optionKeysLength).ToArray()));
+				optionColumns.Add(new OptionColumnImp(optionColumn.GetOptionKeys(OptionKeysLength).ToArray()));
 			return optionColumns;
 		}
 
