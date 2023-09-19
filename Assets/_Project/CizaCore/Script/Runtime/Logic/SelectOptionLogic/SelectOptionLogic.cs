@@ -21,6 +21,9 @@ namespace CizaCore
 		public bool IsColumnCircle { get; private set; }
 		public bool IsRowCircle    { get; private set; }
 
+		public bool IsNotMoveWhenNullOrDisableInColumn { get; private set; }
+		public bool IsNotMoveWhenNullOrDisableInRow    { get; private set; }
+
 		/// <summary>
 		/// x:column
 		/// y:row
@@ -58,6 +61,9 @@ namespace CizaCore
 			return Vector2Int.zero;
 		}
 
+		public bool TryGetOptionKey(int x, int y, out string optionKey) =>
+			TryGetOptionKey(new Vector2Int(x, y), out optionKey);
+
 		public bool TryGetOptionKey(Vector2Int coordinate, out string optionKey)
 		{
 			if (!TryGetOption(coordinate, out var option))
@@ -69,6 +75,9 @@ namespace CizaCore
 			optionKey = option.Key;
 			return true;
 		}
+
+		public bool TryGetOption(int x, int y, out TOption option) =>
+			TryGetOption(new Vector2Int(x, y), out option);
 
 		public bool TryGetOption(Vector2Int coordinate, out TOption option)
 		{
@@ -95,19 +104,19 @@ namespace CizaCore
 			return option != null;
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, string optionKey, bool isColumnCircle, bool isRowCircle)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, string optionKey, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullInColumn, bool isNotMoveWhenNullInRow)
 		{
-			Initialize(optionColumns, options, isColumnCircle, isRowCircle);
+			Initialize(optionColumns, options, isColumnCircle, isRowCircle, isNotMoveWhenNullInColumn, isNotMoveWhenNullInRow);
 			TrySetCurrentCoordinate(optionKey);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullInColumn, bool isNotMoveWhenNullInRow)
 		{
-			Initialize(optionColumns, options, isColumnCircle, isRowCircle);
+			Initialize(optionColumns, options, isColumnCircle, isRowCircle, isNotMoveWhenNullInColumn, isNotMoveWhenNullInRow);
 			TrySetCurrentCoordinate(currentCoordinate);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, bool isColumnCircle, bool isRowCircle)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullInColumn, bool isNotMoveWhenNullInRow)
 		{
 			if (IsInitialized)
 				return;
@@ -135,6 +144,9 @@ namespace CizaCore
 			IsColumnCircle = isColumnCircle;
 			IsRowCircle    = isRowCircle;
 
+			IsNotMoveWhenNullOrDisableInColumn = isNotMoveWhenNullInColumn;
+			IsNotMoveWhenNullOrDisableInRow    = isNotMoveWhenNullInRow;
+
 			IsInitialized = true;
 
 			TrySetCurrentCoordinate(GetDefaultCoordinate());
@@ -156,8 +168,14 @@ namespace CizaCore
 		public bool TrySetCurrentCoordinate(string optionKey, bool isTriggerCallback) =>
 			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey), isTriggerCallback);
 
+		public bool TrySetCurrentCoordinate(int x, int y) =>
+			TrySetCurrentCoordinate(new Vector2Int(x, y));
+
 		public bool TrySetCurrentCoordinate(Vector2Int coordinate) =>
 			TrySetCurrentCoordinate(coordinate, true);
+
+		public bool TrySetCurrentCoordinate(int x, int y, bool isTriggerCallback) =>
+			TrySetCurrentCoordinate(new Vector2Int(x, y), isTriggerCallback);
 
 		public bool TrySetCurrentCoordinate(Vector2Int coordinate, bool isTriggerCallback)
 		{
@@ -182,70 +200,100 @@ namespace CizaCore
 			return true;
 		}
 
-		public bool TryMoveToLeft(bool isSameOptionNotMove = false) =>
-			TryHorizontalMove(-1, isSameOptionNotMove);
+		public bool TryMoveToLeft(bool isIgnoreSameOption = false) =>
+			TryHorizontalMove(-1, isIgnoreSameOption);
 
-		public bool TryMoveToRight(bool isSameOptionNotMove = false) =>
-			TryHorizontalMove(1, isSameOptionNotMove);
+		public bool TryMoveToRight(bool isIgnoreSameOption = false) =>
+			TryHorizontalMove(1, isIgnoreSameOption);
 
-		public bool TryMoveToUp(bool isSameOptionNotMove = false) =>
-			TryVerticalMove(-1, isSameOptionNotMove);
+		public bool TryMoveToUp(bool isIgnoreSameOption = false) =>
+			TryVerticalMove(-1, isIgnoreSameOption);
 
-		public bool TryMoveToDown(bool isSameOptionNotMove = false) =>
-			TryVerticalMove(1, isSameOptionNotMove);
+		public bool TryMoveToDown(bool isIgnoreSameOption = false) =>
+			TryVerticalMove(1, isIgnoreSameOption);
 
-		private bool TryHorizontalMove(int unit, bool isSameOptionNotMove = false)
+		private bool TryHorizontalMove(int unit, bool isIgnoreSameOption)
 		{
 			if (!IsInitialized)
 				return false;
 
-			var x = CheckXMinMax(CurrentCoordinate.x + unit);
-			if (!CheckColumnIsEnable(x))
+			var x       = CheckXMinMax(CurrentCoordinate.x + unit);
+			var targetY = CurrentCoordinate.y;
+
+			if (IsNotMoveWhenNullOrDisableInRow && CheckIsNullOrDisable(x, targetY))
 				return false;
 
-			var y = GetYCoordinate(x, CurrentCoordinate.y, -1);
-
-			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
+			if (!m_TryGetXCoordinate(x, targetY, unit > 0 ? 1 : -1, isIgnoreSameOption, out var targetX))
 				return false;
 
-			var coordinate = new Vector2Int(x, y);
-			if (isSameOptionNotMove && TryGetOptionKey(coordinate, out var optionKey) && CurrentOptionKey == optionKey)
+			if (targetX == CurrentCoordinate.x)
 				return false;
 
-			return TrySetCurrentCoordinate(coordinate);
-		}
+			return TrySetCurrentCoordinate(targetX, targetY);
 
-		private bool TryVerticalMove(int unit, bool isSameOptionNotMove = false)
-		{
-			if (!IsInitialized)
-				return false;
-
-			var x = CurrentCoordinate.x;
-			var y = GetYCoordinate(x, CurrentCoordinate.y + unit, unit > 0 ? 1 : -1);
-			if (x == CurrentCoordinate.x && y == CurrentCoordinate.y)
-				return false;
-
-			var coordinate = new Vector2Int(x, y);
-			if (isSameOptionNotMove && TryGetOptionKey(coordinate, out var optionKey) && CurrentOptionKey == optionKey)
-				return false;
-
-			return TrySetCurrentCoordinate(coordinate);
-		}
-
-		private int GetYCoordinate(int x, int y, int direction)
-		{
-			var length = _optionColumns[x].Length;
-			for (var i = 0; i < length; i++)
+			bool m_TryGetXCoordinate(int m_x, int m_y, int m_direction, bool m_isIgnoreSameOption, out int m_targetX)
 			{
-				y = CheckYMinMax(y);
-				var checkOptionIsEnable = CheckOptionIsEnable(x, y);
-				if (checkOptionIsEnable)
-					return y;
+				var m_currentX = m_x;
 
-				y += direction;
+				var m_length = _optionColumns.Length;
+				for (var m_i = 0; m_i < m_length; m_i++)
+				{
+					m_currentX = CheckXMinMax(m_currentX);
+
+					if (TryGetOption(m_currentX, m_y, out var m_option) && m_option.IsEnable && (!m_isIgnoreSameOption || m_option.Key != CurrentOptionKey))
+					{
+						m_targetX = m_currentX;
+						return true;
+					}
+
+					m_currentX += m_direction;
+				}
+
+				m_targetX = 0;
+				return false;
 			}
+		}
 
-			return ErrorIndex;
+		private bool TryVerticalMove(int unit, bool isIgnoreSameOption)
+		{
+			if (!IsInitialized)
+				return false;
+
+			var targetX = CurrentCoordinate.x;
+			var y       = CheckYMinMax(CurrentCoordinate.y + unit);
+
+			if (IsNotMoveWhenNullOrDisableInColumn && CheckIsNullOrDisable(targetX, y))
+				return false;
+
+			if (!m_TryGetYCoordinate(targetX, y, unit > 0 ? 1 : -1, isIgnoreSameOption, out var targetY))
+				return false;
+
+			if (targetY == CurrentCoordinate.y)
+				return false;
+
+			return TrySetCurrentCoordinate(targetX, targetY);
+
+			bool m_TryGetYCoordinate(int m_x, int m_y, int m_direction, bool m_isIgnoreSameOption, out int m_targetY)
+			{
+				var m_currentY = m_y;
+
+				var m_length = _optionColumns[m_x].Length;
+				for (var m_i = 0; m_i < m_length; m_i++)
+				{
+					m_currentY = CheckYMinMax(m_currentY);
+
+					if (TryGetOption(m_x, m_currentY, out var m_option) && m_option.IsEnable && (!m_isIgnoreSameOption || m_option.Key != CurrentOptionKey))
+					{
+						m_targetY = m_currentY;
+						return true;
+					}
+
+					m_currentY += m_direction;
+				}
+
+				m_targetY = 0;
+				return false;
+			}
 		}
 
 		private int CheckXMinMax(int x) =>
@@ -254,23 +302,10 @@ namespace CizaCore
 		private int CheckYMinMax(int y) =>
 			MathUtils.Clamp(y, 0, _optionColumns[0].Length - 1, IsRowCircle);
 
-		private bool CheckColumnIsEnable(int x)
-		{
-			var options = _optionColumns[x];
-			foreach (var option in options)
-				if (option != null && option.IsEnable)
-					return true;
-
-			return false;
-		}
-
-		private bool CheckOptionIsEnable(int x, int y)
+		private bool CheckIsNullOrDisable(int x, int y)
 		{
 			var option = _optionColumns[x][y];
-			if (option is null)
-				return false;
-
-			return option.IsEnable;
+			return option == null || !option.IsEnable;
 		}
 
 		private Vector2Int GetDefaultCoordinate()

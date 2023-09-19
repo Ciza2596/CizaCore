@@ -70,9 +70,10 @@ public class SelectOptionLogicTest
 		Assert.IsTrue(isSucceed, "isSucceed Should be True.");
 	}
 
-	[TestCase(0, 1, false, 3, 1)]
-	[TestCase(1, 0, true, 0, 1)]
+	[TestCase(0, 1, false, 0, 1)]
+	[TestCase(1, 0, false, 1, 0)]
 	[TestCase(2, 2, true, 1, 2)]
+	[TestCase(2, 0, true, 1, 0)]
 	public void _05_TryMoveToLeft(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
@@ -83,17 +84,28 @@ public class SelectOptionLogicTest
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
-
-		if (isSucceed)
-			CheckCurrentCoordinate(targetX, targetY);
-		else
-			CheckCurrentCoordinate(x, y);
+		CheckCurrentCoordinate(targetX, targetY);
 	}
 
-	[TestCase(3, 0, false, 0, 1)]
-	[TestCase(0, 1, true, 1, 0)]
-	[TestCase(2, 2, true, 3, 1)]
-	public void _06_TryMoveToRight(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	[TestCase(2, 0, false, 2, 0)]
+	public void _06_TryMoveToLeft_With_IsIgnoreOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	{
+		// arrange
+		SetAndCheckCurrentCoordinate(x, y);
+
+		// act
+		var isSucceed = _selectOptionLogic.TryMoveToLeft(true);
+
+		// assert
+		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
+		CheckCurrentCoordinate(targetX, targetY);
+	}
+
+	[TestCase(3, 0, false, 3, 0)]
+	[TestCase(0, 1, true, 3, 1)]
+	[TestCase(1, 2, true, 2, 2)]
+	[TestCase(1, 0, true, 2, 0)]
+	public void _07_TryMoveToRight(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -104,14 +116,11 @@ public class SelectOptionLogicTest
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
 
-		if (isSucceed)
-			CheckCurrentCoordinate(targetX, targetY);
-		else
-			CheckCurrentCoordinate(x, y);
+		CheckCurrentCoordinate(targetX, targetY);
 	}
 
-	[TestCase(1, 0, false, 2, 0)]
-	public void _07_TryMoveToRight_With_IsSameOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	[TestCase(1, 0, true, 3, 0)]
+	public void _08_TryMoveToRight_With_IsIgnoreOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -131,7 +140,7 @@ public class SelectOptionLogicTest
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
-	public void _08_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _09_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -141,17 +150,13 @@ public class SelectOptionLogicTest
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
-
-		if (isSucceed)
-			CheckCurrentCoordinate(targetX, targetY);
-		else
-			CheckCurrentCoordinate(x, y);
+		CheckCurrentCoordinate(targetX, targetY);
 	}
 
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
-	public void _09_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _10_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
 		SetAndCheckCurrentCoordinate(x, y);
@@ -161,11 +166,7 @@ public class SelectOptionLogicTest
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
-
-		if (isSucceed)
-			CheckCurrentCoordinate(targetX, targetY);
-		else
-			CheckCurrentCoordinate(x, y);
+		CheckCurrentCoordinate(targetX, targetY);
 	}
 
 	[TestCase("Option_1", 0, 1)]
@@ -176,7 +177,7 @@ public class SelectOptionLogicTest
 	[TestCase("Option_6", 3, 0)]
 	[TestCase("Option_7", 3, 1)]
 	[TestCase("Option_8", 3, 2)]
-	public void _10_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
+	public void _11_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
 	{
 		// act
 		var defaultCoordinate = _selectOptionLogic.GetDefaultCoordinate(optionKey);
@@ -195,7 +196,7 @@ public class SelectOptionLogicTest
 	[TestCase(3, 0, true, "Option_6")]
 	[TestCase(3, 1, true, "Option_7")]
 	[TestCase(3, 2, true, "Option_8")]
-	public void _11_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	public void _12_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
 	{
 		// act
 		var isSucceed = _selectOptionLogic.TryGetOptionKey(new Vector2Int(x, y), out var optionKey);
@@ -214,7 +215,7 @@ public class SelectOptionLogicTest
 	[TestCase(3, 0, true, "Option_6")]
 	[TestCase(3, 1, true, "Option_7")]
 	[TestCase(3, 2, true, "Option_8")]
-	public void _12_TryGetOption(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	public void _13_TryGetOption(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
 	{
 		// act
 		var isSucceed = _selectOptionLogic.TryGetOption(new Vector2Int(x, y), out var optionImp);
@@ -227,7 +228,7 @@ public class SelectOptionLogicTest
 
 	private void CreateNewAndInitializedSelectOptionLogic()
 	{
-		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), false, true);
+		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), false, true, false, false);
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}

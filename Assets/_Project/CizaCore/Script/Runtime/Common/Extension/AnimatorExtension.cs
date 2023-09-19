@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -25,7 +24,7 @@ namespace CizaCore
 				await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
 				animator.SetSpeedRate(0);
 			}
-			catch (Exception e)
+			catch
 			{
 				// ignored
 			}
@@ -40,7 +39,7 @@ namespace CizaCore
 				await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
 				animator.SetSpeedRate(0);
 			}
-			catch (Exception e)
+			catch
 			{
 				// ignored
 			}
@@ -72,7 +71,7 @@ namespace CizaCore
 				while (animator.GetCurrentStateNameHash() != stateNameHash)
 					await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
 			}
-			catch (Exception e)
+			catch
 			{
 				// ignored
 			}
@@ -85,7 +84,7 @@ namespace CizaCore
 				while (animator.GetCurrentTagHash() != tagHash)
 					await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
 			}
-			catch (Exception e)
+			catch
 			{
 				// ignored
 			}
@@ -99,7 +98,7 @@ namespace CizaCore
 				while (animator.GetCurrentNormalizedTime() < endNormalizedTime)
 					await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
 			}
-			catch (Exception e)
+			catch
 			{
 				// ignored
 			}
