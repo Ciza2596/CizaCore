@@ -104,19 +104,19 @@ namespace CizaCore
 			return option != null;
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, string optionKey, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullInColumn, bool isNotMoveWhenNullInRow)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, string optionKey, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullOrDisableInColumn, bool isNotMoveWhenNullOrDisableInRow)
 		{
-			Initialize(optionColumns, options, isColumnCircle, isRowCircle, isNotMoveWhenNullInColumn, isNotMoveWhenNullInRow);
+			Initialize(optionColumns, options, isColumnCircle, isRowCircle, isNotMoveWhenNullOrDisableInColumn, isNotMoveWhenNullOrDisableInRow);
 			TrySetCurrentCoordinate(optionKey);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullInColumn, bool isNotMoveWhenNullInRow)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullOrDisableInColumn, bool isNotMoveWhenNullOrDisableInRow)
 		{
-			Initialize(optionColumns, options, isColumnCircle, isRowCircle, isNotMoveWhenNullInColumn, isNotMoveWhenNullInRow);
+			Initialize(optionColumns, options, isColumnCircle, isRowCircle, isNotMoveWhenNullOrDisableInColumn, isNotMoveWhenNullOrDisableInRow);
 			TrySetCurrentCoordinate(currentCoordinate);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullInColumn, bool isNotMoveWhenNullInRow)
+		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, bool isColumnCircle, bool isRowCircle, bool isNotMoveWhenNullOrDisableInColumn, bool isNotMoveWhenNullOrDisableInRow)
 		{
 			if (IsInitialized)
 				return;
@@ -144,8 +144,8 @@ namespace CizaCore
 			IsColumnCircle = isColumnCircle;
 			IsRowCircle    = isRowCircle;
 
-			IsNotMoveWhenNullOrDisableInColumn = isNotMoveWhenNullInColumn;
-			IsNotMoveWhenNullOrDisableInRow    = isNotMoveWhenNullInRow;
+			IsNotMoveWhenNullOrDisableInColumn = isNotMoveWhenNullOrDisableInColumn;
+			IsNotMoveWhenNullOrDisableInRow    = isNotMoveWhenNullOrDisableInRow;
 
 			IsInitialized = true;
 
