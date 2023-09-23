@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Asset/AnimMonoPlayer.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Asset/AnimMonoPlayer/AnimMonoPlayer.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Asset/AnimMonoPlayer/AnimMonoPlayer.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Asset/AnimMonoPlayer/Execute.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Asset/AnimMonoPlayer/Execute.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +143,8 @@
       <workItem from="1694869143880" duration="26000" />
       <workItem from="1694920984825" duration="2716000" />
       <workItem from="1694929276838" duration="1007000" />
+      <workItem from="1695094001125" duration="8142000" />
+      <workItem from="1695467775389" duration="4000" />
     </task>
     <servers />
   </component>
@@ -214,19 +223,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs</url>
-          <line>224</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicTest.cs" initialLine="223" containingFunctionPresentation="Method '_12_TryGetOption'">
-            <startOffsets>
-              <option value="7024" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7136" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
