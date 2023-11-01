@@ -22,27 +22,19 @@ public class SelectOptionLogicTest
 
 	private ExampleSelectOptionLogic _selectOptionLogic;
 
-	[SetUp]
-	public void SetUp()
-	{
-		_selectOptionLogic = new ExampleSelectOptionLogic();
-		CreateNewAndInitializedSelectOptionLogic();
-	}
-
 	[Test]
 	public void _01_Initialize()
 	{
-		// arrange
-		_selectOptionLogic.Release();
-		Assert.IsFalse(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be false.");
-
 		// act & assert
-		CreateNewAndInitializedSelectOptionLogic();
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.Default);
 	}
 
 	[Test]
 	public void _02_Release()
 	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.Default);
+
 		// act
 		_selectOptionLogic.Release();
 
@@ -53,6 +45,9 @@ public class SelectOptionLogicTest
 	[Test]
 	public void _03_Should_Be_False_When_SetCurrentCoordinate_0_0()
 	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
+
 		// act
 		var isSucceed = _selectOptionLogic.TrySetCurrentCoordinate(Vector2Int.zero);
 
@@ -63,6 +58,10 @@ public class SelectOptionLogicTest
 	[Test]
 	public void _04_Should_Be_True_When_SetCurrentCoordinate_1_0()
 	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
+
+
 		// act
 		var isSucceed = _selectOptionLogic.TrySetCurrentCoordinate(new Vector2Int(1, 0));
 
@@ -77,6 +76,7 @@ public class SelectOptionLogicTest
 	public void _05_TryMoveToLeft(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
@@ -91,6 +91,7 @@ public class SelectOptionLogicTest
 	public void _06_TryMoveToLeft_With_IsIgnoreOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
@@ -108,6 +109,7 @@ public class SelectOptionLogicTest
 	public void _07_TryMoveToRight(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
@@ -123,6 +125,7 @@ public class SelectOptionLogicTest
 	public void _08_TryMoveToRight_With_IsIgnoreOptionNotMove(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
@@ -137,12 +140,28 @@ public class SelectOptionLogicTest
 			CheckCurrentCoordinate(x, y);
 	}
 
+	[TestCase(0, 1, true, 1, 2)]
+	public void _09_TryMoveToRight_With_IsAutoChangeRowToLeft_And_IsAutoChangeRowToRight(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.CreateColumnInfo(false, true, true, true), IRowInfo.CreateRowInfo(true, false, false, false));
+		SetAndCheckCurrentCoordinate(x, y);
+
+		// act
+		var isSucceed = _selectOptionLogic.TryMoveToRight();
+
+		// assert
+		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
+		CheckCurrentCoordinate(targetX, targetY);
+	}
+
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
-	public void _09_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _10_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
@@ -156,9 +175,10 @@ public class SelectOptionLogicTest
 	[TestCase(0, 1, false, 0, 1)]
 	[TestCase(1, 0, true, 1, 2)]
 	[TestCase(1, 2, true, 1, 0)]
-	public void _10_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+	public void _11_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
 	{
 		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
@@ -177,8 +197,11 @@ public class SelectOptionLogicTest
 	[TestCase("Option_6", 3, 0)]
 	[TestCase("Option_7", 3, 1)]
 	[TestCase("Option_8", 3, 2)]
-	public void _11_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
+	public void _12_GetDefaultCoordinate(string optionKey, int expectedX, int expectedY)
 	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
+
 		// act
 		var defaultCoordinate = _selectOptionLogic.GetDefaultCoordinate(optionKey);
 
@@ -196,8 +219,12 @@ public class SelectOptionLogicTest
 	[TestCase(3, 0, true, "Option_6")]
 	[TestCase(3, 1, true, "Option_7")]
 	[TestCase(3, 2, true, "Option_8")]
-	public void _12_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	public void _13_TryGetOptionKey(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
 	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
+
+
 		// act
 		var isSucceed = _selectOptionLogic.TryGetOptionKey(new Vector2Int(x, y), out var optionKey);
 
@@ -215,8 +242,11 @@ public class SelectOptionLogicTest
 	[TestCase(3, 0, true, "Option_6")]
 	[TestCase(3, 1, true, "Option_7")]
 	[TestCase(3, 2, true, "Option_8")]
-	public void _13_TryGetOption(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
+	public void _14_TryGetOption(int x, int y, bool expectedIsSucceed, string expectedOptionKey)
 	{
+		// arrange
+		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
+
 		// act
 		var isSucceed = _selectOptionLogic.TryGetOption(new Vector2Int(x, y), out var optionImp);
 
@@ -226,9 +256,10 @@ public class SelectOptionLogicTest
 			Assert.AreEqual(expectedOptionKey, optionImp.Key, $"optionKey: {optionImp.Key} should be {expectedOptionKey}.");
 	}
 
-	private void CreateNewAndInitializedSelectOptionLogic()
+	private void CreateNewAndInitializedSelectOptionLogic(IColumnInfo columnInfo, IRowInfo rowInfo)
 	{
-		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), false, true, false, false);
+		_selectOptionLogic = new ExampleSelectOptionLogic();
+		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), columnInfo, rowInfo);
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}
