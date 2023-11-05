@@ -19,7 +19,7 @@ namespace CizaCore
 		[SerializeField]
 		private Animator _animator;
 
-		public override async UniTask Play() =>
-			await _animator.PlayAtStart(Animator.StringToHash(_playStateName), _speedRate, _normalizedTime);
+		public override async UniTask PlayAsync() =>
+			await _animator.PlayAtStartAsync(Animator.StringToHash(_playStateName), _speedRate, _normalizedTime);
 	}
 }

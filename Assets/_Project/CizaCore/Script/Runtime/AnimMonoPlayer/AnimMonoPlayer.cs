@@ -5,6 +5,6 @@ namespace CizaCore
 {
 	public abstract class AnimMonoPlayer : MonoBehaviour
 	{
-		public abstract UniTask Play();
+		public abstract UniTask PlayAsync();
 	}
 }

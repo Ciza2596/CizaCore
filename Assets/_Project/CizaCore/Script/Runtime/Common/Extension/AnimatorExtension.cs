@@ -16,12 +16,12 @@ namespace CizaCore
 			animator.Update(0);
 		}
 
-		public static async UniTask PlayAtStart(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
+		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
 		{
 			try
 			{
 				animator.PlayAtStart(stateNameHash, speedRate, layerIndex);
-				await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
+				await animator.WaitAnimCompletedByStateNameHashAsync(stateNameHash, endNormalizedTime, cancellationToken);
 				animator.SetSpeedRate(0);
 			}
 			catch
@@ -30,13 +30,13 @@ namespace CizaCore
 			}
 		}
 
-		public static async UniTask Play(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
+		public static async UniTask PlayAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
 		{
 			try
 			{
 				animator.SetSpeedRate(speedRate);
 				animator.Play(stateNameHash, layerIndex);
-				await animator.WaitAnimCompletedByStateNameHash(stateNameHash, endNormalizedTime, cancellationToken);
+				await animator.WaitAnimCompletedByStateNameHashAsync(stateNameHash, endNormalizedTime, cancellationToken);
 				animator.SetSpeedRate(0);
 			}
 			catch
@@ -52,19 +52,19 @@ namespace CizaCore
 			animator.Play(stateNameHash, layerIndex, normalizedTime);
 		}
 
-		public static async UniTask WaitAnimCompletedByStateNameHash(this Animator animator, int stateNameHash, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
+		public static async UniTask WaitAnimCompletedByStateNameHashAsync(this Animator animator, int stateNameHash, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
 		{
-			await animator.WaitChangeStateByStateNameHash(stateNameHash, cancellationToken);
-			await animator.WaitAnimCompleted(endNormalizedTime, cancellationToken);
+			await animator.WaitChangeStateByStateNameHashAsync(stateNameHash, cancellationToken);
+			await animator.WaitAnimCompletedAsync(endNormalizedTime, cancellationToken);
 		}
 
-		public static async UniTask WaitAnimCompletedByTagHash(this Animator animator, int tagHash, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
+		public static async UniTask WaitAnimCompletedByTagHashAsync(this Animator animator, int tagHash, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
 		{
-			await animator.WaitChangeStateByTagHash(tagHash, cancellationToken);
-			await animator.WaitAnimCompleted(endNormalizedTime, cancellationToken);
+			await animator.WaitChangeStateByTagHashAsync(tagHash, cancellationToken);
+			await animator.WaitAnimCompletedAsync(endNormalizedTime, cancellationToken);
 		}
 
-		public static async UniTask WaitChangeStateByStateNameHash(this Animator animator, int stateNameHash, CancellationToken cancellationToken)
+		public static async UniTask WaitChangeStateByStateNameHashAsync(this Animator animator, int stateNameHash, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -77,7 +77,7 @@ namespace CizaCore
 			}
 		}
 
-		public static async UniTask WaitChangeStateByTagHash(this Animator animator, int tagHash, CancellationToken cancellationToken)
+		public static async UniTask WaitChangeStateByTagHashAsync(this Animator animator, int tagHash, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -90,7 +90,7 @@ namespace CizaCore
 			}
 		}
 
-		public static async UniTask WaitAnimCompleted(this Animator animator, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
+		public static async UniTask WaitAnimCompletedAsync(this Animator animator, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
 		{
 			TimeUtils.CheckNormalizedTime(ref endNormalizedTime);
 			try

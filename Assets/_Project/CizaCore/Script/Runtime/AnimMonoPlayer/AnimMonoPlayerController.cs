@@ -8,6 +8,6 @@ namespace CizaCore
 		private AnimMonoPlayer _animMonoPlayer;
 
 		private async void OnEnable() =>
-			await _animMonoPlayer.Play();
+			await _animMonoPlayer.PlayAsync();
 	}
 }
