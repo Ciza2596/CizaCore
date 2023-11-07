@@ -16,13 +16,15 @@ namespace CizaCore
 			animator.Update(0);
 		}
 
-		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
+		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
 		{
 			try
 			{
 				animator.PlayAtStart(stateNameHash, speedRate, layerIndex);
 				await animator.WaitAnimCompletedByStateNameHashAsync(stateNameHash, endNormalizedTime, cancellationToken);
-				animator.SetSpeedRate(0);
+
+				if (!isContinue)
+					animator.SetSpeedRate(0);
 			}
 			catch
 			{
@@ -30,14 +32,16 @@ namespace CizaCore
 			}
 		}
 
-		public static async UniTask PlayAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, CancellationToken cancellationToken = default)
+		public static async UniTask PlayAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
 		{
 			try
 			{
 				animator.SetSpeedRate(speedRate);
 				animator.Play(stateNameHash, layerIndex);
 				await animator.WaitAnimCompletedByStateNameHashAsync(stateNameHash, endNormalizedTime, cancellationToken);
-				animator.SetSpeedRate(0);
+
+				if (!isContinue)
+					animator.SetSpeedRate(0);
 			}
 			catch
 			{
