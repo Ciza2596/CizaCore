@@ -1,10 +1,36 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CizaCore
 {
 	public static class SelectOptionLogicExtension
 	{
 		public const char SplitTag = ',';
+
+		public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, Vector2 direction) where T : class, IOptionReadModel
+		{
+			if (direction.x > 0)
+			{
+				if (selectLevelLogic.TryMoveToRight())
+					return;
+			}
+			else if (direction.x < 0)
+			{
+				if (selectLevelLogic.TryMoveToLeft())
+					return;
+			}
+
+			if (direction.y > 0)
+			{
+				if (selectLevelLogic.TryMoveToUp())
+					return;
+			}
+			else if (direction.y < 0)
+			{
+				if (selectLevelLogic.TryMoveToDown())
+					return;
+			}
+		}
 
 		public static string ToOptionKeysString(this List<IOptionColumn> optionColumns) =>
 			ToOptionKeysString(optionColumns.ToArray());
