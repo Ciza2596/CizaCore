@@ -12,6 +12,9 @@ public class SelectOptionLogicTest
 	// Row_1 = Option_1 (true) = Option_3 (false) = None            = Option_7 (true)
 	// Row_2 = None            = Option_4 (true)  = Option_5 (true) = Option_8 (false)
 
+	private const int PlayerCount = 1;
+	private const int PlayerIndex = 0;
+
 	private const           string      None     = "None";
 	private static readonly OptionImp[] Column_0 = new[] { OptionImp.None, new OptionImp("Option_1", true), OptionImp.None };
 	private static readonly OptionImp[] Column_1 = new[] { new OptionImp("Option_2", true), new OptionImp("Option_3", false), new OptionImp("Option_4", true) };
@@ -49,7 +52,7 @@ public class SelectOptionLogicTest
 		CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 
 		// act
-		var isSucceed = _selectOptionLogic.TrySetCurrentCoordinate(Vector2Int.zero);
+		var isSucceed = _selectOptionLogic.TrySetCurrentCoordinate(PlayerIndex, Vector2Int.zero);
 
 		// assert
 		Assert.IsFalse(isSucceed, "isSucceed Should be false.");
@@ -63,7 +66,7 @@ public class SelectOptionLogicTest
 
 
 		// act
-		var isSucceed = _selectOptionLogic.TrySetCurrentCoordinate(new Vector2Int(1, 0));
+		var isSucceed = _selectOptionLogic.TrySetCurrentCoordinate(PlayerIndex, new Vector2Int(1, 0));
 
 		// assert
 		Assert.IsTrue(isSucceed, "isSucceed Should be True.");
@@ -80,7 +83,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToLeft();
+		var isSucceed = _selectOptionLogic.TryMoveToLeft(PlayerIndex);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -95,7 +98,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToLeft(true);
+		var isSucceed = _selectOptionLogic.TryMoveToLeft(PlayerIndex, true);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -113,7 +116,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToRight();
+		var isSucceed = _selectOptionLogic.TryMoveToRight(PlayerIndex);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -129,7 +132,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToRight(true);
+		var isSucceed = _selectOptionLogic.TryMoveToRight(PlayerIndex, true);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -148,7 +151,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToRight();
+		var isSucceed = _selectOptionLogic.TryMoveToRight(PlayerIndex);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -165,7 +168,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToUp();
+		var isSucceed = _selectOptionLogic.TryMoveToUp(PlayerIndex);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -182,7 +185,7 @@ public class SelectOptionLogicTest
 		SetAndCheckCurrentCoordinate(x, y);
 
 		// act
-		var isSucceed = _selectOptionLogic.TryMoveToDown();
+		var isSucceed = _selectOptionLogic.TryMoveToDown(PlayerIndex);
 
 		// assert
 		Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -259,15 +262,17 @@ public class SelectOptionLogicTest
 	private void CreateNewAndInitializedSelectOptionLogic(IColumnInfo columnInfo, IRowInfo rowInfo)
 	{
 		_selectOptionLogic = new ExampleSelectOptionLogic();
-		_selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), columnInfo, rowInfo);
+		_selectOptionLogic.Initialize(PlayerCount, CreateDefaultOptionColumns(), CreateDefaultOptionImp(), columnInfo, rowInfo);
 		Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
-		Assert.AreEqual(InitializedCurrentCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
+
+		_selectOptionLogic.TryGetCurrentCoordinate(PlayerIndex, out var currentCoordinate);
+		Assert.AreEqual(InitializedCurrentCoordinate, currentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
 	}
 
 	private void SetAndCheckCurrentCoordinate(int x, int y)
 	{
 		var targetCoordinate = new Vector2Int(x, y);
-		var isSucceed        = _selectOptionLogic.TrySetCurrentCoordinate(targetCoordinate);
+		var isSucceed        = _selectOptionLogic.TrySetCurrentCoordinate(PlayerIndex, targetCoordinate);
 		Assert.IsTrue(isSucceed, "isSucceed Should be True.");
 		CheckCurrentCoordinate(targetCoordinate.x, targetCoordinate.y);
 	}
@@ -275,7 +280,9 @@ public class SelectOptionLogicTest
 	private void CheckCurrentCoordinate(int x, int y)
 	{
 		var targetCoordinate = new Vector2Int(x, y);
-		Assert.AreEqual(targetCoordinate, _selectOptionLogic.CurrentCoordinate, $"CurrentCoordinate should be {targetCoordinate}.");
+
+		_selectOptionLogic.TryGetCurrentCoordinate(PlayerIndex, out var currentCoordinate);
+		Assert.AreEqual(targetCoordinate, currentCoordinate, $"CurrentCoordinate should be {targetCoordinate}.");
 	}
 
 	private IOptionColumn[] CreateDefaultOptionColumns()

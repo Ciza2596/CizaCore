@@ -10,13 +10,14 @@ namespace CizaCore
 		private IColumnInfo _columnInfo;
 		private IRowInfo    _rowInfo;
 
-		public const int ErrorIndex = -1;
+		private Vector2Int[] _currentCoordinates = Array.Empty<Vector2Int>();
 
+		/// <param name="int"> PlayerIndex </param>
 		/// <param name="Vector2Int"> PreviousCoordinate </param>
 		/// <param name="TOption"> PreviousOption </param>
 		/// <param name="Vector2Int"> CurrentCoordinate </param>
 		/// <param name="TOption"> CurrentOption </param>
-		public event Action<Vector2Int, TOption, Vector2Int, TOption> OnSetCurrentCoordinate;
+		public event Action<int, Vector2Int, TOption, Vector2Int, TOption> OnSetCurrentCoordinate;
 
 		public bool IsInitialized { get; private set; }
 
@@ -26,23 +27,38 @@ namespace CizaCore
 		public bool IsRowCircle                     => _rowInfo.IsRowCircle;
 		public bool IsNotMoveWhenNullOrDisableInRow => _rowInfo.IsNotMoveWhenNullOrDisableInRow;
 
+		public int PlayerCount => _currentCoordinates != null ? _currentCoordinates.Length : 0;
+
 		/// <summary>
 		/// x:column
 		/// y:row
 		/// </summary>
-		public Vector2Int CurrentCoordinate { get; private set; }
-
-		public string CurrentOptionKey
+		public bool TryGetCurrentCoordinate(int playerIndex, out Vector2Int currentCoordinate)
 		{
-			get
+			if (playerIndex >= _currentCoordinates.Length)
 			{
-				TryGetOptionKey(CurrentCoordinate, out var optionKey);
-				return optionKey;
+				currentCoordinate = Vector2Int.zero;
+				return false;
 			}
+
+			currentCoordinate = _currentCoordinates[playerIndex];
+			return true;
+		}
+
+		public bool TryGetCurrentOptionKey(int playerIndex, out string currentOptionKey)
+		{
+			if (playerIndex >= _currentCoordinates.Length)
+			{
+				currentOptionKey = string.Empty;
+				return false;
+			}
+
+			return TryGetOptionKey(_currentCoordinates[playerIndex], out currentOptionKey);
 		}
 
 		public int MaxColumnLength { get; private set; }
-		public int MaxRowLength    { get; private set; }
+
+		public int MaxRowLength { get; private set; }
 
 		public Vector2Int GetDefaultCoordinate(string optionKey)
 		{
@@ -106,19 +122,23 @@ namespace CizaCore
 			return option != null;
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, string optionKey, IColumnInfo columnInfo, IRowInfo rowInfo)
+		public void Initialize(int playerCount, IOptionColumn[] optionColumns, TOption[] options, string optionKey, IColumnInfo columnInfo, IRowInfo rowInfo)
 		{
-			Initialize(optionColumns, options, columnInfo, rowInfo);
-			TrySetCurrentCoordinate(optionKey);
+			Initialize(playerCount, optionColumns, options, columnInfo, rowInfo);
+
+			for (var i = 0; i < _currentCoordinates.Length; i++)
+				TrySetCurrentCoordinate(i, optionKey);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, IColumnInfo columnInfo, IRowInfo rowInfo)
+		public void Initialize(int playerCount, IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, IColumnInfo columnInfo, IRowInfo rowInfo)
 		{
-			Initialize(optionColumns, options, columnInfo, rowInfo);
-			TrySetCurrentCoordinate(currentCoordinate);
+			Initialize(playerCount, optionColumns, options, columnInfo, rowInfo);
+
+			for (var i = 0; i < _currentCoordinates.Length; i++)
+				TrySetCurrentCoordinate(i, currentCoordinate);
 		}
 
-		public void Initialize(IOptionColumn[] optionColumns, TOption[] options, IColumnInfo columnInfo, IRowInfo rowInfo)
+		public void Initialize(int playerCount, IOptionColumn[] optionColumns, TOption[] options, IColumnInfo columnInfo, IRowInfo rowInfo)
 		{
 			if (IsInitialized)
 				return;
@@ -146,9 +166,12 @@ namespace CizaCore
 			_columnInfo = columnInfo;
 			_rowInfo    = rowInfo;
 
+			Reset(playerCount);
+
 			IsInitialized = true;
 
-			TrySetCurrentCoordinate(GetDefaultCoordinate());
+			for (var i = 0; i < _currentCoordinates.Length; i++)
+				TrySetCurrentCoordinate(i, GetDefaultCoordinate());
 		}
 
 		public void Release()
@@ -156,29 +179,35 @@ namespace CizaCore
 			if (!IsInitialized)
 				return;
 
-			CurrentCoordinate = Vector2Int.zero;
-			_optionColumns    = null;
-			IsInitialized     = false;
+			_optionColumns = null;
+			IsInitialized  = false;
 		}
 
-		public bool TrySetCurrentCoordinate(string optionKey) =>
-			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey));
-
-		public bool TrySetCurrentCoordinate(string optionKey, bool isTriggerCallback) =>
-			TrySetCurrentCoordinate(GetDefaultCoordinate(optionKey), isTriggerCallback);
-
-		public bool TrySetCurrentCoordinate(int x, int y) =>
-			TrySetCurrentCoordinate(new Vector2Int(x, y));
-
-		public bool TrySetCurrentCoordinate(Vector2Int coordinate) =>
-			TrySetCurrentCoordinate(coordinate, true);
-
-		public bool TrySetCurrentCoordinate(int x, int y, bool isTriggerCallback) =>
-			TrySetCurrentCoordinate(new Vector2Int(x, y), isTriggerCallback);
-
-		public bool TrySetCurrentCoordinate(Vector2Int coordinate, bool isTriggerCallback)
+		public void Reset(int playerCount = 1)
 		{
-			if (!IsInitialized)
+			_currentCoordinates = new Vector2Int[playerCount];
+			for (var i = 0; i < _currentCoordinates.Length; i++)
+				_currentCoordinates[i] = Vector2Int.zero;
+		}
+
+		public bool TrySetCurrentCoordinate(int playerIndex, string optionKey) =>
+			TrySetCurrentCoordinate(playerIndex, GetDefaultCoordinate(optionKey));
+
+		public bool TrySetCurrentCoordinate(int playerIndex, string optionKey, bool isTriggerCallback) =>
+			TrySetCurrentCoordinate(playerIndex, GetDefaultCoordinate(optionKey), isTriggerCallback);
+
+		public bool TrySetCurrentCoordinate(int playerIndex, int x, int y) =>
+			TrySetCurrentCoordinate(playerIndex, new Vector2Int(x, y));
+
+		public bool TrySetCurrentCoordinate(int playerIndex, Vector2Int coordinate) =>
+			TrySetCurrentCoordinate(playerIndex, coordinate, true);
+
+		public bool TrySetCurrentCoordinate(int playerIndex, int x, int y, bool isTriggerCallback) =>
+			TrySetCurrentCoordinate(playerIndex, new Vector2Int(x, y), isTriggerCallback);
+
+		public bool TrySetCurrentCoordinate(int playerIndex, Vector2Int coordinate, bool isTriggerCallback)
+		{
+			if (!IsInitialized || playerIndex >= _currentCoordinates.Length)
 				return false;
 
 			var option = _optionColumns[coordinate.x][coordinate.y];
@@ -188,36 +217,37 @@ namespace CizaCore
 			if (!option.IsEnable)
 				return false;
 
-			var previousCoordinate = CurrentCoordinate;
+			var previousCoordinate = _currentCoordinates[playerIndex];
 			var previousOption     = _optionColumns[previousCoordinate.x][previousCoordinate.y];
 
-			CurrentCoordinate = coordinate;
+			_currentCoordinates[playerIndex] = coordinate;
 
 			if (isTriggerCallback)
-				OnSetCurrentCoordinate?.Invoke(previousCoordinate, previousOption, CurrentCoordinate, option);
+				OnSetCurrentCoordinate?.Invoke(playerIndex, previousCoordinate, previousOption, _currentCoordinates[playerIndex], option);
 
 			return true;
 		}
 
-		public bool TryMoveToLeft(bool isIgnoreSameOption = false) =>
-			TryHorizontalMove(-1, isIgnoreSameOption);
+		public bool TryMoveToLeft(int playerIndex, bool isIgnoreSameOption = false) =>
+			TryHorizontalMove(playerIndex, -1, isIgnoreSameOption);
 
-		public bool TryMoveToRight(bool isIgnoreSameOption = false) =>
-			TryHorizontalMove(1, isIgnoreSameOption);
+		public bool TryMoveToRight(int playerIndex, bool isIgnoreSameOption = false) =>
+			TryHorizontalMove(playerIndex, 1, isIgnoreSameOption);
 
-		public bool TryMoveToUp(bool isIgnoreSameOption = false) =>
-			TryVerticalMove(-1, isIgnoreSameOption);
+		public bool TryMoveToUp(int playerIndex, bool isIgnoreSameOption = false) =>
+			TryVerticalMove(playerIndex, -1, isIgnoreSameOption);
 
-		public bool TryMoveToDown(bool isIgnoreSameOption = false) =>
-			TryVerticalMove(1, isIgnoreSameOption);
+		public bool TryMoveToDown(int playerIndex, bool isIgnoreSameOption = false) =>
+			TryVerticalMove(playerIndex, 1, isIgnoreSameOption);
 
-		private bool TryHorizontalMove(int unit, bool isIgnoreSameOption)
+		private bool TryHorizontalMove(int playerIndex, int unit, bool isIgnoreSameOption)
 		{
-			if (!IsInitialized)
+			if (!IsInitialized || playerIndex >= _currentCoordinates.Length)
 				return false;
 
-			var x = CheckXMinMax(CurrentCoordinate.x + unit);
-			var y = CurrentCoordinate.y;
+			var currentCoordinate = _currentCoordinates[playerIndex];
+			var x                 = CheckXMinMax(currentCoordinate.x + unit);
+			var y                 = currentCoordinate.y;
 
 			if (IsNotMoveWhenNullOrDisableInRow && CheckIsNullOrDisable(x, y))
 				return false;
@@ -228,30 +258,31 @@ namespace CizaCore
 
 			if (_columnInfo.IsAutoChangeRowToLeft || _columnInfo.IsAutoChangeRowToRight)
 			{
-				if (!TryGetYCoordinate(x, y, direction, false, out targetY))
+				if (!TryGetYCoordinate(playerIndex, x, y, direction, false, out targetY))
 					return false;
 				targetX = x;
 			}
 			else
 			{
-				if (!TryGetXCoordinate(x, y, direction, isIgnoreSameOption, out targetX))
+				if (!TryGetXCoordinate(playerIndex, x, y, direction, isIgnoreSameOption, out targetX))
 					return false;
 				targetY = y;
 			}
 
-			if (targetX == CurrentCoordinate.x && targetY == CurrentCoordinate.y)
+			if (targetX == currentCoordinate.x && targetY == currentCoordinate.y)
 				return false;
 
-			return TrySetCurrentCoordinate(targetX, targetY);
+			return TrySetCurrentCoordinate(playerIndex, targetX, targetY);
 		}
 
-		private bool TryVerticalMove(int unit, bool isIgnoreSameOption)
+		private bool TryVerticalMove(int playerIndex, int unit, bool isIgnoreSameOption)
 		{
-			if (!IsInitialized)
+			if (!IsInitialized || playerIndex >= _currentCoordinates.Length)
 				return false;
 
-			var x = CurrentCoordinate.x;
-			var y = CheckYMinMax(CurrentCoordinate.y + unit);
+			var currentCoordinate = _currentCoordinates[playerIndex];
+			var x                 = currentCoordinate.x;
+			var y                 = CheckYMinMax(currentCoordinate.y + unit);
 
 			if (IsNotMoveWhenNullOrDisableInColumn && CheckIsNullOrDisable(x, y))
 				return false;
@@ -262,24 +293,24 @@ namespace CizaCore
 
 			if (_rowInfo.IsAutoChangeColumnToUp || _rowInfo.IsAutoChangeColumnToDown)
 			{
-				if (!TryGetXCoordinate(x, y, direction, false, out targetX))
+				if (!TryGetXCoordinate(playerIndex, x, y, direction, false, out targetX))
 					return false;
 				targetY = y;
 			}
 			else
 			{
-				if (!TryGetYCoordinate(x, y, direction, isIgnoreSameOption, out targetY))
+				if (!TryGetYCoordinate(playerIndex, x, y, direction, isIgnoreSameOption, out targetY))
 					return false;
 				targetX = x;
 			}
 
-			if (targetX == CurrentCoordinate.x && targetY == CurrentCoordinate.y)
+			if (targetX == currentCoordinate.x && targetY == currentCoordinate.y)
 				return false;
 
-			return TrySetCurrentCoordinate(x, targetY);
+			return TrySetCurrentCoordinate(playerIndex, x, targetY);
 		}
 
-		private bool TryGetXCoordinate(int x, int y, int direction, bool isIgnoreSameOption, out int targetX)
+		private bool TryGetXCoordinate(int playerIndex, int x, int y, int direction, bool isIgnoreSameOption, out int targetX)
 		{
 			var currentX = x;
 
@@ -288,7 +319,7 @@ namespace CizaCore
 			{
 				currentX = CheckXMinMax(currentX);
 
-				if (TryGetOption(currentX, y, out var option) && option.IsEnable && (!isIgnoreSameOption || option.Key != CurrentOptionKey))
+				if (TryGetOption(currentX, y, out var option) && option.IsEnable && (!isIgnoreSameOption || TryGetCurrentOptionKey(playerIndex, out var currentOptionKey) && option.Key != currentOptionKey))
 				{
 					targetX = currentX;
 					return true;
@@ -301,7 +332,7 @@ namespace CizaCore
 			return false;
 		}
 
-		private bool TryGetYCoordinate(int x, int y, int direction, bool isIgnoreSameOption, out int targetY)
+		private bool TryGetYCoordinate(int playerIndex, int x, int y, int direction, bool isIgnoreSameOption, out int targetY)
 		{
 			var currentY = y;
 
@@ -310,7 +341,7 @@ namespace CizaCore
 			{
 				currentY = CheckYMinMax(currentY);
 
-				if (TryGetOption(x, currentY, out var option) && option.IsEnable && (!isIgnoreSameOption || option.Key != CurrentOptionKey))
+				if (TryGetOption(x, currentY, out var option) && option.IsEnable && (!isIgnoreSameOption || TryGetCurrentOptionKey(playerIndex, out var currentOptionKey) && option.Key != currentOptionKey))
 				{
 					targetY = currentY;
 					return true;

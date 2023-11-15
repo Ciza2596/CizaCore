@@ -7,27 +7,27 @@ namespace CizaCore
 	{
 		public const char SplitTag = ',';
 
-		public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, Vector2 direction) where T : class, IOptionReadModel
+		public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
 		{
 			if (direction.x > 0)
 			{
-				if (selectLevelLogic.TryMoveToRight())
+				if (selectLevelLogic.TryMoveToRight(playerIndex))
 					return;
 			}
 			else if (direction.x < 0)
 			{
-				if (selectLevelLogic.TryMoveToLeft())
+				if (selectLevelLogic.TryMoveToLeft(playerIndex))
 					return;
 			}
 
 			if (direction.y > 0)
 			{
-				if (selectLevelLogic.TryMoveToUp())
+				if (selectLevelLogic.TryMoveToUp(playerIndex))
 					return;
 			}
 			else if (direction.y < 0)
 			{
-				if (selectLevelLogic.TryMoveToDown())
+				if (selectLevelLogic.TryMoveToDown(playerIndex))
 					return;
 			}
 		}
