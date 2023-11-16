@@ -32,12 +32,12 @@ namespace CizaCore
 			}
 		}
 
-		public static async UniTask PlayAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
+		public static async UniTask PlayAsync(this Animator animator, int stateNameHash, float speedRate = 1, float startNormalizedTime = 0, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
 		{
 			try
 			{
 				animator.SetSpeedRate(speedRate);
-				animator.Play(stateNameHash, layerIndex);
+				animator.Play(stateNameHash, layerIndex, startNormalizedTime);
 				await animator.WaitAnimCompletedByStateNameHashAsync(stateNameHash, endNormalizedTime, cancellationToken);
 
 				if (!isContinue)
