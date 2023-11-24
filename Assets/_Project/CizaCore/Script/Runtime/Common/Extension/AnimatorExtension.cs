@@ -9,11 +9,14 @@ namespace CizaCore
 		public const           string SpeedRateParameterName = "SpeedRate";
 		public static readonly int    SpeedRateParameterHash = Animator.StringToHash(SpeedRateParameterName);
 
+		public static void Refresh(this Animator animator) =>
+			animator.Update(0);
+        
 		public static void PlayAtStart(this Animator animator, int stateNameHash, float speedRate = 1, int layerIndex = 0)
 		{
 			animator.SetSpeedRate(speedRate);
 			animator.Play(stateNameHash, layerIndex, 0);
-			animator.Update(0);
+			animator.Refresh();
 		}
 
 		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
