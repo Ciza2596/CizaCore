@@ -36,6 +36,9 @@ namespace CizaCore
 			_animator.Refresh();
 		}
 
+		public void PlayShowStartAndPause(CancellationToken cancellationToken) =>
+			PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
+		
 		public UniTask PlayShowAsync(CancellationToken cancellationToken) =>
 			PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
 

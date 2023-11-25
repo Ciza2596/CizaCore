@@ -18,6 +18,14 @@ namespace CizaCore
 			animator.Play(stateNameHash, layerIndex, 0);
 			animator.Refresh();
 		}
+		
+		public static void PlayAtStartAndPause(this Animator animator, int stateNameHash, float speedRate = 1, int layerIndex = 0)
+		{
+			animator.SetSpeedRate(speedRate);
+			animator.Play(stateNameHash, layerIndex, 0);
+			animator.Refresh();
+			animator.SetSpeedRate(0);
+		}
 
 		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
 		{
