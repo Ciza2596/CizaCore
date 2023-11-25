@@ -28,8 +28,13 @@ namespace CizaCore
 		public void SetIsActive(bool isActive) =>
 			_animator.gameObject.SetActive(isActive);
 
-		public void Refresh() =>
+		public void Refresh()
+		{
+			if (!_animator.isActiveAndEnabled)
+				return;
+
 			_animator.Refresh();
+		}
 
 		public UniTask PlayShowAsync(CancellationToken cancellationToken) =>
 			PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
@@ -37,10 +42,20 @@ namespace CizaCore
 		public async void PlayShowComplete() =>
 			await PlayShowAsync(1, 1, default);
 
-		public UniTask PlayHideAsync(CancellationToken cancellationToken) =>
-			_animator.PlayAtStartAsync(Animator.StringToHash(_hideStateName), endNormalizedTime: _hideEndNormalizedTime, cancellationToken: cancellationToken);
+		public UniTask PlayHideAsync(CancellationToken cancellationToken)
+		{
+			if (!_animator.isActiveAndEnabled)
+				return UniTask.CompletedTask;
 
-		private UniTask PlayShowAsync(float startNormalizedTime, float endNormalizedTime, CancellationToken cancellationToken) =>
-			_animator.PlayAsync(Animator.StringToHash(_showStateName), startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, cancellationToken: cancellationToken);
+			return _animator.PlayAtStartAsync(Animator.StringToHash(_hideStateName), endNormalizedTime: _hideEndNormalizedTime, cancellationToken: cancellationToken);
+		}
+
+		private UniTask PlayShowAsync(float startNormalizedTime, float endNormalizedTime, CancellationToken cancellationToken)
+		{
+			if (!_animator.isActiveAndEnabled)
+				return UniTask.CompletedTask;
+
+			return _animator.PlayAsync(Animator.StringToHash(_showStateName), startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, cancellationToken: cancellationToken);
+		}
 	}
 }
