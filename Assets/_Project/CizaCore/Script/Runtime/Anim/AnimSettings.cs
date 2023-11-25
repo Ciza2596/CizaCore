@@ -25,24 +25,16 @@ namespace CizaCore
 		[SerializeField]
 		private Animator _animator;
 
+		public bool IsActiveAndEnabled => _animator.isActiveAndEnabled;
+
 		public void SetIsActive(bool isActive) =>
 			_animator.gameObject.SetActive(isActive);
 
-		public void Refresh()
-		{
-			if (!_animator.isActiveAndEnabled)
-				return;
-
+		public void Refresh() =>
 			_animator.Refresh();
-		}
 
-		public void PlayShowStartAndPause()
-		{
-			if (!_animator.isActiveAndEnabled)
-				return;
-
+		public void PlayShowStartAndPause() =>
 			_animator.PlayAtStartAndPause(Animator.StringToHash(_showStateName));
-		}
 
 		public UniTask PlayShowAsync(CancellationToken cancellationToken) =>
 			PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
@@ -50,20 +42,10 @@ namespace CizaCore
 		public async void PlayShowComplete() =>
 			await PlayShowAsync(1, 1, default);
 
-		public UniTask PlayHideAsync(CancellationToken cancellationToken)
-		{
-			if (!_animator.isActiveAndEnabled)
-				return UniTask.CompletedTask;
+		public UniTask PlayHideAsync(CancellationToken cancellationToken) =>
+			_animator.PlayAtStartAsync(Animator.StringToHash(_hideStateName), endNormalizedTime: _hideEndNormalizedTime, cancellationToken: cancellationToken);
 
-			return _animator.PlayAtStartAsync(Animator.StringToHash(_hideStateName), endNormalizedTime: _hideEndNormalizedTime, cancellationToken: cancellationToken);
-		}
-
-		private UniTask PlayShowAsync(float startNormalizedTime, float endNormalizedTime, CancellationToken cancellationToken)
-		{
-			if (!_animator.isActiveAndEnabled)
-				return UniTask.CompletedTask;
-
-			return _animator.PlayAsync(Animator.StringToHash(_showStateName), startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, cancellationToken: cancellationToken);
-		}
+		private UniTask PlayShowAsync(float startNormalizedTime, float endNormalizedTime, CancellationToken cancellationToken) =>
+			_animator.PlayAsync(Animator.StringToHash(_showStateName), startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, cancellationToken: cancellationToken);
 	}
 }
