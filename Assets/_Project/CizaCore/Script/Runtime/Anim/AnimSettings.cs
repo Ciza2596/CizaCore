@@ -36,9 +36,14 @@ namespace CizaCore
 			_animator.Refresh();
 		}
 
-		public void PlayShowStartAndPause(CancellationToken cancellationToken) =>
-			PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
-		
+		public void PlayShowStartAndPause()
+		{
+			if (!_animator.isActiveAndEnabled)
+				return;
+
+			_animator.PlayAtStartAndPause(Animator.StringToHash(_showStateName));
+		}
+
 		public UniTask PlayShowAsync(CancellationToken cancellationToken) =>
 			PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
 
