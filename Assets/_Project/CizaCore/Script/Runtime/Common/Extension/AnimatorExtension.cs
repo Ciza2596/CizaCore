@@ -27,7 +27,7 @@ namespace CizaCore
 			animator.SetSpeedRate(0);
 		}
 
-		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = false, CancellationToken cancellationToken = default)
+		public static async UniTask PlayAtStartAsync(this Animator animator, int stateNameHash, float speedRate = 1, float endNormalizedTime = 1, int layerIndex = 0, bool isContinue = true, CancellationToken cancellationToken = default)
 		{
 			try
 			{
