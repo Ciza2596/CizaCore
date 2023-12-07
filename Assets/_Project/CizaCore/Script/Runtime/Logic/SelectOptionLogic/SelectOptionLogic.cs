@@ -90,7 +90,7 @@ namespace CizaCore
 
 				foreach (var option in optionRows)
 				{
-					if (option is { IsEnable: false })
+					if (option is { IsEnable: false} || !option.Key.HasValue())
 						continue;
 
 					sortOptionKeys.Add(option.Key);

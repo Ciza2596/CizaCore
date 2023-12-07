@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +159,7 @@
       <workItem from="1700890897174" duration="116000" />
       <workItem from="1700891145634" duration="1938000" />
       <workItem from="1700923905057" duration="350000" />
-      <workItem from="1701934285970" duration="714000" />
+      <workItem from="1701934285970" duration="1054000" />
     </task>
     <servers />
   </component>
