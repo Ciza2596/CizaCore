@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -77,6 +78,22 @@ namespace CizaCore
 			}
 
 			return Vector2Int.zero;
+		}
+
+		public bool TryGetIsEnableOptionKeys(out string[] optionKeys)
+		{
+			var sortOptionKeys = new HashSet<string>();
+			foreach (var optionRows in _optionColumns)
+				foreach (var option in optionRows)
+				{
+					if (!option.IsEnable)
+						continue;
+
+					sortOptionKeys.Add(option.Key);
+				}
+
+			optionKeys = sortOptionKeys.ToArray();
+			return optionKeys.Length > 0;
 		}
 
 		public bool TryGetOptionKey(int x, int y, out string optionKey) =>
