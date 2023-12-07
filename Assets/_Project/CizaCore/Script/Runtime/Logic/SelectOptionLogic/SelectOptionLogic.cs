@@ -91,13 +91,8 @@ namespace CizaCore
 			var sortOptionKeys = new HashSet<string>();
 			foreach (var optionRows in _optionColumns)
 				foreach (var option in optionRows)
-				{
-					if (option is { IsEnable: false })
-						continue;
-
-					if (option.Key.HasValue())
+					if (option is { IsEnable: true } && option.Key.HasValue())
 						sortOptionKeys.Add(option.Key);
-				}
 
 			optionKeys = sortOptionKeys.ToArray();
 			return optionKeys.Length > 0;
