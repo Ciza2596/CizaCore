@@ -37,6 +37,11 @@ namespace CizaCore.UI
         [Serializable]
         private class MonoSettings
         {
+            [Space]
+            [SerializeField]
+            private GameObject _template;
+
+            [Space]
             [SerializeField]
             private int _blockerOrder = 7;
 
@@ -83,6 +88,8 @@ namespace CizaCore.UI
 
             [SerializeField]
             private VerticalLayoutGroupHeight _verticalLayoutGroupHeight;
+
+            public GameObject Template => _template;
 
             public int BlockerOrder => _blockerOrder;
             public GameObject BlockerPrefab => _blockerPrefab;
@@ -168,6 +175,8 @@ namespace CizaCore.UI
 
         private void Awake()
         {
+            _monoSettings.Template.SetActive(false);
+
             _parent = m_FindParent(GetComponent<RectTransform>());
 
             _monoSettings.OptionsRectTransform.gameObject.SetActive(false);

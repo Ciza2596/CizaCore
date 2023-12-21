@@ -2,7 +2,7 @@
   "name": "com.ciza.cizacore",
   "displayName": "CizaCore",
   "description": "CizaCore.",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "unity": "2022.2",
   "unityRelease": "1f1",
   "dependencies": {},

@@ -5,15 +5,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Option.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Option.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/HorizontalLayoutGroupWidth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/HorizontalLayoutGroupWidth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalLayoutGroupHeight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalLayoutGroupHeight.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalScrollView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalScrollView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/Scene/ScrollRectExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/Scene/ScrollRectExample.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/_Script/VerticalScrollViewExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/_Script/VerticalScrollViewExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Blocker.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Blocker.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Dropdown.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Dropdown.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Option.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Option.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/ScrollRect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/ScrollRect/VerticalScrollView.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/ScrollRect/VerticalScrollView.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CizaCore.Editor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CizaCore.Editor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/OpenBuildFolderMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/OpenBuildFolderMenu.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer/AnimMonoPlayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer/AnimMonoPlayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer/AnimMonoPlayerController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer/AnimMonoPlayerController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer/AnimatorMonoPlayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer/AnimatorMonoPlayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/AnimatorExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/AnimatorExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/FloatExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/FloatExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/HashSetExtensionExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/HashSetExtensionExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/IntExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/IntExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/RectTransformExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/RectTransformExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/SelectOptionLogicExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/SelectOptionLogicExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/StringExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Extension/StringExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/Bound2DUtils.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/Bound2DUtils.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/Gizmos2DUtils.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/Gizmos2DUtils.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/GuidUtils.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/GuidUtils.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/MathUtils.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/MathUtils.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/ObjectUtils.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/ObjectUtils.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/TimeUtils.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Common/Utility/TimeUtils.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IColumnInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IColumnInfo.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IOptionColumn.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IOptionColumn.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IOptionReadModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IOptionReadModel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IRowInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/IRowInfo.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/OptionSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/OptionSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Dropdown.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Dropdown.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Option.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Option.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/HorizontalLayoutGroupWidth.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/HorizontalLayoutGroupWidth.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalLayoutGroupHeight.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalLayoutGroupHeight.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/FluentAssertions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/FluentAssertions.dll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/NSubstitute.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/NSubstitute.dll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/UI/Scene/UIExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/UI/Scene/UIExample.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +108,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Dropdown.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/_Script/VerticalScrollViewExample.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Editor/CreateUIObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/16d1a1e3fafa4d23a275526c945e1b62469200/5c/7170bfb1/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37b51751e7a84134841e2b994d9061ab172a00/f3/f165f676/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -37,29 +121,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "File.Encoding",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/cizahuang/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/cizahuang/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.8f1/Unity.app/Contents/MacOS/Unity" />
@@ -87,10 +171,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="990">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="990" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -168,7 +252,8 @@
       <workItem from="1703003994842" duration="1393000" />
       <workItem from="1703047554330" duration="2844000" />
       <workItem from="1703095348059" duration="501000" />
-      <workItem from="1703121429910" duration="8848000" />
+      <workItem from="1703121429910" duration="16309000" />
+      <workItem from="1703141919219" duration="2201000" />
     </task>
     <servers />
   </component>
