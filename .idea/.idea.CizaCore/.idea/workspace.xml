@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/AnimatorExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/AnimatorExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,6 +167,7 @@
       <workItem from="1703163578087" duration="77000" />
       <workItem from="1703166023384" duration="115000" />
       <workItem from="1703166352343" duration="30000" />
+      <workItem from="1703167268505" duration="505000" />
     </task>
     <servers />
   </component>
