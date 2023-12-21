@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace CizaCore.UI
@@ -335,7 +334,7 @@ namespace CizaCore.UI
 
         public void Select(int index, bool isImmediately)
         {
-            if (!IsShow)
+            if (!IsShow || index < 0 || index >= Options.Length)
                 return;
 
             SelectIndex = index;
@@ -354,6 +353,9 @@ namespace CizaCore.UI
 
         public void Confirm(int index)
         {
+            if (index < 0 || index >= Options.Length)
+                return;
+
             switch (_animationSettings.AnimationKind)
             {
                 case AnimationKinds.None:
@@ -375,7 +377,7 @@ namespace CizaCore.UI
                     break;
             }
 
-            if (index >= 0 && index < _options.Count)
+            if (_options.Count > 0)
             {
                 _index = index;
                 _monoSettings.TitleText.text = _options[index];
