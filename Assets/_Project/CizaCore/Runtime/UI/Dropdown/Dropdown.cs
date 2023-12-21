@@ -43,14 +43,14 @@ namespace CizaCore.UI
 
             [Space]
             [SerializeField]
-            private int _blockerOrder = 7;
+            private int _addBlockerOrder = 1;
 
             [SerializeField]
             private GameObject _blockerPrefab;
 
             [Space]
             [SerializeField]
-            private int _optionOder = 8;
+            private int _addOptionOder = 2;
 
             [SerializeField]
             private GameObject _optionPrefab;
@@ -91,10 +91,10 @@ namespace CizaCore.UI
 
             public GameObject Template => _template;
 
-            public int BlockerOrder => _blockerOrder;
+            public int AddBlockerOrder => _addBlockerOrder;
             public GameObject BlockerPrefab => _blockerPrefab;
 
-            public int OptionOder => _optionOder;
+            public int AddOptionOder => _addOptionOder;
             public GameObject OptionPrefab => _optionPrefab;
 
             public Canvas TitleCanvas => _titleCanvas;
@@ -152,7 +152,7 @@ namespace CizaCore.UI
         private GameObject _currentBlocker;
 
         private int _index;
-        private int _optionOder;
+        private int _parentOder;
 
         private float _targetPos;
         private float _targetFade;
@@ -178,11 +178,10 @@ namespace CizaCore.UI
             _monoSettings.Template.SetActive(false);
 
             _parent = m_FindParent(GetComponent<RectTransform>());
+            _parentOder = _parent.GetComponent<Canvas>().sortingOrder;
 
             _monoSettings.OptionsRectTransform.gameObject.SetActive(false);
             _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
-
-            _optionOder = _monoSettings.OptionsCanvas.sortingOrder;
 
             SetOrder(false);
 
@@ -285,7 +284,7 @@ namespace CizaCore.UI
             StartCoroutine(WaitForSeveralFrames());
 
             _currentBlocker = Instantiate(_monoSettings.BlockerPrefab, _parent);
-            _currentBlocker.GetComponent<Canvas>().sortingOrder = _monoSettings.BlockerOrder;
+            _currentBlocker.GetComponent<Canvas>().sortingOrder = _monoSettings.AddBlockerOrder;
             _currentBlocker.GetComponent<Button>().onClick.AddListener(Hide);
             _currentBlocker.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             _currentBlocker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
@@ -464,10 +463,10 @@ namespace CizaCore.UI
         private void SetOrder(bool isShow)
         {
             _monoSettings.OptionsCanvas.overrideSorting = isShow;
-            _monoSettings.OptionsCanvas.sortingOrder = isShow ? _monoSettings.OptionOder : _optionOder;
+            _monoSettings.OptionsCanvas.sortingOrder = isShow ? _parentOder + _monoSettings.AddOptionOder : _parentOder;
 
             _monoSettings.TitleCanvas.overrideSorting = isShow;
-            _monoSettings.TitleCanvas.sortingOrder = isShow ? _monoSettings.OptionOder : _optionOder;
+            _monoSettings.TitleCanvas.sortingOrder = isShow ? _parentOder + _monoSettings.AddOptionOder : _parentOder;
         }
     }
 }
