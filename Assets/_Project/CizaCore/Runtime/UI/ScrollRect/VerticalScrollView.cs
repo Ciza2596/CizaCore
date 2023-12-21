@@ -180,7 +180,7 @@ namespace CizaCore.UI
 
             [Space]
             [SerializeField]
-            private float _moveSpeed = 1.4f;
+            private float _moveSpeed = 2f;
 
             public bool IsCircle => _isCircle;
 

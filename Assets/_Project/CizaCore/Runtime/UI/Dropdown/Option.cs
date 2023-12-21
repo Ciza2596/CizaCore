@@ -69,7 +69,7 @@ namespace CizaCore.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _dropdown.Select(Index);
+            _dropdown.Select(Index, false);
         }
     }
 }

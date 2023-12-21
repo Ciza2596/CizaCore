@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace CizaCore.UI
@@ -14,7 +15,7 @@ namespace CizaCore.UI
         {
             [Space]
             [SerializeField]
-            private AnimationKinds _animationKind = AnimationKinds.Shrinking;
+            private AnimationKinds _animationKind = AnimationKinds.ShrinkingAndFading;
 
             [SerializeField]
             private AnimationCurve _shrinkingCurve;
@@ -38,7 +39,14 @@ namespace CizaCore.UI
         private class MonoSettings
         {
             [SerializeField]
+            private int _blockerOrder = 7;
+
+            [SerializeField]
             private GameObject _blockerPrefab;
+
+            [Space]
+            [SerializeField]
+            private int _optionOder = 8;
 
             [SerializeField]
             private GameObject _optionPrefab;
@@ -55,28 +63,47 @@ namespace CizaCore.UI
 
             [Space]
             [SerializeField]
-            private CanvasGroup _scrollViewCanvasGroup;
+            private CanvasGroup _optionsCanvasGroup;
 
             [SerializeField]
-            private Canvas _scrollViewCanvas;
+            private Canvas _optionsCanvas;
 
             [SerializeField]
-            private RectTransform _scrollViewRectTransform;
+            private RectTransform _optionsRectTransform;
+
+            [Space]
+            [SerializeField]
+            private RectTransform _scrollView;
 
             [SerializeField]
             private RectTransform _content;
 
+            [Space]
+            [SerializeField]
+            private VerticalScrollView _verticalScrollView;
+
+            [SerializeField]
+            private VerticalLayoutGroupHeight _verticalLayoutGroupHeight;
+
+            public int BlockerOrder => _blockerOrder;
             public GameObject BlockerPrefab => _blockerPrefab;
+
+            public int OptionOder => _optionOder;
             public GameObject OptionPrefab => _optionPrefab;
 
             public Canvas TitleCanvas => _titleCanvas;
             public Button TitleButton => _titleButton;
             public TMP_Text TitleText => _titleText;
 
-            public CanvasGroup ScrollViewCanvasGroup => _scrollViewCanvasGroup;
-            public Canvas ScrollViewCanvas => _scrollViewCanvas;
-            public RectTransform ScrollViewRectTransform => _scrollViewRectTransform;
+            public CanvasGroup OptionsCanvasGroup => _optionsCanvasGroup;
+            public Canvas OptionsCanvas => _optionsCanvas;
+            public RectTransform OptionsRectTransform => _optionsRectTransform;
+
+            public RectTransform ScrollView => _scrollView;
             public RectTransform Content => _content;
+
+            public VerticalScrollView VerticalScrollView => _verticalScrollView;
+            public VerticalLayoutGroupHeight VerticalLayoutGroupHeight => _verticalLayoutGroupHeight;
         }
 
         enum AnimationKinds
@@ -103,7 +130,7 @@ namespace CizaCore.UI
 
         [Space]
         [SerializeField]
-        private float _maximumDropdownHeight = 350;
+        private float _maxDropdownHeight = 150;
 
         [Space]
         [SerializeField]
@@ -119,16 +146,15 @@ namespace CizaCore.UI
         private GameObject _currentBlocker;
 
         private int _index;
+        private int _optionOder;
 
+        private float _targetPos;
+        private float _targetFade;
+        private float _startPos;
+        private float _startFade;
 
-        private float _targetPos; //Target position for shrinking
-        private float _targetFade; //Target fade value
-        private float _startPos; //Start position for shrinking
-        private float _startFade; //Start fade value
-
-        private float _ratioShrinking = 1; //Ratio of shrinking
-        private float _ratioFading = 1; //Ratio of fading
-
+        private float _ratioShrinking = 1;
+        private float _ratioFading = 1;
 
         public bool IsShow { get; private set; }
 
@@ -141,20 +167,16 @@ namespace CizaCore.UI
 
         public event Action<int> OnIndexChanged;
 
-        [SerializeField]
-        //AutoSizeLayoutDropdown optionsDropdown; //Options dropdown resizer
         private void Awake()
         {
             _parent = m_FindParent(GetComponent<RectTransform>());
 
-            _monoSettings.ScrollViewRectTransform.gameObject.SetActive(false);
-            _monoSettings.ScrollViewRectTransform.sizeDelta = new Vector2(_monoSettings.ScrollViewRectTransform.sizeDelta.x, 0);
+            _monoSettings.OptionsRectTransform.gameObject.SetActive(false);
+            _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
 
-            _monoSettings.ScrollViewCanvas.overrideSorting = false;
-            _monoSettings.ScrollViewCanvas.sortingOrder = 100;
+            _optionOder = _monoSettings.OptionsCanvas.sortingOrder;
 
-            _monoSettings.TitleCanvas.overrideSorting = false;
-            _monoSettings.TitleCanvas.sortingOrder = 100;
+            SetOrder(false);
 
             Confirm(_defaultIndex);
 
@@ -171,31 +193,32 @@ namespace CizaCore.UI
 
         void Update()
         {
-            //optionsDropdown.maxSize = _maximumDropdownHeight;
-            if (!_monoSettings.ScrollViewRectTransform.gameObject.activeSelf)
+            if (!_monoSettings.OptionsRectTransform.gameObject.activeSelf)
                 return;
+
+            _monoSettings.VerticalScrollView.Tick(Time.deltaTime);
 
             switch (_animationSettings.AnimationKind)
             {
                 case AnimationKinds.Shrinking:
                     _ratioShrinking = Mathf.Clamp(_ratioShrinking + (_animationSettings.ShrinkingSpeed * Time.deltaTime) * _animationSettings.ShrinkingCurve.Evaluate(_ratioShrinking), 0, 1);
-                    _monoSettings.ScrollViewRectTransform.sizeDelta = new Vector2(_monoSettings.ScrollViewRectTransform.sizeDelta.x, Mathf.Lerp(_startPos, _targetPos, _ratioShrinking));
+                    _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, Mathf.Lerp(_startPos, _targetPos, _ratioShrinking));
                     if (_ratioShrinking > 0.99f && _targetPos == 0)
                         Closed();
                     break;
 
                 case AnimationKinds.Fading:
                     _ratioFading = Mathf.Clamp(_ratioFading + (_animationSettings.FadingSpeed * Time.deltaTime), 0, 1);
-                    _monoSettings.ScrollViewCanvasGroup.alpha = Mathf.Lerp(_startFade, _targetFade, _ratioFading);
+                    _monoSettings.OptionsCanvasGroup.alpha = Mathf.Lerp(_startFade, _targetFade, _ratioFading);
                     if (_ratioFading > 0.99f && _targetPos == 0)
                         Closed();
                     break;
 
                 case AnimationKinds.ShrinkingAndFading:
                     _ratioShrinking = Mathf.Clamp(_ratioShrinking + (_animationSettings.ShrinkingSpeed * Time.deltaTime) * _animationSettings.ShrinkingCurve.Evaluate(_ratioShrinking), 0, 1);
-                    _monoSettings.ScrollViewRectTransform.sizeDelta = new Vector2(_monoSettings.ScrollViewRectTransform.sizeDelta.x, Mathf.Lerp(_startPos, _targetPos, _ratioShrinking));
+                    _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, Mathf.Lerp(_startPos, _targetPos, _ratioShrinking));
                     _ratioFading = Mathf.Clamp(_ratioFading + (_animationSettings.FadingSpeed * Time.deltaTime), 0, 1);
-                    _monoSettings.ScrollViewCanvasGroup.alpha = Mathf.Lerp(_startFade, _targetFade, _ratioFading);
+                    _monoSettings.OptionsCanvasGroup.alpha = Mathf.Lerp(_startFade, _targetFade, _ratioFading);
                     if (_ratioFading > 0.99f && _ratioShrinking > 0.99f && _targetPos == 0)
                         Closed();
                     break;
@@ -211,9 +234,6 @@ namespace CizaCore.UI
         public void ClearOptions() =>
             _options.Clear();
 
-        /// <summary>
-        /// Open options method
-        /// </summary>
         public void Show()
         {
             if (_options.Count == 0)
@@ -249,14 +269,16 @@ namespace CizaCore.UI
                 _spawnedOptions.Add(spawnedOption);
             }
 
-            Select(Index);
+            _monoSettings.ScrollView.sizeDelta = new Vector2(_monoSettings.ScrollView.sizeDelta.x, Mathf.Clamp(_monoSettings.VerticalLayoutGroupHeight.Height, float.MinValue, _maxDropdownHeight));
+
+            Select(Index, true);
             SetOptionIsConfirm();
 
-            //_monoSettings.ScrollViewRectTransform.GetChild(0).GetComponent<AutoSizeLayoutDropdown>().UpdateAllRect();
             StartCoroutine(WaitForSeveralFrames());
 
             _currentBlocker = Instantiate(_monoSettings.BlockerPrefab, _parent);
-            _currentBlocker.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(Hide));
+            _currentBlocker.GetComponent<Canvas>().sortingOrder = _monoSettings.BlockerOrder;
+            _currentBlocker.GetComponent<Button>().onClick.AddListener(Hide);
             _currentBlocker.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             _currentBlocker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         }
@@ -291,14 +313,14 @@ namespace CizaCore.UI
             SelectIndex = DefaultTextIndex;
             _ratioShrinking = 0;
             _ratioFading = 0;
-            _startPos = _monoSettings.ScrollViewRectTransform.sizeDelta.y;
+            _startPos = _monoSettings.OptionsRectTransform.sizeDelta.y;
             _startFade = 1;
             _targetPos = 0;
             _targetFade = 0;
             Destroy(_currentBlocker);
             if (_animationSettings.AnimationKind == AnimationKinds.None)
             {
-                _monoSettings.ScrollViewRectTransform.sizeDelta = new Vector2(_monoSettings.ScrollViewRectTransform.sizeDelta.x, 0);
+                _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
                 Closed();
             }
         }
@@ -311,12 +333,13 @@ namespace CizaCore.UI
                 Show();
         }
 
-        public void Select(int index)
+        public void Select(int index, bool isImmediately)
         {
             if (!IsShow)
                 return;
 
             SelectIndex = index;
+            _monoSettings.VerticalScrollView.SetIndex(SelectIndex, isImmediately);
             SetOptionIsSelect();
         }
 
@@ -369,39 +392,35 @@ namespace CizaCore.UI
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
-            _monoSettings.ScrollViewRectTransform.gameObject.SetActive(true);
+            _monoSettings.OptionsRectTransform.gameObject.SetActive(true);
 
-            _monoSettings.ScrollViewCanvas.overrideSorting = true;
-            _monoSettings.ScrollViewCanvas.sortingOrder = 3000;
-
-            _monoSettings.TitleCanvas.overrideSorting = true;
-            _monoSettings.TitleCanvas.sortingOrder = 3000;
+            SetOrder(true);
 
             _ratioShrinking = 0;
             _ratioFading = 0;
 
-            _startPos = _monoSettings.ScrollViewRectTransform.sizeDelta.y;
+            _startPos = _monoSettings.OptionsRectTransform.sizeDelta.y;
             _startFade = 0;
 
-            _targetPos = _monoSettings.ScrollViewRectTransform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
+            _targetPos = _monoSettings.OptionsRectTransform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
             _targetFade = 1;
 
             if (_animationSettings.AnimationKind == AnimationKinds.None || _animationSettings.AnimationKind == AnimationKinds.Fading)
-                _monoSettings.ScrollViewRectTransform.sizeDelta = new Vector2(_monoSettings.ScrollViewRectTransform.sizeDelta.x, _monoSettings.ScrollViewRectTransform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
+                _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, _monoSettings.OptionsRectTransform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
 
             if (_animationSettings.AnimationKind == AnimationKinds.Shrinking || _animationSettings.AnimationKind == AnimationKinds.None)
-                _monoSettings.ScrollViewCanvasGroup.alpha = 1;
+                _monoSettings.OptionsCanvasGroup.alpha = 1;
         }
 
         private void Closed()
         {
-            _monoSettings.ScrollViewCanvas.overrideSorting = false;
-            _monoSettings.ScrollViewCanvas.sortingOrder = 100;
+            _monoSettings.OptionsCanvas.overrideSorting = false;
+            _monoSettings.OptionsCanvas.sortingOrder = 100;
 
             _monoSettings.TitleCanvas.overrideSorting = false;
             _monoSettings.TitleCanvas.sortingOrder = 100;
 
-            _monoSettings.ScrollViewRectTransform.gameObject.SetActive(false);
+            _monoSettings.OptionsRectTransform.gameObject.SetActive(false);
 
             foreach (var spawnedOption in _spawnedOptions.ToArray())
             {
@@ -410,7 +429,7 @@ namespace CizaCore.UI
             }
 
             if (_animationSettings.AnimationKind == AnimationKinds.Fading)
-                _monoSettings.ScrollViewRectTransform.sizeDelta = new Vector2(_monoSettings.ScrollViewRectTransform.sizeDelta.x, 0);
+                _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
         }
 
         private void SetDefaultText()
@@ -429,6 +448,15 @@ namespace CizaCore.UI
         {
             for (var i = 0; i < _spawnedOptions.Count; i++)
                 _spawnedOptions[i].SetIsConfirm(i == _index);
+        }
+
+        private void SetOrder(bool isShow)
+        {
+            _monoSettings.OptionsCanvas.overrideSorting = isShow;
+            _monoSettings.OptionsCanvas.sortingOrder = isShow ? _monoSettings.OptionOder : _optionOder;
+
+            _monoSettings.TitleCanvas.overrideSorting = isShow;
+            _monoSettings.TitleCanvas.sortingOrder = isShow ? _monoSettings.OptionOder : _optionOder;
         }
     }
 }
