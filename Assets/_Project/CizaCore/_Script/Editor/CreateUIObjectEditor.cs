@@ -23,6 +23,14 @@ namespace CizaCore.Editor
         {
             CreateUIObject(Dropdown);
         }
+        
+        public const string Switch = "Switch";
+
+        [MenuItem("GameObject/Ciza/UI/Switch", false, 10)]
+        public static void CreateSwitch()
+        {
+            CreateUIObject(Switch);
+        }
 
         private static void CreateUIObject(string dataId)
         {

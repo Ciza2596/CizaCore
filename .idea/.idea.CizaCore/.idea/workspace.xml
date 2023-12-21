@@ -6,22 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Blocker.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Blocker.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Dropdown.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Dropdown.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Option.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/Dropdown/Option.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/ScrollRect.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/ScrollRect/VerticalScrollView.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/UI/ScrollRect/VerticalScrollView.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CizaCore.Editor.asmdef" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CizaCore.Editor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CreateUIObjectEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/CreateUIObjectEditor.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/OpenBuildFolderMenu.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/OpenBuildFolderMenu.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources/CizaCore.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources/CizaCore/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources/CizaCore/UI/Dropdown.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources/CizaCore/UI/Dropdown.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources/CizaCore/UI/VerticalScrollView.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Editor/Resources/CizaCore/UI/VerticalScrollView.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/Anim/AnimMonoPlayer.meta" beforeDir="false" />
@@ -96,7 +94,8 @@
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/FluentAssertions.dll.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/NSubstitute.dll" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/TestFramework/NSubstitute.dll.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/UI/Scene/UIExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/UI/Scene/UIExample.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Editor/CreateUIObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Toggle.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/16d1a1e3fafa4d23a275526c945e1b62469200/5c/7170bfb1/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37b51751e7a84134841e2b994d9061ab172a00/f3/f165f676/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -171,10 +170,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="22373">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="22373" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -254,6 +253,9 @@
       <workItem from="1703095348059" duration="501000" />
       <workItem from="1703121429910" duration="16309000" />
       <workItem from="1703141919219" duration="2201000" />
+      <workItem from="1703145741186" duration="410000" />
+      <workItem from="1703158416673" duration="42000" />
+      <workItem from="1703158465399" duration="1899000" />
     </task>
     <servers />
   </component>
@@ -297,6 +299,32 @@
           <line>24</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicExtensionTest.cs" initialLine="24" containingFunctionPresentation="Method '_02_ToOptionColumns'" />
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Switch/Switch.cs</url>
+          <line>50</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Switch/Switch.cs" initialLine="42" containingFunctionPresentation="Method 'OnValueChanged'">
+            <startOffsets>
+              <option value="1136" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1179" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Switch/Switch.cs</url>
+          <line>41</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Switch/Switch.cs" initialLine="41" containingFunctionPresentation="Method 'Awake'">
+            <startOffsets>
+              <option value="938" />
+            </startOffsets>
+            <endOffsets>
+              <option value="959" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
