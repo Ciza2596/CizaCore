@@ -32,11 +32,14 @@ namespace CizaCore.UI
 
         public bool IsOn => _monoSettings.Toggle.isOn;
 
+        public void SetIsOn(bool isOn) =>
+            _monoSettings.Toggle.isOn = isOn;
+
         public void TurnOn() =>
-            _monoSettings.Toggle.isOn = true;
+            SetIsOn(true);
 
         public void TurnOff() =>
-            _monoSettings.Toggle.isOn = false;
+            SetIsOn(false);
 
         private void Awake()
         {
