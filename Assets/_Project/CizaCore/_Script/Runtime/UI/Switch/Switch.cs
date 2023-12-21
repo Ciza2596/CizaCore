@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace CizaCore.UI
@@ -12,6 +13,10 @@ namespace CizaCore.UI
 
         [SerializeField]
         private float _moveSpeed = 450;
+
+        [Space]
+        [SerializeField]
+        private UnityEvent<bool> _onIsOnChanged;
 
         [Space]
         [SerializeField]
@@ -68,6 +73,7 @@ namespace CizaCore.UI
             }
 
             OnIsOnChanged?.Invoke(isOn);
+            _onIsOnChanged?.Invoke(isOn);
         }
 
         private void SetImagesColor(Color color)
