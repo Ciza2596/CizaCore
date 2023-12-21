@@ -163,14 +163,17 @@ namespace CizaCore.UI
 
         public bool IsShow { get; private set; }
 
+        public event Action<int> OnIndexChanged;
+
+        public event Action OnShow;
+        public event Action OnHide;
+
         public int DefaultIndex => _defaultIndex;
         public int Index => _index;
 
         public int SelectIndex { get; private set; }
 
         public string[] Options => _options != null ? _options.ToArray() : Array.Empty<string>();
-
-        public event Action<int> OnIndexChanged;
 
         private void Awake()
         {
@@ -266,6 +269,7 @@ namespace CizaCore.UI
             }
 
             IsShow = true;
+            OnShow?.Invoke();
             for (var i = 0; i < _options.Count; i++)
             {
                 var spawnedOption = Instantiate(_monoSettings.OptionPrefab, _monoSettings.Content).GetComponent<Option>();
@@ -314,6 +318,7 @@ namespace CizaCore.UI
             }
 
             IsShow = false;
+            OnHide?.Invoke();
             SelectIndex = DefaultTextIndex;
             _ratioShrinking = 0;
             _ratioFading = 0;
