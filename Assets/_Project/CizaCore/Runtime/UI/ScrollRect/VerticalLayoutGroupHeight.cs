@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CizaCore
+namespace CizaCore.UI
 {
     public class VerticalLayoutGroupHeight : MonoBehaviour
     {

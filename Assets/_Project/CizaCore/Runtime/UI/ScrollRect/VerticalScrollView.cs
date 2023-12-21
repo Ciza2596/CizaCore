@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 
-namespace CizaCore
+namespace CizaCore.UI
 {
     public class VerticalScrollView : MonoBehaviour
     {

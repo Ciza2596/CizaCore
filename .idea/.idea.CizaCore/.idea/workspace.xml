@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Option.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Option.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/CizaCore.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/HorizontalLayoutGroupWidth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/HorizontalLayoutGroupWidth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalLayoutGroupHeight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalLayoutGroupHeight.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalScrollView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/ScrollRect/VerticalScrollView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/Scene/ScrollRectExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/Scene/ScrollRectExample.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/_Script/VerticalScrollViewExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/_Script/VerticalScrollViewExample.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +24,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Editor/OpenBuildFolderMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Project/CizaCore/Runtime/UI/Dropdown/Dropdown.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/_Example/ScrollRect/_Script/VerticalScrollViewExample.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/16d1a1e3fafa4d23a275526c945e1b62469200/5c/7170bfb1/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -29,28 +37,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
-      &quot;/Users/cizahuang/.local/share/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
+      "/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
+      "/Users/cizahuang/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.8f1/Unity.app/Contents/MacOS/Unity" />
@@ -78,10 +87,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="990">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="990" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -157,7 +166,9 @@
       <workItem from="1700923905057" duration="350000" />
       <workItem from="1701934285970" duration="3065000" />
       <workItem from="1703003994842" duration="1393000" />
-      <workItem from="1703047554330" duration="1848000" />
+      <workItem from="1703047554330" duration="2844000" />
+      <workItem from="1703095348059" duration="501000" />
+      <workItem from="1703121429910" duration="8848000" />
     </task>
     <servers />
   </component>
@@ -175,14 +186,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs</url>
           <line>65</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" initialLine="65" containingFunctionPresentation="Method 'Limit'">
-            <startOffsets>
-              <option value="3390" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3490" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" initialLine="65" containingFunctionPresentation="Method 'Limit'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
