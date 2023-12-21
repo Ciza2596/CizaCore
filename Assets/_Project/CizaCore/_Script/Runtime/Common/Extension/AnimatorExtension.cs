@@ -49,6 +49,7 @@ namespace CizaCore
 			{
 				animator.SetSpeedRate(speedRate);
 				animator.Play(stateNameHash, layerIndex, startNormalizedTime);
+				animator.Refresh();
 				await animator.WaitAnimCompletedByStateNameHashAsync(stateNameHash, endNormalizedTime, cancellationToken);
 
 				if (!isContinue)
@@ -65,6 +66,7 @@ namespace CizaCore
 			var normalizedTime = TimeUtils.GetNormalizedTime(time, ref duration);
 			animator.SetSpeedRate(speedRate);
 			animator.Play(stateNameHash, layerIndex, normalizedTime);
+			animator.Refresh();
 		}
 
 		public static async UniTask WaitAnimCompletedByStateNameHashAsync(this Animator animator, int stateNameHash, float endNormalizedTime = 1, CancellationToken cancellationToken = default)
