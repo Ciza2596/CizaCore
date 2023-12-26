@@ -10,7 +10,7 @@ namespace CizaCore.Editor
 
         public const string VerticalScrollView = "VerticalScrollView";
 
-        [MenuItem("GameObject/Ciza/UI/VerticalScrollView", false, 10)]
+        [MenuItem("GameObject/Ciza/UI/VerticalScrollView", false, -10)]
         public static void CreateVerticalScrollView()
         {
             CreateUIObject(VerticalScrollView);
@@ -18,7 +18,7 @@ namespace CizaCore.Editor
 
         public const string Dropdown = "Dropdown";
 
-        [MenuItem("GameObject/Ciza/UI/Dropdown", false, 10)]
+        [MenuItem("GameObject/Ciza/UI/Dropdown", false, -10)]
         public static void CreateDropdown()
         {
             CreateUIObject(Dropdown);
@@ -26,7 +26,7 @@ namespace CizaCore.Editor
         
         public const string Switch = "Switch";
 
-        [MenuItem("GameObject/Ciza/UI/Switch", false, 10)]
+        [MenuItem("GameObject/Ciza/UI/Switch", false, -10)]
         public static void CreateSwitch()
         {
             CreateUIObject(Switch);
