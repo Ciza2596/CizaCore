@@ -178,7 +178,6 @@ namespace CizaCore.UI
             [SerializeField]
             private bool _isCircle;
 
-            [Space]
             [SerializeField]
             private float _moveSpeed = 2f;
 
