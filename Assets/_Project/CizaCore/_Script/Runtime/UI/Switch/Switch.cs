@@ -9,8 +9,12 @@ namespace CizaCore.UI
     public class Switch : MonoBehaviour
     {
         [SerializeField]
+        private bool _isEnableDefault;
+
+        [SerializeField]
         private bool _isDefaultTurnOn;
 
+        [Space]
         [SerializeField]
         private float _moveSpeed = 450;
 
@@ -46,10 +50,13 @@ namespace CizaCore.UI
             _monoSettings.Toggle.onValueChanged.AddListener(OnValueChanged);
             _offX = _monoSettings.Handler.localPosition.x;
 
-            if (_isDefaultTurnOn)
-                TurnOn();
-            else
-                TurnOff();
+            if (_isEnableDefault)
+            {
+                if (_isDefaultTurnOn)
+                    TurnOn();
+                else
+                    TurnOff();
+            }
         }
 
         private void Update()

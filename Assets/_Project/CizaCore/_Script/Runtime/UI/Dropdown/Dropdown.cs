@@ -127,6 +127,11 @@ namespace CizaCore.UI
         [SerializeField]
         private string _defaultText = "Select the value";
 
+
+        [Space]
+        [SerializeField]
+        private bool _isEnableDefault;
+
         [SerializeField]
         private int _defaultIndex;
 
@@ -185,7 +190,8 @@ namespace CizaCore.UI
 
             SetOrder(false);
 
-            Confirm(_defaultIndex);
+            if (_isEnableDefault)
+                Confirm(_defaultIndex);
 
             _monoSettings.TitleButton.onClick.AddListener(ChangeState);
 
