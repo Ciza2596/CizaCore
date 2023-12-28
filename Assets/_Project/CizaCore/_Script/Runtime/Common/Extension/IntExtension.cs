@@ -15,5 +15,20 @@ namespace CizaCore
             var timeSpan = TimeSpan.FromSeconds(value);
             return $"{timeSpan.Minutes}:{timeSpan.Seconds}";
         }
+        
+        public static bool TryGetIndex(this int[] numbers, int checkedNumber, out int index)
+        {
+            for (var i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] == checkedNumber)
+                {
+                    index = i;
+                    return true;
+                }
+            }
+
+            index = 0;
+            return false;
+        }
     }
 }
