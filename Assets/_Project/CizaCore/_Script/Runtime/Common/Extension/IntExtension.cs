@@ -13,9 +13,10 @@ namespace CizaCore
         public static string ToTime(this int value)
         {
             var timeSpan = TimeSpan.FromSeconds(value);
-            return $"{timeSpan.Minutes}:{timeSpan.Seconds}";
+            var hoursText = timeSpan.Hours > 0 ? $"{timeSpan.Hours:D2}:" : string.Empty;
+            return $"{hoursText}{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
         }
-        
+
         public static bool TryGetIndex(this int[] numbers, int checkedNumber, out int index)
         {
             for (var i = 0; i < numbers.Length; i++)
