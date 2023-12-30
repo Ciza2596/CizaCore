@@ -72,11 +72,22 @@ namespace CizaCore
             return TryGetOption(currentCoordinate, out option);
         }
 
+        public bool TryGetOption(string optionKey, out TOption option)
+        {
+            if (TryGetDefaultCoordinate(optionKey, out var coordinate) && TryGetOption(coordinate, out option))
+                return true;
 
-        public Vector2Int GetDefaultCoordinate(string optionKey)
+            option = null;
+            return false;
+        }
+
+        public bool TryGetDefaultCoordinate(string optionKey, out Vector2Int coordinate)
         {
             if (!IsInitialized)
-                return Vector2Int.zero;
+            {
+                coordinate = Vector2Int.zero;
+                return false;
+            }
 
             for (var i = 0; i < _optionColumns.Length; i++)
             {
@@ -85,11 +96,15 @@ namespace CizaCore
                 {
                     var option = options[j];
                     if (option != null && option.Key == optionKey)
-                        return new Vector2Int(i, j);
+                    {
+                        coordinate = new Vector2Int(i, j);
+                        return true;
+                    }
                 }
             }
 
-            return Vector2Int.zero;
+            coordinate = Vector2Int.zero;
+            return false;
         }
 
         public bool TryGetIsEnableOptionKeys(out string[] optionKeys)
@@ -102,9 +117,9 @@ namespace CizaCore
 
             var sortOptionKeys = new HashSet<string>();
             foreach (var optionRows in _optionColumns)
-            foreach (var option in optionRows)
-                if (option is { IsEnable: true } && option.Key.HasValue())
-                    sortOptionKeys.Add(option.Key);
+                foreach (var option in optionRows)
+                    if (option is { IsEnable: true } && option.Key.HasValue())
+                        sortOptionKeys.Add(option.Key);
 
             optionKeys = sortOptionKeys.ToArray();
             return optionKeys.Length > 0;
@@ -411,6 +426,14 @@ namespace CizaCore
             }
 
             Debug.LogError("[SelectOptionLogic::GetDefaultCoordinate] Not find defaultCoordinate.");
+            return Vector2Int.zero;
+        }
+
+        private Vector2Int GetDefaultCoordinate(string optionKey)
+        {
+            if (TryGetDefaultCoordinate(optionKey, out var coordinate))
+                return coordinate;
+
             return Vector2Int.zero;
         }
     }
