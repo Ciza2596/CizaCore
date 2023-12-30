@@ -72,15 +72,6 @@ namespace CizaCore
             return TryGetOption(currentCoordinate, out option);
         }
 
-        public bool TryGetOption(string optionKey, out TOption option)
-        {
-            if (TryGetDefaultCoordinate(optionKey, out var coordinate) && TryGetOption(coordinate, out option))
-                return true;
-
-            option = null;
-            return false;
-        }
-
         public bool TryGetDefaultCoordinate(string optionKey, out Vector2Int coordinate)
         {
             if (!IsInitialized)
@@ -138,6 +129,15 @@ namespace CizaCore
 
             optionKey = option.Key;
             return true;
+        }
+
+        public bool TryGetOption(string optionKey, out TOption option)
+        {
+            if (TryGetDefaultCoordinate(optionKey, out var coordinate) && TryGetOption(coordinate, out option))
+                return true;
+
+            option = null;
+            return false;
         }
 
         public bool TryGetOption(int x, int y, out TOption option) =>
