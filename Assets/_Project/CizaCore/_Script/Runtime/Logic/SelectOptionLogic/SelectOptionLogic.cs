@@ -72,7 +72,7 @@ namespace CizaCore
             return TryGetOption(currentCoordinate, out option);
         }
 
-        public bool TryGetDefaultCoordinate(string optionKey, out Vector2Int coordinate)
+        public bool TryGetCoordinate(string optionKey, out Vector2Int coordinate)
         {
             if (!IsInitialized)
             {
@@ -133,7 +133,7 @@ namespace CizaCore
 
         public bool TryGetOption(string optionKey, out TOption option)
         {
-            if (TryGetDefaultCoordinate(optionKey, out var coordinate) && TryGetOption(coordinate, out option))
+            if (TryGetCoordinate(optionKey, out var coordinate) && TryGetOption(coordinate, out option))
                 return true;
 
             option = null;
@@ -237,10 +237,10 @@ namespace CizaCore
         }
 
         public bool TrySetCurrentCoordinate(int playerIndex, string optionKey) =>
-            TrySetCurrentCoordinate(playerIndex, GetDefaultCoordinate(optionKey));
+            TrySetCurrentCoordinate(playerIndex, GetCoordinate(optionKey));
 
         public bool TrySetCurrentCoordinate(int playerIndex, string optionKey, bool isTriggerCallback) =>
-            TrySetCurrentCoordinate(playerIndex, GetDefaultCoordinate(optionKey), isTriggerCallback);
+            TrySetCurrentCoordinate(playerIndex, GetCoordinate(optionKey), isTriggerCallback);
 
         public bool TrySetCurrentCoordinate(int playerIndex, int x, int y) =>
             TrySetCurrentCoordinate(playerIndex, new Vector2Int(x, y));
@@ -429,9 +429,9 @@ namespace CizaCore
             return Vector2Int.zero;
         }
 
-        private Vector2Int GetDefaultCoordinate(string optionKey)
+        private Vector2Int GetCoordinate(string optionKey)
         {
-            if (TryGetDefaultCoordinate(optionKey, out var coordinate))
+            if (TryGetCoordinate(optionKey, out var coordinate))
                 return coordinate;
 
             return Vector2Int.zero;

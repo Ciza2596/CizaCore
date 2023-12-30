@@ -206,7 +206,7 @@ public class SelectOptionLogicTest
         CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
 
         // act
-        _selectOptionLogic.TryGetDefaultCoordinate(optionKey, out var defaultCoordinate);
+        _selectOptionLogic.TryGetCoordinate(optionKey, out var defaultCoordinate);
 
         // assert
         var expectedCoordinate = new Vector2Int(expectedX, expectedY);
