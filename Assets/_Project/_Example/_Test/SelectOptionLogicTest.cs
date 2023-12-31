@@ -262,9 +262,11 @@ public class SelectOptionLogicTest
     private void CreateNewAndInitializedSelectOptionLogic(IColumnInfo columnInfo, IRowInfo rowInfo)
     {
         _selectOptionLogic = new ExampleSelectOptionLogic();
-        _selectOptionLogic.Initialize(PlayerCount, CreateDefaultOptionColumns(), CreateDefaultOptionImp(), columnInfo, rowInfo);
+        _selectOptionLogic.Initialize(CreateDefaultOptionColumns(), CreateDefaultOptionImp(), columnInfo, rowInfo);
         Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 
+        _selectOptionLogic.AddPlayer(PlayerIndex);
+        
         _selectOptionLogic.TryGetCurrentCoordinate(PlayerIndex, out var currentCoordinate);
         Assert.AreEqual(InitializedCurrentCoordinate, currentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
     }

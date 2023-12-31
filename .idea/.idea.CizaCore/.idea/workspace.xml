@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +19,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/MathUtilsTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.7.5/Editor/Window/TimelineWindowTimeControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Toggle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/16d1a1e3fafa4d23a275526c945e1b62469200/5c/7170bfb1/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
@@ -185,6 +191,9 @@
       <workItem from="1703924053849" duration="375000" />
       <workItem from="1703927502778" duration="561000" />
       <workItem from="1703941913837" duration="184000" />
+      <workItem from="1704015473806" duration="220000" />
+      <workItem from="1704015703546" duration="10000" />
+      <workItem from="1704019316839" duration="291000" />
     </task>
     <servers />
   </component>

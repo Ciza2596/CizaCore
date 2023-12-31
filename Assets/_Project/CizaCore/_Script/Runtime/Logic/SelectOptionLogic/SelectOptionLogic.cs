@@ -159,20 +159,23 @@ namespace CizaCore
             return option != null;
         }
 
+        public void Initialize(IOptionColumn[] optionColumns, TOption[] options, IColumnInfo columnInfo, IRowInfo rowInfo) =>
+            Initialize(0, optionColumns, options, columnInfo, rowInfo);
+
         public void Initialize(int playerCount, IOptionColumn[] optionColumns, TOption[] options, string optionKey, IColumnInfo columnInfo, IRowInfo rowInfo)
         {
             Initialize(playerCount, optionColumns, options, columnInfo, rowInfo);
 
-            for (var i = 0; i < _currentCoordinateMapByPlayerIndex.Count; i++)
-                TrySetCurrentCoordinate(i, optionKey);
+            foreach (var key in _currentCoordinateMapByPlayerIndex.Keys.ToArray())
+                TrySetCurrentCoordinate(key, optionKey);
         }
 
         public void Initialize(int playerCount, IOptionColumn[] optionColumns, TOption[] options, Vector2Int currentCoordinate, IColumnInfo columnInfo, IRowInfo rowInfo)
         {
             Initialize(playerCount, optionColumns, options, columnInfo, rowInfo);
 
-            for (var i = 0; i < _currentCoordinateMapByPlayerIndex.Count; i++)
-                TrySetCurrentCoordinate(i, currentCoordinate);
+            foreach (var key in _currentCoordinateMapByPlayerIndex.Keys.ToArray())
+                TrySetCurrentCoordinate(key, currentCoordinate);
         }
 
         public void Initialize(int playerCount, IOptionColumn[] optionColumns, TOption[] options, IColumnInfo columnInfo, IRowInfo rowInfo)
