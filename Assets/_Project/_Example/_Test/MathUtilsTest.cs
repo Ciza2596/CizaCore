@@ -1,7 +1,7 @@
 using CizaCore;
 using NUnit.Framework;
 
-public class MethUtilsTest
+public class MathUtilsTest
 {
 	[TestCase(-1, false, 0)]
 	[TestCase(2, false, 1)]
