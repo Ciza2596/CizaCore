@@ -38,32 +38,23 @@ namespace CizaCore
         /// x:column
         /// y:row
         /// </summary>
-        public bool TryGetCurrentCoordinate(int playerIndex, out Vector2Int currentCoordinate)
-        {
-            if (playerIndex >= _currentCoordinateMapByPlayerIndex.Count)
-            {
-                currentCoordinate = Vector2Int.zero;
-                return false;
-            }
-
-            currentCoordinate = _currentCoordinateMapByPlayerIndex[playerIndex];
-            return true;
-        }
+        public bool TryGetCurrentCoordinate(int playerIndex, out Vector2Int currentCoordinate) =>
+            _currentCoordinateMapByPlayerIndex.TryGetValue(playerIndex, out currentCoordinate);
 
         public bool TryGetCurrentOptionKey(int playerIndex, out string currentOptionKey)
         {
-            if (playerIndex >= _currentCoordinateMapByPlayerIndex.Count)
+            if (!TryGetCurrentCoordinate(playerIndex, out Vector2Int currentCoordinate))
             {
                 currentOptionKey = string.Empty;
                 return false;
             }
 
-            return TryGetOptionKey(_currentCoordinateMapByPlayerIndex[playerIndex], out currentOptionKey);
+            return TryGetOptionKey(currentCoordinate, out currentOptionKey);
         }
 
         public bool TryGetCurrentOption(int playerIndex, out TOption option)
         {
-            if (playerIndex >= _currentCoordinateMapByPlayerIndex.Count || !TryGetCurrentCoordinate(playerIndex, out var currentCoordinate))
+            if (!TryGetCurrentCoordinate(playerIndex, out var currentCoordinate))
             {
                 option = null;
                 return false;
@@ -212,9 +203,9 @@ namespace CizaCore
             _columnInfo = columnInfo;
             _rowInfo = rowInfo;
 
-            ResetPlayerCount(playerCount);
-
             IsInitialized = true;
+
+            ResetPlayerCount(playerCount);
         }
 
         public void Release()
@@ -271,7 +262,7 @@ namespace CizaCore
 
         public bool TrySetCurrentCoordinate(int playerIndex, Vector2Int coordinate, bool isTriggerCallback)
         {
-            if (!IsInitialized || playerIndex >= _currentCoordinateMapByPlayerIndex.Count)
+            if (!IsInitialized || !_currentCoordinateMapByPlayerIndex.ContainsKey(playerIndex))
                 return false;
 
             var option = _optionColumns[coordinate.x][coordinate.y];
@@ -306,7 +297,7 @@ namespace CizaCore
 
         private bool TryHorizontalMove(int playerIndex, int unit, bool isIgnoreSameOption)
         {
-            if (!IsInitialized || playerIndex >= _currentCoordinateMapByPlayerIndex.Count)
+            if (!IsInitialized || !_currentCoordinateMapByPlayerIndex.ContainsKey(playerIndex))
                 return false;
 
             var currentCoordinate = _currentCoordinateMapByPlayerIndex[playerIndex];
@@ -341,7 +332,7 @@ namespace CizaCore
 
         private bool TryVerticalMove(int playerIndex, int unit, bool isIgnoreSameOption)
         {
-            if (!IsInitialized || playerIndex >= _currentCoordinateMapByPlayerIndex.Count)
+            if (!IsInitialized || !_currentCoordinateMapByPlayerIndex.ContainsKey(playerIndex))
                 return false;
 
             var currentCoordinate = _currentCoordinateMapByPlayerIndex[playerIndex];
