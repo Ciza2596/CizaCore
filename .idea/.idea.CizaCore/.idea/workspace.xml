@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" afterDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Toggle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/16d1a1e3fafa4d23a275526c945e1b62469200/5c/7170bfb1/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37b51751e7a84134841e2b994d9061ab172a00/f3/f165f676/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96bb372b42004338b329b20208f7e99127800/07/8fe32875/Animator.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -188,6 +184,7 @@
       <workItem from="1703922373047" duration="1460000" />
       <workItem from="1703924053849" duration="375000" />
       <workItem from="1703927502778" duration="561000" />
+      <workItem from="1703941913837" duration="184000" />
     </task>
     <servers />
   </component>
