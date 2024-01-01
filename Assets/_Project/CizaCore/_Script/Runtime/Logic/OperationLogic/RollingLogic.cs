@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CizaCore
@@ -24,7 +25,7 @@ namespace CizaCore
         public const float RollingIntervalTime = 0.28f;
 
         // PlayerIndex, Direction
-        public event Action<int, Vector2> OnMovement;
+        public event Func<int, Vector2, UniTask> OnMovementAsync;
 
         public int PlayerCount => _playerMapByIndex.Count;
 
@@ -59,7 +60,7 @@ namespace CizaCore
             if (_playerMapByIndex.ContainsKey(playerIndex))
                 return;
 
-            _playerMapByIndex.Add(playerIndex, new Player(playerIndex, OnMovementImp));
+            _playerMapByIndex.Add(playerIndex, new Player(playerIndex, OnMovementAsyncImp));
         }
 
         public void RemovePlayer(int playerIndex)
@@ -87,12 +88,19 @@ namespace CizaCore
             player.TurnOff();
         }
 
-        private void OnMovementImp(int playerIndex, Vector2 direction) =>
-            OnMovement?.Invoke(playerIndex, direction);
+        private UniTask OnMovementAsyncImp(int playerIndex, Vector2 direction)
+        {
+            if (OnMovementAsync != null)
+                OnMovementAsync.Invoke(playerIndex, direction);
+
+            return UniTask.CompletedTask;
+        }
 
         private class Player : IPlayerReadModel
         {
-            private event Action<int, Vector2> _onMovement;
+            private event Func<int, Vector2, UniTask> _onMovementAsync;
+
+            private bool _isMoving;
 
             public int Index { get; }
 
@@ -103,15 +111,15 @@ namespace CizaCore
             public float RollingIntervalTime { get; private set; }
             public float CurrentRollingIntervalTime { get; private set; }
 
-            public Player(int index, Action<int, Vector2> onMovement)
+            public Player(int index, Func<int, Vector2, UniTask> onMovementAsync)
             {
                 Index = index;
-                _onMovement = onMovement;
+                _onMovementAsync = onMovementAsync;
             }
 
             public void Tick(float deltaTime)
             {
-                if (!IsRolling)
+                if (!IsRolling || _isMoving)
                     return;
 
                 if (CurrentRollingIntervalTime < 0)
@@ -144,8 +152,13 @@ namespace CizaCore
                 ResetCurrentRollingIntervalTime();
             }
 
-            private void ExecuteMovement() =>
-                _onMovement?.Invoke(Index, Direction);
+            private async void ExecuteMovement()
+            {
+                _isMoving = true;
+                if (_onMovementAsync != null)
+                    await _onMovementAsync.Invoke(Index, Direction);
+                _isMoving = false;
+            }
 
             private void SetIsRolling(bool isRolling) =>
                 IsRolling = isRolling;

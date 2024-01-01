@@ -1,4 +1,5 @@
 using CizaCore;
+using Cysharp.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ public class RollingLogicTest
     {
         _rollingLogic = new RollingLogic();
 
-        _rollingLogic.OnMovement += OnMovement;
+        _rollingLogic.OnMovementAsync += OnMovementAsync;
         _movementCount = ZeroMovementCount;
     }
 
@@ -143,9 +144,11 @@ public class RollingLogicTest
     private void Check_MovementCount(int expectedMovementCount) =>
         Assert.AreEqual(expectedMovementCount, _movementCount, "MovementCount should be one.");
 
-    private void OnMovement(int playerIndex, Vector2 direction)
+    private UniTask OnMovementAsync(int playerIndex, Vector2 direction)
     {
         if (playerIndex == ZeroPlayerIndex)
             _movementCount++;
+
+        return UniTask.CompletedTask;
     }
 }

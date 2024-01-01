@@ -2,7 +2,8 @@
     "name": "CizaCore.Test",
     "rootNamespace": "",
     "references": [
-        "GUID:491834ea373224e138e8ac2f2f839c22"
+        "UniTask",
+        "CizaCore"
     ],
     "includePlatforms": [
         "Editor"
