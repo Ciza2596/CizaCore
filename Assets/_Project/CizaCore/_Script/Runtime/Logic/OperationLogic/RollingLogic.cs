@@ -26,6 +26,7 @@ namespace CizaCore
 
         // PlayerIndex, Direction
         public event Func<int, Vector2, UniTask> OnMovementAsync;
+        public event Action<int, Vector2> OnMovement;
 
         public int PlayerCount => _playerMapByIndex.Count;
 
@@ -60,7 +61,7 @@ namespace CizaCore
             if (_playerMapByIndex.ContainsKey(playerIndex))
                 return;
 
-            _playerMapByIndex.Add(playerIndex, new Player(playerIndex, OnMovementAsyncImp));
+            _playerMapByIndex.Add(playerIndex, new Player(playerIndex, OnMovementAsyncImp, OnMovementImp));
         }
 
         public void RemovePlayer(int playerIndex)
@@ -96,9 +97,13 @@ namespace CizaCore
             return UniTask.CompletedTask;
         }
 
+        private void OnMovementImp(int playerIndex, Vector2 direction) =>
+            OnMovement?.Invoke(playerIndex, direction);
+
         private class Player : IPlayerReadModel
         {
             private event Func<int, Vector2, UniTask> _onMovementAsync;
+            private event Action<int, Vector2> _onMovement;
 
             private bool _isMoving;
 
@@ -111,10 +116,11 @@ namespace CizaCore
             public float RollingIntervalTime { get; private set; }
             public float CurrentRollingIntervalTime { get; private set; }
 
-            public Player(int index, Func<int, Vector2, UniTask> onMovementAsync)
+            public Player(int index, Func<int, Vector2, UniTask> onMovementAsync, Action<int, Vector2> onMovement)
             {
                 Index = index;
                 _onMovementAsync = onMovementAsync;
+                _onMovement = onMovement;
             }
 
             public void Tick(float deltaTime)
@@ -157,6 +163,7 @@ namespace CizaCore
                 _isMoving = true;
                 if (_onMovementAsync != null)
                     await _onMovementAsync.Invoke(Index, Direction);
+                _onMovement?.Invoke(Index, Direction);
                 _isMoving = false;
             }
 
