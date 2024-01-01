@@ -2,10 +2,10 @@ using CizaCore;
 using NUnit.Framework;
 using UnityEngine;
 
-public class KeepingSelectionLogicTest
+public class RollingLogicTest
 {
-    private const int PlayerCount = 1;
-    private const int PlayerIndex = 0;
+    private const int OnePlayerCount = 1;
+    private const int ZeroPlayerIndex = 0;
 
     private const int ZeroMovementCount = 0;
     private const int OneMovementCount = 1;
@@ -17,35 +17,35 @@ public class KeepingSelectionLogicTest
     private float DefaultSelectIntervalTime => 0;
     private float ExpectedSelectIntervalTime => 0.28f;
 
-    private readonly KeepingSelectionLogic _keepingSelectionLogic = new KeepingSelectionLogic();
+    private readonly RollingLogic _rollingLogic = new RollingLogic();
 
     private int _movementCount;
 
     [SetUp]
     public void Setup()
     {
-        _keepingSelectionLogic.ResetPlayerCount(PlayerCount);
-        _keepingSelectionLogic.OnMovement += OnMovement;
+        _rollingLogic.ResetPlayerCount(OnePlayerCount);
+        _rollingLogic.OnMovement += OnMovement;
         _movementCount = ZeroMovementCount;
     }
 
     [TearDown]
     public void TearDown() =>
-        _keepingSelectionLogic.OnMovement -= OnMovement;
+        _rollingLogic.OnMovement -= OnMovement;
 
 
     [Test]
     public void _01_TurnOn()
     {
         // arrange
-        Check_Is_Turn_Off_State(PlayerIndex);
+        Check_Is_Turn_Off_State(ZeroPlayerIndex);
         Check_MovementCount(ZeroMovementCount);
 
         // act
-        _keepingSelectionLogic.TurnOn(PlayerIndex, ExpectedDirection, ExpectedSelectIntervalTime);
+        _rollingLogic.TurnOn(ZeroPlayerIndex, ExpectedDirection, ExpectedSelectIntervalTime);
 
         // assert
-        Check_Is_Turn_On_State(PlayerIndex);
+        Check_Is_Turn_On_State(ZeroPlayerIndex);
         Check_MovementCount(OneMovementCount);
     }
 
@@ -56,10 +56,10 @@ public class KeepingSelectionLogicTest
         _01_TurnOn();
 
         // act
-        _keepingSelectionLogic.TurnOff(PlayerIndex);
+        _rollingLogic.TurnOff(ZeroPlayerIndex);
 
         // arrange
-        Check_Is_Turn_Off_State(PlayerIndex);
+        Check_Is_Turn_Off_State(ZeroPlayerIndex);
     }
 
     [Test]
@@ -69,18 +69,18 @@ public class KeepingSelectionLogicTest
         _01_TurnOn();
 
         // act
-        _keepingSelectionLogic.Tick(ExpectedSelectIntervalTime + 0.1f);
-        _keepingSelectionLogic.Tick(0);
+        _rollingLogic.Tick(ExpectedSelectIntervalTime + 0.1f);
+        _rollingLogic.Tick(0);
 
         // arrange
-        Check_Is_Turn_On_State(PlayerIndex);
+        Check_Is_Turn_On_State(ZeroPlayerIndex);
         Check_MovementCount(TwoMovementCount);
     }
 
 
     private void Check_Is_Turn_On_State(int playerIndex)
     {
-        Assert.IsTrue(_keepingSelectionLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {PlayerIndex}.");
+        Assert.IsTrue(_rollingLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {ZeroPlayerIndex}.");
 
         Assert.IsTrue(playerReadModel.IsKeepSelect, $"IsKeepSelect should be true.");
 
@@ -90,7 +90,7 @@ public class KeepingSelectionLogicTest
 
     private void Check_Is_Turn_Off_State(int playerIndex)
     {
-        Assert.IsTrue(_keepingSelectionLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {PlayerIndex}.");
+        Assert.IsTrue(_rollingLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {ZeroPlayerIndex}.");
 
         Assert.IsFalse(playerReadModel.IsKeepSelect, $"IsKeepSelect should be false.");
 
@@ -103,7 +103,7 @@ public class KeepingSelectionLogicTest
 
     private void OnMovement(int playerIndex, Vector2 direction)
     {
-        if (playerIndex == PlayerIndex)
+        if (playerIndex == ZeroPlayerIndex)
             _movementCount++;
     }
 }

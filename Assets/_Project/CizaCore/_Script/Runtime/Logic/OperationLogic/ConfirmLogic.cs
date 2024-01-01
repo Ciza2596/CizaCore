@@ -46,15 +46,19 @@ namespace CizaCore
             }
         }
 
-        public bool CheckIsConfirmCompleted(int playerIndex)
+        public bool TryGetIsConfirmCompleted(int playerIndex, out bool isConfirmCompleted)
         {
             if (!_playerMapByIndex.TryGetValue(playerIndex, out var player))
+            {
+                isConfirmCompleted = false;
                 return false;
+            }
 
-            return player.IsConfirmCompleted;
+            isConfirmCompleted = player.IsConfirmCompleted;
+            return true;
         }
 
-        public bool GetConfirmCount(int playerIndex, out int confirmCount)
+        public bool TryGetConfirmCount(int playerIndex, out int confirmCount)
         {
             if (!_playerMapByIndex.TryGetValue(playerIndex, out var player))
             {
@@ -114,7 +118,7 @@ namespace CizaCore
 
         public bool TryCancel(int playerIndex)
         {
-            if (!_playerMapByIndex.TryGetValue(playerIndex, out var player) || !player.IsConfirmCompleted || IsComplete)
+            if (!_playerMapByIndex.TryGetValue(playerIndex, out var player) || !player.CanCancel || IsComplete)
                 return false;
 
             player.Cancel();
@@ -141,6 +145,8 @@ namespace CizaCore
 
             public int MaxConfirmCount { get; private set; }
             public int ConfirmCount { get; private set; }
+
+            public bool CanCancel => ConfirmCount > 0 && !IsConfirmCompleted;
 
             public bool IsConfirmCompleted => ConfirmCount == MaxConfirmCount;
 

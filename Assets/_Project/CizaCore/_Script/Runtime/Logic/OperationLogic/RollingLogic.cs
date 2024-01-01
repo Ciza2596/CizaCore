@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CizaCore
 {
-    public class KeepingSelectionLogic
+    public class RollingLogic
     {
         public interface IPlayerReadModel
         {
