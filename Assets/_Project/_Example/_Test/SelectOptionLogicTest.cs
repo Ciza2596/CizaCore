@@ -12,7 +12,6 @@ public class SelectOptionLogicTest
     // Row_1 = Option_1 (true) = Option_3 (false) = None            = Option_7 (true)
     // Row_2 = None            = Option_4 (true)  = Option_5 (true) = Option_8 (false)
 
-    private const int PlayerCount = 1;
     private const int PlayerIndex = 0;
 
     private const string None = "None";
@@ -266,7 +265,7 @@ public class SelectOptionLogicTest
         Assert.IsTrue(_selectOptionLogic.IsInitialized, "selectOptionLogic's IsInitialized should be true.");
 
         _selectOptionLogic.AddPlayer(PlayerIndex);
-        
+
         _selectOptionLogic.TryGetCurrentCoordinate(PlayerIndex, out var currentCoordinate);
         Assert.AreEqual(InitializedCurrentCoordinate, currentCoordinate, $"CurrentCoordinate should be {InitializedCurrentCoordinate}.");
     }

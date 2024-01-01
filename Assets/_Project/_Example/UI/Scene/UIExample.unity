@@ -1356,6 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac23be971a764e0a858337512abe6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isEnableDefault: 0
   _isDefaultTurnOn: 0
   _moveSpeed: 450
   _onIsOnChanged:
@@ -3478,6 +3479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultText: Select the value
+  _isEnableDefault: 0
   _defaultIndex: 0
   _options:
   - Option1
