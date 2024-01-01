@@ -12,22 +12,5 @@ namespace CizaCore
 
 		bool IsAutoChangeColumnToUp    { get; }
 		bool IsAutoChangeColumnToDown { get; }
-
-		private class RowInfo : IRowInfo
-		{
-			public RowInfo(bool isRowCircle, bool isNotMoveWhenNullOrDisableInRow, bool isAutoChangeColumnToUp, bool isAutoChangeColumnToDown)
-			{
-				IsRowCircle                     = isRowCircle;
-				IsNotMoveWhenNullOrDisableInRow = isNotMoveWhenNullOrDisableInRow;
-				IsAutoChangeColumnToUp         = isAutoChangeColumnToUp;
-				IsAutoChangeColumnToDown      = isAutoChangeColumnToDown;
-			}
-
-			public bool IsRowCircle                     { get; }
-			public bool IsNotMoveWhenNullOrDisableInRow { get; }
-
-			public bool IsAutoChangeColumnToUp    { get; }
-			public bool IsAutoChangeColumnToDown { get; }
-		}
 	}
 }

@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/OperationLogic/RollingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/OperationLogic/RollingLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,10 +86,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8771">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="8771" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -196,6 +197,7 @@
       <workItem from="1704019316839" duration="291000" />
       <workItem from="1704034304368" duration="765000" />
       <workItem from="1704093666952" duration="13548000" />
+      <workItem from="1704115425153" duration="963000" />
     </task>
     <servers />
   </component>
