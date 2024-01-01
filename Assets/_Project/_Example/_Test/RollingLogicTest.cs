@@ -16,8 +16,8 @@ public class RollingLogicTest
     private Vector2 DefaultDirection => Vector2.zero;
     private Vector2 ExpectedDirection => Vector2.one;
 
-    private float DefaultSelectIntervalTime => 0;
-    private float ExpectedSelectIntervalTime => 0.28f;
+    private float DefaultRollingIntervalTime => 0;
+    private float ExpectedRollingIntervalTime => 0.28f;
 
     private RollingLogic _rollingLogic;
 
@@ -81,7 +81,7 @@ public class RollingLogicTest
         Check_MovementCount(ZeroMovementCount);
 
         // act
-        _rollingLogic.TurnOn(ZeroPlayerIndex, ExpectedDirection, ExpectedSelectIntervalTime);
+        _rollingLogic.TurnOn(ZeroPlayerIndex, ExpectedDirection, ExpectedRollingIntervalTime);
 
         // assert
         Check_Is_Turn_On_State(ZeroPlayerIndex);
@@ -108,7 +108,7 @@ public class RollingLogicTest
         _04_TurnOn();
 
         // act
-        _rollingLogic.Tick(ExpectedSelectIntervalTime + 0.1f);
+        _rollingLogic.Tick(ExpectedRollingIntervalTime + 0.1f);
         _rollingLogic.Tick(0);
 
         // arrange
@@ -124,20 +124,20 @@ public class RollingLogicTest
     {
         Assert.IsTrue(_rollingLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {ZeroPlayerIndex}.");
 
-        Assert.IsTrue(playerReadModel.IsKeepSelect, $"IsKeepSelect should be true.");
+        Assert.IsTrue(playerReadModel.IsRolling, $"IsRolling should be true.");
 
         Assert.AreEqual(ExpectedDirection, playerReadModel.Direction, $"CurrentDirection should be {ExpectedDirection}.");
-        Assert.AreEqual(ExpectedSelectIntervalTime, playerReadModel.SelectIntervalTime, $"SelectIntervalTime should be {ExpectedSelectIntervalTime}.");
+        Assert.AreEqual(ExpectedRollingIntervalTime, playerReadModel.RollingIntervalTime, $"RollingIntervalTime should be {ExpectedRollingIntervalTime}.");
     }
 
     private void Check_Is_Turn_Off_State(int playerIndex)
     {
         Assert.IsTrue(_rollingLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {ZeroPlayerIndex}.");
 
-        Assert.IsFalse(playerReadModel.IsKeepSelect, $"IsKeepSelect should be false.");
+        Assert.IsFalse(playerReadModel.IsRolling, $"IsRolling should be false.");
 
         Assert.AreEqual(DefaultDirection, playerReadModel.Direction, $"CurrentDirection should be {DefaultDirection}.");
-        Assert.AreEqual(DefaultSelectIntervalTime, playerReadModel.SelectIntervalTime, $"SelectIntervalTime should be {DefaultSelectIntervalTime}.");
+        Assert.AreEqual(DefaultRollingIntervalTime, playerReadModel.RollingIntervalTime, $"RollingIntervalTime should be {DefaultRollingIntervalTime}.");
     }
 
     private void Check_MovementCount(int expectedMovementCount) =>

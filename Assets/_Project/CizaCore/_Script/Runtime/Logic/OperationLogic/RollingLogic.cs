@@ -11,12 +11,12 @@ namespace CizaCore
         {
             int Index { get; }
 
-            bool IsKeepSelect { get; }
+            bool IsRolling { get; }
 
             Vector2 Direction { get; }
 
-            float SelectIntervalTime { get; }
-            float CurrentSelectIntervalTime { get; }
+            float RollingIntervalTime { get; }
+            float CurrentRollingIntervalTime { get; }
         }
 
         private readonly Dictionary<int, Player> _playerMapByIndex = new Dictionary<int, Player>();
@@ -69,12 +69,12 @@ namespace CizaCore
         }
 
 
-        public void TurnOn(int playerIndex, Vector2 direction, float selectIntervalTime = 0.28f)
+        public void TurnOn(int playerIndex, Vector2 direction, float rollingIntervalTime = 0.28f)
         {
             if (!_playerMapByIndex.TryGetValue(playerIndex, out var player))
                 return;
 
-            player.TurnOn(direction, selectIntervalTime);
+            player.TurnOn(direction, rollingIntervalTime);
         }
 
         public void TurnOff(int playerIndex)
@@ -94,12 +94,12 @@ namespace CizaCore
 
             public int Index { get; }
 
-            public bool IsKeepSelect { get; private set; }
+            public bool IsRolling { get; private set; }
 
             public Vector2 Direction { get; private set; }
 
-            public float SelectIntervalTime { get; private set; }
-            public float CurrentSelectIntervalTime { get; private set; }
+            public float RollingIntervalTime { get; private set; }
+            public float CurrentRollingIntervalTime { get; private set; }
 
             public Player(int index, Action<int, Vector2> onMovement)
             {
@@ -109,59 +109,59 @@ namespace CizaCore
 
             public void Tick(float deltaTime)
             {
-                if (!IsKeepSelect)
+                if (!IsRolling)
                     return;
-                
-                if (CurrentSelectIntervalTime < 0)
+
+                if (CurrentRollingIntervalTime < 0)
                 {
                     ExecuteMovement();
-                    ResetCurrentSelectIntervalTime();
+                    ResetCurrentRollingIntervalTime();
                     return;
                 }
-                
-                TickCurrentSelectIntervalTime(deltaTime);
+
+                TickCurrentRollingIntervalTime(deltaTime);
             }
 
-            public void TurnOn(Vector2 direction, float selectIntervalTime = 0.28f)
+            public void TurnOn(Vector2 direction, float rollingIntervalTime = 0.28f)
             {
                 SetDirection(direction);
-                SetSelectIntervalTime(selectIntervalTime);
-                ResetCurrentSelectIntervalTime();
+                SetRollingIntervalTime(rollingIntervalTime);
+                ResetCurrentRollingIntervalTime();
 
                 ExecuteMovement();
 
-                SetIsKeepSelect(true);
+                SetIsRolling(true);
             }
 
             public void TurnOff()
             {
-                SetIsKeepSelect(false);
+                SetIsRolling(false);
 
                 SetDirection(Vector2.zero);
-                SetSelectIntervalTime(0);
-                ResetCurrentSelectIntervalTime();
+                SetRollingIntervalTime(0);
+                ResetCurrentRollingIntervalTime();
             }
 
             private void ExecuteMovement() =>
                 _onMovement?.Invoke(Index, Direction);
 
-            private void SetIsKeepSelect(bool isKeepSelect) =>
-                IsKeepSelect = isKeepSelect;
+            private void SetIsRolling(bool isRolling) =>
+                IsRolling = isRolling;
 
             private void SetDirection(Vector2 direction) =>
                 Direction = direction;
 
-            private void SetSelectIntervalTime(float selectIntervalTime) =>
-                SelectIntervalTime = selectIntervalTime;
+            private void SetRollingIntervalTime(float rollingIntervalTime) =>
+                RollingIntervalTime = rollingIntervalTime;
 
-            private void ResetCurrentSelectIntervalTime() =>
-                SetCurrentSelectIntervalTime(SelectIntervalTime);
+            private void ResetCurrentRollingIntervalTime() =>
+                SetCurrentRollingIntervalTime(RollingIntervalTime);
 
-            private void TickCurrentSelectIntervalTime(float deltaTime) =>
-                SetCurrentSelectIntervalTime(CurrentSelectIntervalTime - deltaTime);
+            private void TickCurrentRollingIntervalTime(float deltaTime) =>
+                SetCurrentRollingIntervalTime(CurrentRollingIntervalTime - deltaTime);
 
-            private void SetCurrentSelectIntervalTime(float currentSelectIntervalTime) =>
-                CurrentSelectIntervalTime = currentSelectIntervalTime;
+            private void SetCurrentRollingIntervalTime(float currentRollingIntervalTime) =>
+                CurrentRollingIntervalTime = currentRollingIntervalTime;
         }
     }
 }
