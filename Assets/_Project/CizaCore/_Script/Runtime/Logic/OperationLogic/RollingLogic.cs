@@ -21,6 +21,8 @@ namespace CizaCore
 
         private readonly Dictionary<int, Player> _playerMapByIndex = new Dictionary<int, Player>();
 
+        public const float RollingIntervalTime = 0.28f;
+
         // PlayerIndex, Direction
         public event Action<int, Vector2> OnMovement;
 
@@ -69,7 +71,7 @@ namespace CizaCore
         }
 
 
-        public void TurnOn(int playerIndex, Vector2 direction, float rollingIntervalTime = 0.28f)
+        public void TurnOn(int playerIndex, Vector2 direction, float rollingIntervalTime = RollingIntervalTime)
         {
             if (!_playerMapByIndex.TryGetValue(playerIndex, out var player))
                 return;
