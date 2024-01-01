@@ -176,8 +176,7 @@ public class ConfirmLogicTest
 
     private void Check_IsConfirmCompleted(int playerIndex, bool expectedIsConfirmCompleted)
     {
-        Assert.IsTrue(_confirmLogic.TryGetIsConfirmCompleted(playerIndex, out var isConfirmCompleted), $"Player: {playerIndex} should be found.");
-        Assert.AreEqual(expectedIsConfirmCompleted, isConfirmCompleted, $"Player: {playerIndex}'s confirmCount should be {expectedIsConfirmCompleted}.");
+        Assert.AreEqual(expectedIsConfirmCompleted, _confirmLogic.CheckIsConfirmCompleted(playerIndex), $"Player: {playerIndex}'s confirmCount should be {expectedIsConfirmCompleted}.");
         Assert.AreEqual(expectedIsConfirmCompleted, _isComplete, $"Player: {playerIndex}'s confirmCount should be {expectedIsConfirmCompleted}.");
     }
 

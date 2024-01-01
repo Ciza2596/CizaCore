@@ -46,16 +46,12 @@ namespace CizaCore
             }
         }
 
-        public bool TryGetIsConfirmCompleted(int playerIndex, out bool isConfirmCompleted)
+        public bool CheckIsConfirmCompleted(int playerIndex)
         {
             if (!_playerMapByIndex.TryGetValue(playerIndex, out var player))
-            {
-                isConfirmCompleted = false;
                 return false;
-            }
 
-            isConfirmCompleted = player.IsConfirmCompleted;
-            return true;
+            return player.IsConfirmCompleted;
         }
 
         public bool TryGetConfirmCount(int playerIndex, out int confirmCount)
