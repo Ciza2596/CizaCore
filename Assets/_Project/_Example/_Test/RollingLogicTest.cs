@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RollingLogicTest
 {
+    private const int ZeroPlayerCount = 0;
     private const int OnePlayerCount = 1;
+
     private const int ZeroPlayerIndex = 0;
 
     private const int ZeroMovementCount = 0;
@@ -17,27 +19,64 @@ public class RollingLogicTest
     private float DefaultSelectIntervalTime => 0;
     private float ExpectedSelectIntervalTime => 0.28f;
 
-    private readonly RollingLogic _rollingLogic = new RollingLogic();
+    private RollingLogic _rollingLogic;
 
     private int _movementCount;
 
     [SetUp]
     public void Setup()
     {
-        _rollingLogic.ResetPlayerCount(OnePlayerCount);
+        _rollingLogic = new RollingLogic();
+
         _rollingLogic.OnMovement += OnMovement;
         _movementCount = ZeroMovementCount;
     }
 
-    [TearDown]
-    public void TearDown() =>
-        _rollingLogic.OnMovement -= OnMovement;
-
 
     [Test]
-    public void _01_TurnOn()
+    public void _01_ResetPlayerCount_To_One_Player()
     {
         // arrange
+        Check_PlayerCount(ZeroPlayerCount);
+
+        // act
+        _rollingLogic.ResetPlayerCount(OnePlayerCount);
+
+        // assert
+        Check_PlayerCount(OnePlayerCount);
+    }
+
+    [Test]
+    public void _02_AddPlayer()
+    {
+        // arrange
+        Check_PlayerCount(ZeroPlayerCount);
+
+        // act
+        _rollingLogic.AddPlayer(ZeroPlayerIndex);
+
+        // assert
+        Check_PlayerCount(OnePlayerCount);
+    }
+
+    [Test]
+    public void _03_RemovePlayer()
+    {
+        // arrange
+        _02_AddPlayer();
+
+        // act
+        _rollingLogic.RemovePlayer(ZeroPlayerIndex);
+
+        // assert
+        Check_PlayerCount(ZeroPlayerCount);
+    }
+
+    [Test]
+    public void _04_TurnOn()
+    {
+        // arrange
+        _01_ResetPlayerCount_To_One_Player();
         Check_Is_Turn_Off_State(ZeroPlayerIndex);
         Check_MovementCount(ZeroMovementCount);
 
@@ -50,10 +89,10 @@ public class RollingLogicTest
     }
 
     [Test]
-    public void _02_TurnOff()
+    public void _05_TurnOff()
     {
         // arrange
-        _01_TurnOn();
+        _04_TurnOn();
 
         // act
         _rollingLogic.TurnOff(ZeroPlayerIndex);
@@ -63,10 +102,10 @@ public class RollingLogicTest
     }
 
     [Test]
-    public void _03_Tick()
+    public void _06_Tick()
     {
         // arrange
-        _01_TurnOn();
+        _04_TurnOn();
 
         // act
         _rollingLogic.Tick(ExpectedSelectIntervalTime + 0.1f);
@@ -76,6 +115,9 @@ public class RollingLogicTest
         Check_Is_Turn_On_State(ZeroPlayerIndex);
         Check_MovementCount(TwoMovementCount);
     }
+
+    private void Check_PlayerCount(int expectedPlayerCount) =>
+        Assert.AreEqual(expectedPlayerCount, _rollingLogic.PlayerCount, $"PlayerCount should be {expectedPlayerCount}.");
 
 
     private void Check_Is_Turn_On_State(int playerIndex)
