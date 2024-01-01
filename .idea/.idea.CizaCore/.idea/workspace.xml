@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/OperationLogic/RollingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/OperationLogic/RollingLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/CizaCore.Test.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/CizaCore.Test.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +200,8 @@
       <workItem from="1704116621127" duration="555000" />
       <workItem from="1704127330376" duration="542000" />
       <workItem from="1704129390777" duration="883000" />
+      <workItem from="1704130598015" duration="211000" />
+      <workItem from="1704132809944" duration="319000" />
     </task>
     <servers />
   </component>
