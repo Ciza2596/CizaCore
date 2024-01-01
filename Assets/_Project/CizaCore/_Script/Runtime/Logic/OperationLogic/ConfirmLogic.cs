@@ -18,9 +18,13 @@ namespace CizaCore
 
         public event Action OnComplete;
 
-        public int MaxConfirmCount { get; private set; }
 
+        public bool IsFollowMaxPlayerCount { get; private set; } = false;
+
+        public int MaxPlayerCount { get; private set; } = 1;
         public int PlayerCount => _playerMapByIndex.Count;
+
+        public int MaxConfirmCount { get; private set; }
 
         public bool IsAnyConfirm
         {
@@ -69,11 +73,11 @@ namespace CizaCore
         public ConfirmLogic() =>
             SetMaxConfirmCount();
 
-        public void SetMaxConfirmCount(int maxConfirmCount = 1)
-        {
-            MaxConfirmCount = maxConfirmCount;
-            RefreshAllPlayersMaxConfirmCount();
-        }
+        public void SetIsFollowMaxPlayerCount(bool isFollowMaxPlayerCount) =>
+            IsFollowMaxPlayerCount = isFollowMaxPlayerCount;
+
+        public void SetMaxPlayerCount(int maxPlayerCount) =>
+            MaxPlayerCount = maxPlayerCount;
 
         public void ResetPlayerCount(int playerCount)
         {
@@ -85,6 +89,9 @@ namespace CizaCore
         public void AddPlayer(int playerIndex)
         {
             if (_playerMapByIndex.ContainsKey(playerIndex))
+                return;
+
+            if (IsFollowMaxPlayerCount && PlayerCount >= MaxPlayerCount)
                 return;
 
             _playerMapByIndex.Add(playerIndex, new Player(playerIndex));
@@ -99,6 +106,11 @@ namespace CizaCore
             _playerMapByIndex.Remove(playerIndex);
         }
 
+        public void SetMaxConfirmCount(int maxConfirmCount = 1)
+        {
+            MaxConfirmCount = maxConfirmCount;
+            RefreshAllPlayersMaxConfirmCount();
+        }
 
         public bool TryConfirm(int playerIndex)
         {
