@@ -6,7 +6,7 @@ namespace CizaCore
     public static class StringExtension
     {
         public const char SplitTag = ',';
-
+        
         public static bool IsContains(this string[] strs, string[] targetStrs)
         {
             foreach (var targetStr in targetStrs)
