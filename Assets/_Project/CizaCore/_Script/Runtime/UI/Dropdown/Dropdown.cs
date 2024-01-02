@@ -173,6 +173,8 @@ namespace CizaCore.UI
         public event Action OnShow;
         public event Action OnHide;
 
+        public int MaxIndex => Options.Length - 1;
+
         public int DefaultIndex => _defaultIndex;
         public int Index => _index;
 
