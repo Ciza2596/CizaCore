@@ -169,6 +169,7 @@ namespace CizaCore.UI
         public bool IsShow { get; private set; }
 
         public event Action<int> OnIndexChanged;
+        public event Action OnCancel;
 
         public event Action OnShow;
         public event Action OnHide;
@@ -302,45 +303,8 @@ namespace CizaCore.UI
         /// <summary>
         /// Close options method
         /// </summary>
-        public void Hide()
-        {
-            switch (_animationSettings.AnimationKind)
-            {
-                case AnimationKinds.None:
-                    break;
-
-                case AnimationKinds.Shrinking:
-                    if (_ratioShrinking < 0.99f && _ratioShrinking > 0.01f)
-                        return;
-                    break;
-
-                case AnimationKinds.Fading:
-                    if (_ratioFading < 0.99f && _ratioFading > 0.01f)
-                        return;
-                    break;
-
-                case AnimationKinds.ShrinkingAndFading:
-                    if (_ratioFading < 0.99f && _ratioFading > 0.01f && _ratioShrinking < 0.99f && _ratioShrinking > 0.01f)
-                        return;
-                    break;
-            }
-
-            IsShow = false;
-            OnHide?.Invoke();
-            SelectIndex = DefaultTextIndex;
-            _ratioShrinking = 0;
-            _ratioFading = 0;
-            _startPos = _monoSettings.OptionsRectTransform.sizeDelta.y;
-            _startFade = 1;
-            _targetPos = 0;
-            _targetFade = 0;
-            Destroy(_currentBlocker);
-            if (_animationSettings.AnimationKind == AnimationKinds.None)
-            {
-                _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
-                Closed();
-            }
-        }
+        public void Hide() =>
+            HideWithCancel();
 
         public void ChangeState()
         {
@@ -404,8 +368,57 @@ namespace CizaCore.UI
             else
                 SetDefaultText();
 
-            Hide();
+            HideWithoutCancel();
             OnIndexChanged?.Invoke(Index);
+        }
+
+        private void HideWithCancel() =>
+            Hide(true);
+
+        private void HideWithoutCancel() =>
+            Hide(false);
+
+        private void Hide(bool isWithCancel)
+        {
+            if (isWithCancel)
+                OnCancel?.Invoke();
+
+            switch (_animationSettings.AnimationKind)
+            {
+                case AnimationKinds.None:
+                    break;
+
+                case AnimationKinds.Shrinking:
+                    if (_ratioShrinking < 0.99f && _ratioShrinking > 0.01f)
+                        return;
+                    break;
+
+                case AnimationKinds.Fading:
+                    if (_ratioFading < 0.99f && _ratioFading > 0.01f)
+                        return;
+                    break;
+
+                case AnimationKinds.ShrinkingAndFading:
+                    if (_ratioFading < 0.99f && _ratioFading > 0.01f && _ratioShrinking < 0.99f && _ratioShrinking > 0.01f)
+                        return;
+                    break;
+            }
+
+            IsShow = false;
+            OnHide?.Invoke();
+            SelectIndex = DefaultTextIndex;
+            _ratioShrinking = 0;
+            _ratioFading = 0;
+            _startPos = _monoSettings.OptionsRectTransform.sizeDelta.y;
+            _startFade = 1;
+            _targetPos = 0;
+            _targetFade = 0;
+            Destroy(_currentBlocker);
+            if (_animationSettings.AnimationKind == AnimationKinds.None)
+            {
+                _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
+                Closed();
+            }
         }
 
         private IEnumerator WaitForSeveralFrames()
