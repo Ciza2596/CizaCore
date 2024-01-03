@@ -132,34 +132,51 @@ namespace CizaCore.UI
                 return;
             }
 
+            
+            var viewport = _monoSettings.ScrollRect.viewport;
+
+            // var current = _monoSettings.VerticalLayoutGroupHeight.GetChild<RectTransform>(index);
+            // var currentCenterPosition = current.GetCenterPosition();
+            // var currentPosition = currentCenterPosition + new Vector2(0, current.rect.height / 2);
+            // if (!RectTransformUtility.RectangleContainsScreenPoint(viewport, currentCenterPosition))
+            // {
+            //     TargetValue = 0;
+            //     TickValueImmediately();
+            //     
+            //     CalculateTargetValue(viewport, currentPosition);
+            // }
+
             _isToUp = previousIndex > index;
             var nextIndex = _isToUp ? index - 1 : index + 1;
-
             var next = _monoSettings.VerticalLayoutGroupHeight.GetChild<RectTransform>(nextIndex);
             var nextCenterPosition = next.GetCenterPosition();
             var nextPosition = nextCenterPosition + (new Vector2(0, next.rect.height / 2) * GetDirection());
-            var viewport = _monoSettings.ScrollRect.viewport;
-            var isContain = RectTransformUtility.RectangleContainsScreenPoint(viewport, nextPosition);
-            if (!isContain)
-            {
-                var rectHeight = viewport.rect.height;
-                var height = _monoSettings.VerticalLayoutGroupHeight.Height - rectHeight;
-                if (height <= 0)
-                    return;
-
-                var viewportCenterPosition = viewport.GetCenterPosition();
-                var viewportPosition = viewportCenterPosition + (new Vector2(0, rectHeight / 2) * GetDirection());
-                var distance = Math.Abs(viewportPosition.y - nextPosition.y);
-                var addValue = distance / height;
-                TargetValue += addValue * GetDirection();
-            }
-
+            if (!RectTransformUtility.RectangleContainsScreenPoint(viewport, nextPosition))
+                CalculateTargetValue(viewport, nextPosition);
+            
             if (isImmediately)
                 TickValueImmediately();
         }
 
+        private void CalculateTargetValue(RectTransform viewport, Vector2 targetPosition)
+        {
+            var rectHeight = viewport.rect.height;
+            var height = _monoSettings.VerticalLayoutGroupHeight.Height - rectHeight;
+            if (height <= 0)
+                return;
+
+            var viewportCenterPosition = viewport.GetCenterPosition();
+            var viewportPosition = viewportCenterPosition + (new Vector2(0, rectHeight / 2) * GetDirection());
+            var distance = Math.Abs(viewportPosition.y - targetPosition.y);
+            var addValue = distance / height;
+            TargetValue += addValue * GetDirection();
+        }
+
         private float GetDirection() =>
-            _isToUp ? 1 : -1;
+            GetDirection(_isToUp);
+
+        private float GetDirection(bool isToUp) =>
+            isToUp ? 1 : -1;
 
         private void TickValueImmediately()
         {

@@ -158,6 +158,8 @@ namespace CizaCore.UI
 
         private int _index;
 
+        private bool _isShowing = false;
+
         private float _targetPos;
         private float _targetFade;
         private float _startPos;
@@ -252,8 +254,10 @@ namespace CizaCore.UI
 
         public void Show()
         {
-            if (_options.Count == 0)
+            if (IsShow || _isShowing || _options.Count == 0)
                 return;
+
+            _isShowing = true;
 
             switch (_animationSettings.AnimationKind)
             {
@@ -278,7 +282,6 @@ namespace CizaCore.UI
             }
 
             IsShow = true;
-            OnShow?.Invoke();
             for (var i = 0; i < _options.Count; i++)
             {
                 var spawnedOption = Instantiate(_monoSettings.OptionPrefab, _monoSettings.Content).GetComponent<Option>();
@@ -288,16 +291,14 @@ namespace CizaCore.UI
 
             _monoSettings.ScrollView.sizeDelta = new Vector2(_monoSettings.ScrollView.sizeDelta.x, Mathf.Clamp(_monoSettings.VerticalLayoutGroupHeight.Height, float.MinValue, _maxDropdownHeight));
 
-            Select(Index, true);
-            SetOptionIsConfirm();
-
-            StartCoroutine(WaitForSeveralFrames());
-
             _currentBlocker = Instantiate(_monoSettings.BlockerPrefab, _parent.transform);
             _currentBlocker.GetComponent<Canvas>().sortingOrder = (_parent.sortingOrder + _monoSettings.AddBlockerOrder);
-            _currentBlocker.GetComponent<Button>().onClick.AddListener(Hide);
             _currentBlocker.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             _currentBlocker.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+
+            _monoSettings.OptionsRectTransform.gameObject.SetActive(true);
+
+            StartCoroutine(WaitForSeveralFrames());
         }
 
         /// <summary>
@@ -314,13 +315,27 @@ namespace CizaCore.UI
                 Show();
         }
 
-        public void Select(int index, bool isImmediately)
+        public void MoveToUp() =>
+            Select(SelectIndex - 1, false);
+
+        public void MoveToDown() =>
+            Select(SelectIndex + 1, false);
+
+
+        public void Select(int index, bool isImmediately) =>
+            Select(index, isImmediately, true);
+
+        public void SelectWithoutAutoRoll(int index, bool isImmediately) =>
+            Select(index, isImmediately, false);
+
+        private void Select(int index, bool isImmediately, bool isAutoRoll)
         {
             if (!IsShow || index < 0 || index >= Options.Length)
                 return;
 
             SelectIndex = index;
-            _monoSettings.VerticalScrollView.SetIndex(SelectIndex, isImmediately);
+            if (isAutoRoll)
+                _monoSettings.VerticalScrollView.SetIndex(SelectIndex, isImmediately);
             SetOptionIsSelect();
         }
 
@@ -380,6 +395,9 @@ namespace CizaCore.UI
 
         private void Hide(bool isWithCancel)
         {
+            if (!IsShow)
+                return;
+
             if (isWithCancel)
                 OnCancel?.Invoke();
 
@@ -405,7 +423,6 @@ namespace CizaCore.UI
             }
 
             IsShow = false;
-            OnHide?.Invoke();
             SelectIndex = DefaultTextIndex;
             _ratioShrinking = 0;
             _ratioFading = 0;
@@ -419,13 +436,14 @@ namespace CizaCore.UI
                 _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
                 Closed();
             }
+
+            OnHide?.Invoke();
         }
 
         private IEnumerator WaitForSeveralFrames()
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
-            _monoSettings.OptionsRectTransform.gameObject.SetActive(true);
 
             SetOrder(true);
 
@@ -443,10 +461,22 @@ namespace CizaCore.UI
 
             if (_animationSettings.AnimationKind == AnimationKinds.Shrinking || _animationSettings.AnimationKind == AnimationKinds.None)
                 _monoSettings.OptionsCanvasGroup.alpha = 1;
+
+            Select(Index, true);
+            SetOptionIsConfirm();
+
+            OnShow?.Invoke();
+
+            _currentBlocker.GetComponent<Button>().onClick.AddListener(Hide);
+
+            _isShowing = false;
         }
 
         private void Closed()
         {
+            if (_isShowing)
+                return;
+
             _monoSettings.OptionsCanvas.overrideSorting = false;
             _monoSettings.OptionsCanvas.sortingOrder = 100;
 

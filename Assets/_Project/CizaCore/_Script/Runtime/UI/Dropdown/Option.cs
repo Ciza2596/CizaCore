@@ -67,9 +67,8 @@ namespace CizaCore.UI
             OnConfirm?.Invoke(isConfirm);
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            _dropdown.Select(Index, false);
-        }
+        public void OnPointerEnter(PointerEventData eventData) =>
+            _dropdown.SelectWithoutAutoRoll(Index, false);
+        
     }
 }
