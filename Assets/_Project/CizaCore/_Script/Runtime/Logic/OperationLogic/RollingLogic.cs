@@ -26,12 +26,9 @@ namespace CizaCore
         public const float FirstRollingIntervalTime = 0.42f;
         public const float RollingIntervalTime = 0.28f;
 
-        // PlayerIndex, Direction
-        public event Func<int, Vector2, UniTask> OnFirstMovementAsync;
-        public event Action<int, Vector2> OnFirstMovement;
-
-        public event Func<int, Vector2, UniTask> OnMovementAsync;
-        public event Action<int, Vector2> OnMovement;
+        // PlayerIndex, IsFirst, Direction
+        public event Func<int, bool, Vector2, UniTask> OnMovementAsync;
+        public event Action<int, bool, Vector2> OnMovement;
 
         public int PlayerCount => _playerMapByIndex.Count;
 
@@ -66,7 +63,7 @@ namespace CizaCore
             if (_playerMapByIndex.ContainsKey(playerIndex))
                 return;
 
-            _playerMapByIndex.Add(playerIndex, new Player(playerIndex, OnFirstMovementAsyncImp, OnFirstMovementImp, OnMovementAsyncImp, OnMovementImp));
+            _playerMapByIndex.Add(playerIndex, new Player(playerIndex, OnMovementAsyncImp, OnMovementImp));
         }
 
         public void RemovePlayer(int playerIndex)
@@ -94,35 +91,21 @@ namespace CizaCore
             player.TurnOff();
         }
 
-        private UniTask OnFirstMovementAsyncImp(int playerIndex, Vector2 direction)
-        {
-            if (OnFirstMovementAsync != null)
-                OnFirstMovementAsync.Invoke(playerIndex, direction);
-
-            return UniTask.CompletedTask;
-        }
-
-        private void OnFirstMovementImp(int playerIndex, Vector2 direction) =>
-            OnFirstMovement?.Invoke(playerIndex, direction);
-
-        private UniTask OnMovementAsyncImp(int playerIndex, Vector2 direction)
+        private UniTask OnMovementAsyncImp(int playerIndex, bool isFirst, Vector2 direction)
         {
             if (OnMovementAsync != null)
-                OnMovementAsync.Invoke(playerIndex, direction);
+                OnMovementAsync.Invoke(playerIndex, isFirst, direction);
 
             return UniTask.CompletedTask;
         }
 
-        private void OnMovementImp(int playerIndex, Vector2 direction) =>
-            OnMovement?.Invoke(playerIndex, direction);
+        private void OnMovementImp(int playerIndex, bool isFirst, Vector2 direction) =>
+            OnMovement?.Invoke(playerIndex, isFirst, direction);
 
         private class Player : IPlayerReadModel
         {
-            private event Func<int, Vector2, UniTask> _onFirstMovementAsync;
-            private event Action<int, Vector2> _onFirstMovement;
-
-            private event Func<int, Vector2, UniTask> _onMovementAsync;
-            private event Action<int, Vector2> _onMovement;
+            private event Func<int, bool, Vector2, UniTask> _onMovementAsync;
+            private event Action<int, bool, Vector2> _onMovement;
 
             private bool _isMoving;
 
@@ -135,12 +118,9 @@ namespace CizaCore
             public float RollingIntervalTime { get; private set; }
             public float CurrentRollingIntervalTime { get; private set; }
 
-            public Player(int index, Func<int, Vector2, UniTask> onFirstMovementAsync, Action<int, Vector2> onFirstMovement, Func<int, Vector2, UniTask> onMovementAsync, Action<int, Vector2> onMovement)
+            public Player(int index, Func<int, bool, Vector2, UniTask> onMovementAsync, Action<int, bool, Vector2> onMovement)
             {
                 Index = index;
-
-                _onFirstMovementAsync = onFirstMovementAsync;
-                _onFirstMovement = onFirstMovement;
 
                 _onMovementAsync = onMovementAsync;
                 _onMovement = onMovement;
@@ -185,18 +165,9 @@ namespace CizaCore
             {
                 _isMoving = true;
 
-                if (isFirst)
-                {
-                    if (_onFirstMovementAsync != null)
-                        await _onFirstMovementAsync.Invoke(Index, Direction);
-                    _onFirstMovement?.Invoke(Index, Direction);
-                }
-                else
-                {
-                    if (_onMovementAsync != null)
-                        await _onMovementAsync.Invoke(Index, Direction);
-                    _onMovement?.Invoke(Index, Direction);
-                }
+                if (_onMovementAsync != null)
+                    await _onMovementAsync.Invoke(Index, isFirst, Direction);
+                _onMovement?.Invoke(Index, isFirst, Direction);
 
                 _isMoving = false;
             }

@@ -30,7 +30,6 @@ public class RollingLogicTest
     {
         _rollingLogic = new RollingLogic();
 
-        _rollingLogic.OnFirstMovementAsync += OnMovementAsync;
         _rollingLogic.OnMovementAsync += OnMovementAsync;
         _movementCount = ZeroMovementCount;
     }
@@ -147,7 +146,7 @@ public class RollingLogicTest
     private void Check_MovementCount(int expectedMovementCount) =>
         Assert.AreEqual(expectedMovementCount, _movementCount, "MovementCount should be one.");
 
-    private UniTask OnMovementAsync(int playerIndex, Vector2 direction)
+    private UniTask OnMovementAsync(int playerIndex, bool isFirst, Vector2 direction)
     {
         if (playerIndex == ZeroPlayerIndex)
             _movementCount++;

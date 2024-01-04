@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/OperationLogic/RollingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/OperationLogic/RollingLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +208,7 @@
       <workItem from="1704259361484" duration="88000" />
       <workItem from="1704293924065" duration="339000" />
       <workItem from="1704300726859" duration="6359000" />
-      <workItem from="1704344324681" duration="1055000" />
+      <workItem from="1704344324681" duration="2644000" />
     </task>
     <servers />
   </component>
@@ -267,6 +265,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs</url>
+          <line>113</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" initialLine="113" containingFunctionPresentation="Method '_06_Tick'">
+            <startOffsets>
+              <option value="2661" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2721" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
