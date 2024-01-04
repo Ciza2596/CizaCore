@@ -18,7 +18,8 @@ public class RollingLogicTest
     private Vector2 ExpectedDirection => Vector2.one;
 
     private float DefaultRollingIntervalTime => 0;
-    private float ExpectedRollingIntervalTime => 0.28f;
+    private float ExpectedFirstRollingIntervalTime => RollingLogic.FirstRollingIntervalTime;
+    private float ExpectedRollingIntervalTime => RollingLogic.RollingIntervalTime;
 
     private RollingLogic _rollingLogic;
 
@@ -29,6 +30,7 @@ public class RollingLogicTest
     {
         _rollingLogic = new RollingLogic();
 
+        _rollingLogic.OnFirstMovementAsync += OnMovementAsync;
         _rollingLogic.OnMovementAsync += OnMovementAsync;
         _movementCount = ZeroMovementCount;
     }
@@ -82,10 +84,10 @@ public class RollingLogicTest
         Check_MovementCount(ZeroMovementCount);
 
         // act
-        _rollingLogic.TurnOn(ZeroPlayerIndex, ExpectedDirection, ExpectedRollingIntervalTime);
+        _rollingLogic.TurnOn(ZeroPlayerIndex, ExpectedDirection, ExpectedRollingIntervalTime, ExpectedFirstRollingIntervalTime);
 
         // assert
-        Check_Is_Turn_On_State(ZeroPlayerIndex);
+        Check_Is_Turn_On_State(ZeroPlayerIndex, ExpectedFirstRollingIntervalTime);
         Check_MovementCount(OneMovementCount);
     }
 
@@ -109,11 +111,11 @@ public class RollingLogicTest
         _04_TurnOn();
 
         // act
-        _rollingLogic.Tick(ExpectedRollingIntervalTime + 0.1f);
+        _rollingLogic.Tick(ExpectedFirstRollingIntervalTime + 0.1f);
         _rollingLogic.Tick(0);
 
         // arrange
-        Check_Is_Turn_On_State(ZeroPlayerIndex);
+        Check_Is_Turn_On_State(ZeroPlayerIndex, ExpectedRollingIntervalTime);
         Check_MovementCount(TwoMovementCount);
     }
 
@@ -121,7 +123,7 @@ public class RollingLogicTest
         Assert.AreEqual(expectedPlayerCount, _rollingLogic.PlayerCount, $"PlayerCount should be {expectedPlayerCount}.");
 
 
-    private void Check_Is_Turn_On_State(int playerIndex)
+    private void Check_Is_Turn_On_State(int playerIndex, float expectedCurrentRollingIntervalTime)
     {
         Assert.IsTrue(_rollingLogic.TryGetPlayerReadModel(playerIndex, out var playerReadModel), $"PlayerReadModel should be found by index: {ZeroPlayerIndex}.");
 
@@ -129,6 +131,7 @@ public class RollingLogicTest
 
         Assert.AreEqual(ExpectedDirection, playerReadModel.Direction, $"CurrentDirection should be {ExpectedDirection}.");
         Assert.AreEqual(ExpectedRollingIntervalTime, playerReadModel.RollingIntervalTime, $"RollingIntervalTime should be {ExpectedRollingIntervalTime}.");
+        Assert.AreEqual(expectedCurrentRollingIntervalTime, playerReadModel.CurrentRollingIntervalTime, $"CurrentRollingIntervalTime should be {expectedCurrentRollingIntervalTime}.");
     }
 
     private void Check_Is_Turn_Off_State(int playerIndex)
