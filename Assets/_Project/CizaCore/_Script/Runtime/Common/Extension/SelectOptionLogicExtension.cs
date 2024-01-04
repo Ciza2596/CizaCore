@@ -3,81 +3,109 @@ using UnityEngine;
 
 namespace CizaCore
 {
-	public static class SelectOptionLogicExtension
-	{
-		public const char SplitTag = ',';
+    public static class SelectOptionLogicExtension
+    {
+        public const char SplitTag = ',';
 
-		public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
-		{
-			if (direction.x > 0)
-			{
-				if (selectLevelLogic.TryMoveToRight(playerIndex))
-					return;
-			}
-			else if (direction.x < 0)
-			{
-				if (selectLevelLogic.TryMoveToLeft(playerIndex))
-					return;
-			}
+        public static void HorizontalMovement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
+        {
+            if (direction.x > 0)
+            {
+                if (selectLevelLogic.TryMoveToRight(playerIndex))
+                    return;
+            }
+            else if (direction.x < 0)
+            {
+                if (selectLevelLogic.TryMoveToLeft(playerIndex))
+                    return;
+            }
+        }
 
-			if (direction.y > 0)
-			{
-				if (selectLevelLogic.TryMoveToUp(playerIndex))
-					return;
-			}
-			else if (direction.y < 0)
-			{
-				if (selectLevelLogic.TryMoveToDown(playerIndex))
-					return;
-			}
-		}
+        public static void VerticalMovement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
+        {
+            if (direction.y > 0)
+            {
+                if (selectLevelLogic.TryMoveToUp(playerIndex))
+                    return;
+            }
+            else if (direction.y < 0)
+            {
+                if (selectLevelLogic.TryMoveToDown(playerIndex))
+                    return;
+            }
+        }
 
-		public static string ToOptionKeysString(this List<IOptionColumn> optionColumns) =>
-			ToOptionKeysString(optionColumns.ToArray());
+        public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
+        {
+            if (direction.x > 0)
+            {
+                if (selectLevelLogic.TryMoveToRight(playerIndex))
+                    return;
+            }
+            else if (direction.x < 0)
+            {
+                if (selectLevelLogic.TryMoveToLeft(playerIndex))
+                    return;
+            }
 
-		public static string ToOptionKeysString(this IOptionColumn[] optionColumns)
-		{
-			var str = string.Empty;
-			foreach (var optionColumn in optionColumns)
-			{
-				if (optionColumn is null)
-					continue;
+            if (direction.y > 0)
+            {
+                if (selectLevelLogic.TryMoveToUp(playerIndex))
+                    return;
+            }
+            else if (direction.y < 0)
+            {
+                if (selectLevelLogic.TryMoveToDown(playerIndex))
+                    return;
+            }
+        }
 
-				foreach (var optionKey in optionColumn.OptionKeys)
-					str += optionKey + SplitTag;
-			}
+        public static string ToOptionKeysString(this List<IOptionColumn> optionColumns) =>
+            ToOptionKeysString(optionColumns.ToArray());
 
-			return str;
-		}
+        public static string ToOptionKeysString(this IOptionColumn[] optionColumns)
+        {
+            var str = string.Empty;
+            foreach (var optionColumn in optionColumns)
+            {
+                if (optionColumn is null)
+                    continue;
 
-		public static IOptionColumn[] ToOptionColumns(this string optionKeysString, int columnNumber, int rowNumber, bool isIgnoreEmpty)
-		{
-			var optionRowImps = new List<IOptionColumn>();
+                foreach (var optionKey in optionColumn.OptionKeys)
+                    str += optionKey + SplitTag;
+            }
 
-			var allOptionKeys = optionKeysString.ToArray(columnNumber * rowNumber, isIgnoreEmpty);
-			var index         = 0;
-			for (var i = 0; i < columnNumber; i++)
-			{
-				var optionKeys = new List<string>();
-				for (var j = 0; j < rowNumber; j++)
-				{
-					var optionKey = allOptionKeys[index];
-					optionKeys.Add(optionKey);
-					index++;
-				}
+            return str;
+        }
 
-				optionRowImps.Add(new OptionColumn(optionKeys.ToArray()));
-			}
+        public static IOptionColumn[] ToOptionColumns(this string optionKeysString, int columnNumber, int rowNumber, bool isIgnoreEmpty)
+        {
+            var optionRowImps = new List<IOptionColumn>();
 
-			return optionRowImps.ToArray();
-		}
+            var allOptionKeys = optionKeysString.ToArray(columnNumber * rowNumber, isIgnoreEmpty);
+            var index = 0;
+            for (var i = 0; i < columnNumber; i++)
+            {
+                var optionKeys = new List<string>();
+                for (var j = 0; j < rowNumber; j++)
+                {
+                    var optionKey = allOptionKeys[index];
+                    optionKeys.Add(optionKey);
+                    index++;
+                }
 
-		private class OptionColumn : IOptionColumn
-		{
-			public string[] OptionKeys { get; }
+                optionRowImps.Add(new OptionColumn(optionKeys.ToArray()));
+            }
 
-			public OptionColumn(string[] optionKeys) =>
-				OptionKeys = optionKeys;
-		}
-	}
+            return optionRowImps.ToArray();
+        }
+
+        private class OptionColumn : IOptionColumn
+        {
+            public string[] OptionKeys { get; }
+
+            public OptionColumn(string[] optionKeys) =>
+                OptionKeys = optionKeys;
+        }
+    }
 }
