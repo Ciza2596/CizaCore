@@ -119,6 +119,9 @@ namespace CizaCore
 
         public static Dictionary<string, string>[] ToStringMapByStringArray(this string str, int count)
         {
+            if (!str.HasValue())
+                str = string.Empty;
+            
             var stringMapByStrings = new List<Dictionary<string, string>>(count);
             var values = str.Split(VerticalBarTag);
             for (var i = 0; i < count; i++)
@@ -134,6 +137,9 @@ namespace CizaCore
 
         public static Dictionary<string, int>[] ToIntMapByStringArray(this string str, int count)
         {
+            if (!str.HasValue())
+                str = string.Empty;
+            
             var intMapByStrings = new List<Dictionary<string, int>>(count);
             var values = str.Split(VerticalBarTag);
             for (var i = 0; i < count; i++)
@@ -149,6 +155,9 @@ namespace CizaCore
 
         public static Dictionary<string, float>[] ToFloatMapByStringArray(this string str, int count)
         {
+            if (!str.HasValue())
+                str = string.Empty;
+            
             var floatMapByStrings = new List<Dictionary<string, float>>(count);
             var values = str.Split(VerticalBarTag);
             for (var i = 0; i < count; i++)

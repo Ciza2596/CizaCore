@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/StringExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/StringExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/StringExtensionTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/StringExtensionTest.cs" afterDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +211,7 @@
       <workItem from="1704348335395" duration="910000" />
       <workItem from="1704349614345" duration="94000" />
       <workItem from="1704541523640" duration="699000" />
-      <workItem from="1704549475204" duration="5656000" />
+      <workItem from="1704549475204" duration="6060000" />
     </task>
     <servers />
   </component>
@@ -287,13 +284,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/StringExtension.cs</url>
-          <line>125</line>
+          <line>122</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/StringExtension.cs" initialLine="125" containingFunctionPresentation="Method 'ToStringMapByStringArray'">
             <startOffsets>
-              <option value="3862" />
+              <option value="3775" />
             </startOffsets>
             <endOffsets>
-              <option value="3901" />
+              <option value="3814" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />
