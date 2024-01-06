@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,8 +6,9 @@ namespace CizaCore
 {
     public static class StringExtension
     {
-        public const char SplitTag = ',';
-        
+        public const char CommaTag = ',';
+        public const char SemicolonTag = ';';
+
         public static bool IsContains(this string[] strs, string[] targetStrs)
         {
             foreach (var targetStr in targetStrs)
@@ -34,13 +36,13 @@ namespace CizaCore
                 return list;
 
             var strWithoutSpace = str.WithoutSpace();
-            if (!strWithoutSpace.Contains(SplitTag))
+            if (!strWithoutSpace.Contains(CommaTag))
             {
                 list.Add(strWithoutSpace);
                 return list;
             }
 
-            var splitStrs = strWithoutSpace.Split(SplitTag);
+            var splitStrs = strWithoutSpace.Split(CommaTag);
             for (var i = 0; i < splitStrs.Length; i++)
             {
                 var splitStr = splitStrs[i];
@@ -67,13 +69,13 @@ namespace CizaCore
                 return list.AddEmptyItem(count);
 
             var strWithoutSpace = str.WithoutSpace();
-            if (!strWithoutSpace.Contains(SplitTag))
+            if (!strWithoutSpace.Contains(CommaTag))
             {
                 list.Add(strWithoutSpace);
                 return list.AddEmptyItem(count - 1);
             }
 
-            var splitStrs = strWithoutSpace.Split(SplitTag);
+            var splitStrs = strWithoutSpace.Split(CommaTag);
             for (var i = 0; i < splitStrs.Length; i++)
             {
                 var splitStr = splitStrs[i];
@@ -111,6 +113,51 @@ namespace CizaCore
 
             index = 0;
             return false;
+        }
+
+        public static Dictionary<string, string> ToStringMapByString(this string str)
+        {
+            return str.ToMap(m_GetValue);
+
+            string m_GetValue(string value) =>
+                value;
+        }
+
+        public static Dictionary<string, int> ToIntMapByString(this string str)
+        {
+            return str.ToMap(m_GetValue);
+
+            int m_GetValue(string value) =>
+                int.Parse(value);
+        }
+
+        public static Dictionary<string, float> ToFloatMapByString(this string str)
+        {
+            return str.ToMap(m_GetValue);
+
+            float m_GetValue(string value) =>
+                float.Parse(value);
+        }
+
+        private static Dictionary<string, TValue> ToMap<TValue>(this string str, Func<string, TValue> func)
+        {
+            var dictionary = new Dictionary<string, TValue>();
+            if (str == null)
+                return dictionary;
+
+            foreach (var text in str.Split(SemicolonTag))
+            {
+                if (!text.HasValue())
+                    continue;
+
+                var keyAndValue = text.Split(CommaTag);
+                if (keyAndValue.Length != 2)
+                    continue;
+
+                dictionary.Add(keyAndValue[0].Trim(), func.Invoke(keyAndValue[1]));
+            }
+
+            return dictionary;
         }
     }
 }
