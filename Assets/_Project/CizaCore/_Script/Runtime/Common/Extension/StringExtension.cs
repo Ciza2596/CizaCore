@@ -9,6 +9,8 @@ namespace CizaCore
         public const char CommaTag = ',';
         public const char SemicolonTag = ';';
 
+        public const char VerticalBarTag = '|';
+
         public static bool IsContains(this string[] strs, string[] targetStrs)
         {
             foreach (var targetStr in targetStrs)
@@ -113,6 +115,63 @@ namespace CizaCore
 
             index = 0;
             return false;
+        }
+
+        public static Dictionary<string, string>[] ToStringMapByStringArray(this string str)
+        {
+            if (!str.HasValue())
+                return Array.Empty<Dictionary<string, string>>();
+
+            var stringMapByStrings = new List<Dictionary<string, string>>();
+            var values = str.Split(VerticalBarTag);
+
+            foreach (var value in values)
+            {
+                if (!value.HasValue())
+                    continue;
+
+                stringMapByStrings.Add(value.ToStringMapByString());
+            }
+
+            return stringMapByStrings.ToArray();
+        }
+
+        public static Dictionary<string, int>[] ToIntMapByStringArray(this string str)
+        {
+            if (!str.HasValue())
+                return Array.Empty<Dictionary<string, int>>();
+
+            var intMapByStrings = new List<Dictionary<string, int>>();
+            var values = str.Split(VerticalBarTag);
+
+            foreach (var value in values)
+            {
+                if (!value.HasValue())
+                    continue;
+
+                intMapByStrings.Add(value.ToIntMapByString());
+            }
+
+            return intMapByStrings.ToArray();
+        }
+
+        public static Dictionary<string, float>[] ToFloatMapByStringArray(this string str)
+        {
+            if (!str.HasValue())
+                return Array.Empty<Dictionary<string, float>>();
+
+            var floatMapByStrings = new List<Dictionary<string, float>>();
+            var values = str.Split(VerticalBarTag);
+
+            foreach (var value in values)
+            {
+                if (!value.HasValue())
+                    continue;
+
+                floatMapByStrings.Add(value.ToFloatMapByString());
+            }
+
+            return floatMapByStrings.ToArray();
         }
 
         public static Dictionary<string, string> ToStringMapByString(this string str)

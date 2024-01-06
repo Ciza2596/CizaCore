@@ -1,4 +1,3 @@
-using System.Linq;
 using CizaCore;
 using NUnit.Framework;
 
@@ -179,6 +178,32 @@ public class StringExtensionTest
         var floatMapByString = str.ToFloatMapByString();
         Assert.AreEqual(Level1FloatValue, floatMapByString[Level1DataId]);
         Assert.AreEqual(Level2FloatValue, floatMapByString[Level2DataId]);
+    }
+
+    [TestCase("level1,0|level2,1")]
+    public void _10_ToStringMapByStringArray(string str)
+    {
+        var stringMapByStringArray = str.ToStringMapByStringArray();
+        Assert.AreEqual(Level1StringValue, stringMapByStringArray[0][Level1DataId]);
+        Assert.AreEqual(Level2StringValue, stringMapByStringArray[1][Level2DataId]);
+    }
+
+
+    [TestCase("level1,0|level2,1")]
+    public void _11_ToIntMapByStringArray(string str)
+    {
+        var intMapByStringArray = str.ToIntMapByStringArray();
+        Assert.AreEqual(Level1IntValue, intMapByStringArray[0][Level1DataId]);
+        Assert.AreEqual(Level2IntValue, intMapByStringArray[1][Level2DataId]);
+    }
+
+
+    [TestCase("level1,0|level2,1")]
+    public void _12_ToFloatMapByStringArray(string str)
+    {
+        var floatMapByStringArray = str.ToFloatMapByStringArray();
+        Assert.AreEqual(Level1FloatValue, floatMapByStringArray[0][Level1DataId]);
+        Assert.AreEqual(Level2FloatValue, floatMapByStringArray[1][Level2DataId]);
     }
 
     private void CheckLength(int expectedLength, int length, string stringsName) =>
