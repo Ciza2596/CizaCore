@@ -117,6 +117,51 @@ namespace CizaCore
             return false;
         }
 
+        public static Dictionary<string, string>[] ToStringMapByStringArray(this string str, int count)
+        {
+            var stringMapByStrings = new List<Dictionary<string, string>>(count);
+            var values = str.Split(VerticalBarTag);
+            for (var i = 0; i < count; i++)
+            {
+                if (i < values.Length)
+                    stringMapByStrings.Add(values[i].ToStringMapByString());
+                else
+                    stringMapByStrings.Add(new Dictionary<string, string>());
+            }
+
+            return stringMapByStrings.ToArray();
+        }
+
+        public static Dictionary<string, int>[] ToIntMapByStringArray(this string str, int count)
+        {
+            var intMapByStrings = new List<Dictionary<string, int>>(count);
+            var values = str.Split(VerticalBarTag);
+            for (var i = 0; i < count; i++)
+            {
+                if (i < values.Length)
+                    intMapByStrings.Add(values[i].ToIntMapByString());
+                else
+                    intMapByStrings.Add(new Dictionary<string, int>());
+            }
+
+            return intMapByStrings.ToArray();
+        }
+
+        public static Dictionary<string, float>[] ToFloatMapByStringArray(this string str, int count)
+        {
+            var floatMapByStrings = new List<Dictionary<string, float>>(count);
+            var values = str.Split(VerticalBarTag);
+            for (var i = 0; i < count; i++)
+            {
+                if (i < values.Length)
+                    floatMapByStrings.Add(values[i].ToFloatMapByString());
+                else
+                    floatMapByStrings.Add(new Dictionary<string, float>());
+            }
+
+            return floatMapByStrings.ToArray();
+        }
+
         public static Dictionary<string, string>[] ToStringMapByStringArray(this string str)
         {
             if (!str.HasValue())

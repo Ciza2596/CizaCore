@@ -206,6 +206,37 @@ public class StringExtensionTest
         Assert.AreEqual(Level2FloatValue, floatMapByStringArray[1][Level2DataId]);
     }
 
+    [TestCase("level1,0|level2,1", 3)]
+    public void _13_ToStringMapByStringArray(string str, int count)
+    {
+        var stringMapByStringArray = str.ToStringMapByStringArray(count);
+        Assert.AreEqual(Level1StringValue, stringMapByStringArray[0][Level1DataId]);
+        Assert.AreEqual(Level2StringValue, stringMapByStringArray[1][Level2DataId]);
+        Assert.AreEqual(count, stringMapByStringArray.Length);
+    }
+
+
+    [TestCase("level1,0|level2,1", 3)]
+    public void _14_ToIntMapByStringArray(string str, int count)
+
+    {
+        var intMapByStringArray = str.ToIntMapByStringArray(count);
+        Assert.AreEqual(Level1IntValue, intMapByStringArray[0][Level1DataId]);
+        Assert.AreEqual(Level2IntValue, intMapByStringArray[1][Level2DataId]);
+        Assert.AreEqual(count, intMapByStringArray.Length);
+    }
+
+
+    [TestCase("level1,0|level2,1", 3)]
+    public void _15_ToFloatMapByStringArray(string str, int count)
+
+    {
+        var floatMapByStringArray = str.ToFloatMapByStringArray(count);
+        Assert.AreEqual(Level1FloatValue, floatMapByStringArray[0][Level1DataId]);
+        Assert.AreEqual(Level2FloatValue, floatMapByStringArray[1][Level2DataId]);
+        Assert.AreEqual(count, floatMapByStringArray.Length);
+    }
+
     private void CheckLength(int expectedLength, int length, string stringsName) =>
         Assert.AreEqual(expectedLength, length, $"{stringsName}'s length: {length} should equal {expectedLength}.");
 
