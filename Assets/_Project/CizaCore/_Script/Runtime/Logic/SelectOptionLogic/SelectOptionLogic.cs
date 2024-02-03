@@ -30,6 +30,8 @@ namespace CizaCore
 
         public int PlayerCount => _currentCoordinateMapByPlayerIndex != null ? _currentCoordinateMapByPlayerIndex.Count : 0;
 
+        public int[] PlayerIndexList => _currentCoordinateMapByPlayerIndex.Count > 0 ? _currentCoordinateMapByPlayerIndex.Keys.ToArray() : Array.Empty<int>();
+
         public int MaxColumnLength { get; private set; }
 
         public int MaxRowLength { get; private set; }
