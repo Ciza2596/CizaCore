@@ -170,7 +170,11 @@ namespace CizaCore.UI
 
         public bool IsShow { get; private set; }
 
-        public event Action<int> OnIndexChanged;
+        // PreviousIndex, Index
+        public event Action<int, int> OnSelect;
+
+        // Index,
+        public event Action<int> OnConfirm;
         public event Action OnCancel;
 
         public event Action OnShow;
@@ -333,10 +337,13 @@ namespace CizaCore.UI
             if (!IsShow || index < 0 || index >= Options.Length)
                 return;
 
+            var previousIndex = SelectIndex;
             SelectIndex = index;
             if (isAutoRoll)
                 _monoSettings.VerticalScrollView.SetIndex(SelectIndex, isImmediately);
             SetOptionIsSelect();
+
+            OnSelect?.Invoke(previousIndex, SelectIndex);
         }
 
         public void Confirm()
@@ -384,7 +391,7 @@ namespace CizaCore.UI
                 SetDefaultText();
 
             HideWithoutCancel();
-            OnIndexChanged?.Invoke(Index);
+            OnConfirm?.Invoke(Index);
         }
 
         private void HideWithCancel() =>
