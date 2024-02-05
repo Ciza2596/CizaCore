@@ -13,6 +13,9 @@ namespace CizaCore
 
         private readonly Dictionary<int, Vector2Int> _currentCoordinateMapByPlayerIndex = new Dictionary<int, Vector2Int>();
 
+        public event Action<int> OnAddPlayer;
+        public event Action<int> OnRemovePlayer;
+
         /// <param name="int"> PlayerIndex </param>
         /// <param name="Vector2Int"> PreviousCoordinate </param>
         /// <param name="TOption"> PreviousOption </param>
@@ -35,6 +38,16 @@ namespace CizaCore
         public int MaxColumnLength { get; private set; }
 
         public int MaxRowLength { get; private set; }
+
+
+        public bool CheckIsAnyPlayerOnCoordinate(Vector2Int coordinate)
+        {
+            foreach (var playerIndex in PlayerIndexList)
+                if (TryGetCurrentCoordinate(playerIndex, out var currentCoordinate) && currentCoordinate == coordinate)
+                    return true;
+
+            return false;
+        }
 
         /// <summary>
         /// x:column
@@ -239,6 +252,7 @@ namespace CizaCore
                 return;
 
             _currentCoordinateMapByPlayerIndex.Add(playerIndex, Vector2Int.zero);
+            OnAddPlayer?.Invoke(playerIndex);
             TrySetCurrentCoordinate(playerIndex, GetDefaultCoordinate());
         }
 
@@ -248,6 +262,7 @@ namespace CizaCore
                 return;
 
             _currentCoordinateMapByPlayerIndex.Remove(playerIndex);
+            OnRemovePlayer?.Invoke(playerIndex);
         }
 
         public bool TrySetCurrentCoordinate(int playerIndex, string optionKey) =>
