@@ -20,6 +20,8 @@ namespace CizaCore
 
         public int PlayerCount => _playerMapByIndex.Count;
 
+        public int NeedPlayerCount { get; private set; }
+
         public int MaxConfirmCount { get; private set; }
 
         public bool IsAnyConfirm
@@ -42,7 +44,7 @@ namespace CizaCore
                     if (!player.IsConfirmCompleted)
                         return false;
 
-                return true;
+                return _playerMapByIndex.Count >= NeedPlayerCount;
             }
         }
 
@@ -66,8 +68,14 @@ namespace CizaCore
             return true;
         }
 
-        public ConfirmLogic() =>
+        public ConfirmLogic()
+        {
             SetMaxConfirmCount();
+            SetNeedPlayerCount();
+        }
+
+        public void SetNeedPlayerCount(int playerCount = 1) =>
+            NeedPlayerCount = playerCount;
 
         public void ResetPlayerCount(int playerCount)
         {
