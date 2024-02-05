@@ -4,6 +4,9 @@ namespace CizaCore
 {
     public static class IntExtension
     {
+        public static int ToOneOrTwo(this int value) =>
+            value % 2 == 1 ? 1 : 2;
+
         public static int ToClamp01(this int value, bool isCircle = false) =>
             MathUtils.Clamp01(value, isCircle);
 
