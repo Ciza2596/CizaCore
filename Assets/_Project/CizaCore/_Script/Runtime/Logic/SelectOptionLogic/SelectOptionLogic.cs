@@ -13,8 +13,11 @@ namespace CizaCore
 
         private readonly Dictionary<int, Vector2Int> _currentCoordinateMapByPlayerIndex = new Dictionary<int, Vector2Int>();
 
-        public event Action<int> OnAddPlayer;
-        public event Action<int> OnRemovePlayer;
+        // PlayerIndex, Coordinate
+        public event Action<int, Vector2Int> OnAddPlayer;
+
+        // PlayerIndex, Coordinate
+        public event Action<int, Vector2Int> OnRemovePlayer;
 
         /// <param name="int"> PlayerIndex </param>
         /// <param name="Vector2Int"> PreviousCoordinate </param>
@@ -246,14 +249,19 @@ namespace CizaCore
             }
         }
 
-        public void AddPlayer(int playerIndex)
+        public void AddPlayer(int playerIndex) =>
+            AddPlayer(playerIndex, GetDefaultCoordinate());
+
+        public void AddPlayer(int playerIndex, Vector2Int coordinate)
         {
             if (_currentCoordinateMapByPlayerIndex.ContainsKey(playerIndex))
                 return;
 
-            _currentCoordinateMapByPlayerIndex.Add(playerIndex, Vector2Int.zero);
-            OnAddPlayer?.Invoke(playerIndex);
-            TrySetCurrentCoordinate(playerIndex, GetDefaultCoordinate());
+            _currentCoordinateMapByPlayerIndex.Add(playerIndex, coordinate);
+            TrySetCurrentCoordinate(playerIndex, coordinate);
+
+            if (TryGetCurrentCoordinate(playerIndex, out var currentCoordinate))
+                OnAddPlayer?.Invoke(playerIndex, currentCoordinate);
         }
 
         public void RemovePlayer(int playerIndex)
@@ -261,8 +269,8 @@ namespace CizaCore
             if (!_currentCoordinateMapByPlayerIndex.ContainsKey(playerIndex))
                 return;
 
-            _currentCoordinateMapByPlayerIndex.Remove(playerIndex);
-            OnRemovePlayer?.Invoke(playerIndex);
+            _currentCoordinateMapByPlayerIndex.Remove(playerIndex, out var coordinate);
+            OnRemovePlayer?.Invoke(playerIndex, coordinate);
         }
 
         public bool TrySetCurrentCoordinate(int playerIndex, string optionKey) =>
