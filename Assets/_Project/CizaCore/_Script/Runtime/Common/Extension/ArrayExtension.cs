@@ -4,7 +4,7 @@ namespace CizaCore
 {
     public static class ArrayExtension
     {
-        public static T[] ToArrayWithoutSomeItems<T>(this T[] source, T[] removedItems)
+        public static T[] ToArrayWithoutSameItems<T>(this T[] source, T[] removedItems)
         {
             var newSource = source.ToHashSet();
             
