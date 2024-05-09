@@ -5,7 +5,7 @@ namespace CizaCore
     public static class PlayerUtils
     {
         public static string GetPlayerInfo() =>
-            GetLanguageAndPlatformInfo() + GetVersionConfig().Version;
+            GetLanguageAndPlatformInfo() + $"{GetVersionConfig().Version}\n";
 
         public static string GetLanguageAndPlatformInfo()
         {

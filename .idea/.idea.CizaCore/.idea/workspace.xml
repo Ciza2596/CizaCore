@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/IVersionConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/IVersionConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/VersionConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/VersionConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/VersionKinds.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/VersionKinds.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +221,7 @@
       <workItem from="1707114149439" duration="439000" />
       <workItem from="1707129200541" duration="2839000" />
       <workItem from="1710662918712" duration="772000" />
-      <workItem from="1715152331354" duration="1281000" />
+      <workItem from="1715152331354" duration="2032000" />
     </task>
     <servers />
   </component>
