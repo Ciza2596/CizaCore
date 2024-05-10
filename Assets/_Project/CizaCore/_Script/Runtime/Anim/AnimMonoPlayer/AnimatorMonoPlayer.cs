@@ -23,5 +23,8 @@ namespace CizaCore
 
         public override async UniTask PlayAsync() =>
             await _animator.PlayAtStartAsync(Animator.StringToHash(_playStateName), _speedRate, _normalizedTime);
+
+        public override void Stop() =>
+            _animator.SetSpeedRate(0);
     }
 }

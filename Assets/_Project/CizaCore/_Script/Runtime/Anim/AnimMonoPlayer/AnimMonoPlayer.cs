@@ -8,5 +8,7 @@ namespace CizaCore
         public abstract float Time { get; }
 
         public abstract UniTask PlayAsync();
+
+        public abstract void Stop();
     }
 }
