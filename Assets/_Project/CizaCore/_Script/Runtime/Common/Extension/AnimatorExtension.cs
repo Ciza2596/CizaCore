@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FluentAssertions;
 using UnityEngine;
 
 namespace CizaCore
@@ -146,6 +147,13 @@ namespace CizaCore
 			return currentAnimatorStateInfo.tagHash;
 		}
 
+		public static float GetCurrentTime(this Animator animator, int layerIndex = 0)
+		{
+			var normalizedTime = animator.GetCurrentNormalizedTime(layerIndex);
+			var clipLength = animator.GetCurrentClipLength(layerIndex);
+			return normalizedTime * clipLength;
+		}
+		
 		public static float GetCurrentNormalizedTime(this Animator animator, int layerIndex = 0)
 		{
 			var currentAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
@@ -154,7 +162,7 @@ namespace CizaCore
 
 		public static float GetCurrentClipLength(this Animator animator, int layerIndex = 0)
 		{
-			var clip = animator.GetCurrentClip(0);
+			var clip = animator.GetCurrentClip(layerIndex);
 			return clip.length;
 		}
 
