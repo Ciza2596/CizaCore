@@ -6,7 +6,7 @@ namespace CizaCore
     public class AnimatorMonoPlayer : AnimMonoPlayer
     {
         [SerializeField]
-        private float _speedRate = 1;
+        private float _speed = 1;
 
         [SerializeField]
         private float _normalizedTime = 1;
@@ -22,9 +22,9 @@ namespace CizaCore
         public override float Time => _animator.GetCurrentTime();
 
         public override async UniTask PlayAsync() =>
-            await _animator.PlayAtStartAsync(Animator.StringToHash(_playStateName), _speedRate, _normalizedTime);
+            await _animator.PlayAtStartAsync(_playStateName, _speed, _normalizedTime);
 
         public override void Stop() =>
-            _animator.SetSpeedRate(0);
+            _animator.SetSpeed(0);
     }
 }

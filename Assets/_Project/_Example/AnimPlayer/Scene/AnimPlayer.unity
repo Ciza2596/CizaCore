@@ -399,8 +399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306690cf88e414708bbbde9e0881c489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playStateName: Execute
+  _speed: 1
   _normalizedTime: 0.95
+  _playStateName: Execute
   _animator: {fileID: 270135638}
 --- !u!114 &1574446271
 MonoBehaviour:

@@ -34,7 +34,7 @@ namespace CizaCore
             _animator.Refresh();
 
         public void PlayShowStartAndPause() =>
-            _animator.PlayAtStartAndPause(Animator.StringToHash(_showStateName));
+            _animator.PlayAtStartAndPause(_showStateName);
 
         public UniTask PlayShowAsync(CancellationToken cancellationToken) =>
             PlayShowAsync(0, _showEndNormalizedTime, cancellationToken);
@@ -49,9 +49,9 @@ namespace CizaCore
             await PlayHideAsync(1, 1, default);
 
         private UniTask PlayShowAsync(float startNormalizedTime, float endNormalizedTime, CancellationToken cancellationToken) =>
-            _animator.PlayAsync(Animator.StringToHash(_showStateName), startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, isContinue: true, cancellationToken: cancellationToken);
+            _animator.PlayAsync(_showStateName, startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, isContinue: true, cancellationToken: cancellationToken);
 
         private UniTask PlayHideAsync(float startNormalizedTime, float endNormalizedTime, CancellationToken cancellationToken) =>
-            _animator.PlayAsync(Animator.StringToHash(_hideStateName), startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, isContinue: true, cancellationToken: cancellationToken);
+            _animator.PlayAsync(_hideStateName, startNormalizedTime: startNormalizedTime, endNormalizedTime: endNormalizedTime, isContinue: true, cancellationToken: cancellationToken);
     }
 }
