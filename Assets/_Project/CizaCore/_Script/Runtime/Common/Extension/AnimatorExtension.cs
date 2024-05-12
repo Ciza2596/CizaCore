@@ -116,7 +116,7 @@ namespace CizaCore
             try
             {
                 while (animator.GetCurrentNormalizedTime() < endNormalizedTime)
-                    await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken);
+                    await UniTask.Yield(PlayerLoopTiming.PreLateUpdate, cancellationToken);
             }
             catch
             {

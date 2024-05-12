@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/VersionKinds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Version/VersionKinds.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/AnimatorExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Common/Extension/AnimatorExtension.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,6 +226,9 @@
       <workItem from="1715221188700" duration="508000" />
       <workItem from="1715311315444" duration="1124000" />
       <workItem from="1715432966468" duration="13000" />
+      <workItem from="1715495627502" duration="796000" />
+      <workItem from="1715529467820" duration="638000" />
+      <workItem from="1715530356226" duration="38000" />
     </task>
     <servers />
   </component>
