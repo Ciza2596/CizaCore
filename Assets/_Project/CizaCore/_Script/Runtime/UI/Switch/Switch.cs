@@ -34,10 +34,17 @@ namespace CizaCore.UI
 
         public event Action<bool> OnIsOnChanged;
 
+        public bool IsAwaken { get; private set; }
+
         public bool IsOn => _monoSettings.Toggle.isOn;
 
-        public void SetIsOn(bool isOn) =>
+        public void SetIsOn(bool isOn)
+        {
+            if(!IsAwaken)
+                Awake();
+         
             _monoSettings.Toggle.isOn = isOn;
+        }
 
         public void TurnOn() =>
             SetIsOn(true);
@@ -47,6 +54,11 @@ namespace CizaCore.UI
 
         private void Awake()
         {
+            if(IsAwaken)
+                return;
+
+            IsAwaken = true;
+            
             _monoSettings.Toggle.onValueChanged.AddListener(OnValueChanged);
             _offX = _monoSettings.Handler.localPosition.x;
 

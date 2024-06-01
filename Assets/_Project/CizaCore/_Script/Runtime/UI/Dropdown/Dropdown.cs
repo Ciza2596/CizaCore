@@ -180,6 +180,8 @@ namespace CizaCore.UI
         public event Action OnShow;
         public event Action OnHide;
 
+        public bool IsAwaken { get; private set; }
+
         public int MaxIndex => Options.Length - 1;
 
         public int DefaultIndex => _defaultIndex;
@@ -191,6 +193,11 @@ namespace CizaCore.UI
 
         private void Awake()
         {
+            if (IsAwaken)
+                return;
+
+            IsAwaken = true;
+
             _monoSettings.Template.SetActive(false);
             _parent = m_FindParentCanvas(GetComponent<RectTransform>());
 

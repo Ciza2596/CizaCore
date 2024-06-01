@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Asset/AnimMonoPlayer/AnimMonoPlayer.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Asset/AnimMonoPlayer/AnimMonoPlayer.controller" afterDir="false" />
-    </list>
+    <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,6 +228,7 @@
       <workItem from="1715530356226" duration="38000" />
       <workItem from="1715614345820" duration="598000" />
       <workItem from="1715616667194" duration="27000" />
+      <workItem from="1716872022571" duration="1009000" />
     </task>
     <servers />
   </component>
