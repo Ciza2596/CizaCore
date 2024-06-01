@@ -229,6 +229,7 @@
       <workItem from="1715614345820" duration="598000" />
       <workItem from="1715616667194" duration="27000" />
       <workItem from="1716872022571" duration="1009000" />
+      <workItem from="1717234716411" duration="545000" />
     </task>
     <servers />
   </component>
@@ -275,13 +276,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Dropdown/Dropdown.cs</url>
-          <line>492</line>
+          <line>499</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Dropdown/Dropdown.cs" initialLine="476" containingFunctionPresentation="Method 'Closed'">
             <startOffsets>
-              <option value="15951" />
+              <option value="16084" />
             </startOffsets>
             <endOffsets>
-              <option value="16014" />
+              <option value="16147" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
