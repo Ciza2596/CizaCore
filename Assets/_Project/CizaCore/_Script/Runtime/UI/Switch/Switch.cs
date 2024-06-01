@@ -40,9 +40,9 @@ namespace CizaCore.UI
 
         public void SetIsOn(bool isOn)
         {
-            if(!IsAwaken)
+            if (!IsAwaken)
                 Awake();
-            
+
             _monoSettings.Toggle.isOn = isOn;
         }
 
@@ -54,16 +54,13 @@ namespace CizaCore.UI
 
         private void Awake()
         {
-            if(IsAwaken)
+            if (IsAwaken)
                 return;
 
             IsAwaken = true;
-            
+
             _monoSettings.Toggle.onValueChanged.AddListener(OnValueChanged);
             _offX = _monoSettings.Handler.localPosition.x;
-            
-            SetIsOn(!IsOn);
-            SetIsOn(!IsOn);
 
             if (_isEnableDefault)
             {
@@ -80,7 +77,7 @@ namespace CizaCore.UI
             var handlerLocalPosition = _monoSettings.Handler.localPosition;
             if (direction > 0 && handlerLocalPosition.x >= _targetX || (direction < 0 && handlerLocalPosition.x <= _targetX))
                 return;
-            
+
             _monoSettings.Handler.localPosition = handlerLocalPosition + new Vector3(Time.deltaTime * direction * _moveSpeed, 0);
         }
 
