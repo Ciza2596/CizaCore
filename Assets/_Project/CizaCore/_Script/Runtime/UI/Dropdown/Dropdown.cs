@@ -513,7 +513,7 @@ namespace CizaCore.UI
 
         private void SetTitleText()
         {
-            if (Index == DefaultIndex)
+            if (Index == DefaultTextIndex)
                 _monoSettings.TitleText.text = _defaultText;
             else if (_options.Count > 0 && Index >= 0 && Index < _options.Count)
                 _monoSettings.TitleText.text = _options[Index];

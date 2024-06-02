@@ -276,13 +276,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Dropdown/Dropdown.cs</url>
-          <line>499</line>
+          <line>501</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Dropdown/Dropdown.cs" initialLine="476" containingFunctionPresentation="Method 'Closed'">
             <startOffsets>
-              <option value="16084" />
+              <option value="16086" />
             </startOffsets>
             <endOffsets>
-              <option value="16147" />
+              <option value="16149" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
