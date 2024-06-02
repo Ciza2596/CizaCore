@@ -258,6 +258,7 @@ namespace CizaCore.UI
         {
             ClearOptions();
             _options.AddRange(options);
+            SetTitleText();
         }
 
         public void ClearOptions() =>
@@ -391,11 +392,12 @@ namespace CizaCore.UI
             if (_options.Count > 0)
             {
                 _index = index;
-                _monoSettings.TitleText.text = _options[index];
                 SetOptionIsConfirm();
             }
             else
-                SetDefaultText();
+                _index = DefaultTextIndex;
+
+            SetTitleText();
 
             HideWithoutCancel();
             OnConfirm?.Invoke(Index);
@@ -509,10 +511,12 @@ namespace CizaCore.UI
                 _monoSettings.OptionsRectTransform.sizeDelta = new Vector2(_monoSettings.OptionsRectTransform.sizeDelta.x, 0);
         }
 
-        private void SetDefaultText()
+        private void SetTitleText()
         {
-            _index = DefaultTextIndex;
-            _monoSettings.TitleText.text = _defaultText;
+            if (Index == DefaultIndex)
+                _monoSettings.TitleText.text = _defaultText;
+            else if (_options.Count > 0 && Index >= 0 && Index < _options.Count)
+                _monoSettings.TitleText.text = _options[Index];
         }
 
         private void SetOptionIsSelect()
