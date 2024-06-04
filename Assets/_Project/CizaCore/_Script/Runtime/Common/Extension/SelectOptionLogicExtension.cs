@@ -7,55 +7,55 @@ namespace CizaCore
     {
         public const char SplitTag = ',';
 
-        public static void HorizontalMovement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
+        public static void HorizontalMovement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction, bool isIgnoreSameOption = false) where T : class, IOptionReadModel
         {
             if (direction.x > 0)
             {
-                if (selectLevelLogic.TryMoveToRight(playerIndex))
+                if (selectLevelLogic.TryMoveToRight(playerIndex, isIgnoreSameOption))
                     return;
             }
             else if (direction.x < 0)
             {
-                if (selectLevelLogic.TryMoveToLeft(playerIndex))
+                if (selectLevelLogic.TryMoveToLeft(playerIndex, isIgnoreSameOption))
                     return;
             }
         }
 
-        public static void VerticalMovement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
+        public static void VerticalMovement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction, bool isIgnoreSameOption = false) where T : class, IOptionReadModel
         {
             if (direction.y > 0)
             {
-                if (selectLevelLogic.TryMoveToUp(playerIndex))
+                if (selectLevelLogic.TryMoveToUp(playerIndex, isIgnoreSameOption))
                     return;
             }
             else if (direction.y < 0)
             {
-                if (selectLevelLogic.TryMoveToDown(playerIndex))
+                if (selectLevelLogic.TryMoveToDown(playerIndex, isIgnoreSameOption))
                     return;
             }
         }
 
-        public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction) where T : class, IOptionReadModel
+        public static void Movement<T>(this SelectOptionLogic<T> selectLevelLogic, int playerIndex, Vector2 direction, bool isHorizontalIgnoreSameOption = false, bool isVerticalIgnoreSameOption = false) where T : class, IOptionReadModel
         {
             if (direction.x > 0)
             {
-                if (selectLevelLogic.TryMoveToRight(playerIndex))
+                if (selectLevelLogic.TryMoveToRight(playerIndex, isHorizontalIgnoreSameOption))
                     return;
             }
             else if (direction.x < 0)
             {
-                if (selectLevelLogic.TryMoveToLeft(playerIndex))
+                if (selectLevelLogic.TryMoveToLeft(playerIndex, isHorizontalIgnoreSameOption))
                     return;
             }
 
             if (direction.y > 0)
             {
-                if (selectLevelLogic.TryMoveToUp(playerIndex))
+                if (selectLevelLogic.TryMoveToUp(playerIndex, isVerticalIgnoreSameOption))
                     return;
             }
             else if (direction.y < 0)
             {
-                if (selectLevelLogic.TryMoveToDown(playerIndex))
+                if (selectLevelLogic.TryMoveToDown(playerIndex, isVerticalIgnoreSameOption))
                     return;
             }
         }
