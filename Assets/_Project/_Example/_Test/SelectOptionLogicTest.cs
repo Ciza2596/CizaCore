@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class SelectOptionLogicTest
 {
-    //       = Column_0        = Column_1         = Column_2        = Column_3
-    // ==========================================================================
-    // Row_0 = None            = Option_2 (true)  = Option_2 (true) = Option_6 (true)
-    // Row_1 = Option_1 (true) = Option_3 (false) = None            = Option_7 (true)
-    // Row_2 = None            = Option_4 (true)  = Option_5 (true) = Option_8 (false)
+    //       = Column_0        = Column_1         = Column_2        = Column_3         = Column_4
+    // ==================================================================================================
+    // Row_0 = None            = Option_2 (true)  = Option_2 (true) = Option_6 (true)  = Option_8 (true)
+    // Row_1 = Option_1 (true) = Option_3 (false) = None            = Option_7 (true)  = Option_7 (true)
+    // Row_2 = None            = Option_4 (true)  = Option_5 (true) = Option_8 (false) = Option_8 (true)
 
     private const int PlayerIndex = 0;
 
@@ -18,7 +18,8 @@ public class SelectOptionLogicTest
     private static readonly OptionImp[] Column_0 = new[] { OptionImp.None, new OptionImp("Option_1", true), OptionImp.None };
     private static readonly OptionImp[] Column_1 = new[] { new OptionImp("Option_2", true), new OptionImp("Option_3", false), new OptionImp("Option_4", true) };
     private static readonly OptionImp[] Column_2 = new[] { new OptionImp("Option_2", true), OptionImp.None, new OptionImp("Option_5", true) };
-    private static readonly OptionImp[] Column_4 = new[] { new OptionImp("Option_6", true), new OptionImp("Option_7", true), new OptionImp("Option_8", false) };
+    private static readonly OptionImp[] Column_3 = new[] { new OptionImp("Option_6", true), new OptionImp("Option_7", true), new OptionImp("Option_8", false) };
+    private static readonly OptionImp[] Column_4 = new[] { new OptionImp("Option_9", true), new OptionImp("Option_10", true), new OptionImp("Option_9", true) };
 
     private static readonly Vector2Int InitializedCurrentCoordinate = new Vector2Int(0, 1);
 
@@ -157,34 +158,36 @@ public class SelectOptionLogicTest
         CheckCurrentCoordinate(targetX, targetY);
     }
 
-    [TestCase(0, 1, false, 0, 1)]
-    [TestCase(1, 0, true, 1, 2)]
-    [TestCase(1, 2, true, 1, 0)]
-    public void _10_TryMoveToUp(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+    [TestCase(0, 1, false, false, 0, 1)]
+    [TestCase(1, 0, false, true, 1, 2)]
+    [TestCase(1, 2, false, true, 1, 0)]
+    [TestCase(4, 0, true, true, 4, 1)]
+    public void _10_TryMoveToUp(int x, int y, bool isIgnoreSameOption, bool expectedIsSucceed, int targetX, int targetY)
     {
         // arrange
         CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
         SetAndCheckCurrentCoordinate(x, y);
 
         // act
-        var isSucceed = _selectOptionLogic.TryMoveToUp(PlayerIndex);
+        var isSucceed = _selectOptionLogic.TryMoveToUp(PlayerIndex, isIgnoreSameOption);
 
         // assert
         Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
         CheckCurrentCoordinate(targetX, targetY);
     }
 
-    [TestCase(0, 1, false, 0, 1)]
-    [TestCase(1, 0, true, 1, 2)]
-    [TestCase(1, 2, true, 1, 0)]
-    public void _11_TryMoveToDown(int x, int y, bool expectedIsSucceed, int targetX, int targetY)
+    [TestCase(0, 1, false, false, 0, 1)]
+    [TestCase(1, 0, false, true, 1, 2)]
+    [TestCase(1, 2, false, true, 1, 0)]
+    [TestCase(4, 2, true, true, 4, 1)]
+    public void _11_TryMoveToDown(int x, int y, bool isIgnoreSameOption, bool expectedIsSucceed, int targetX, int targetY)
     {
         // arrange
         CreateNewAndInitializedSelectOptionLogic(IColumnInfo.Default, IRowInfo.CreateRowInfo(true, false, false, false));
         SetAndCheckCurrentCoordinate(x, y);
 
         // act
-        var isSucceed = _selectOptionLogic.TryMoveToDown(PlayerIndex);
+        var isSucceed = _selectOptionLogic.TryMoveToDown(PlayerIndex, isIgnoreSameOption);
 
         // assert
         Assert.AreEqual(expectedIsSucceed, isSucceed, $"isSucceed Should be {expectedIsSucceed}.");
@@ -293,6 +296,7 @@ public class SelectOptionLogicTest
         optionColumns.Add(m_CreateDefaultOptiowColumn(Column_0));
         optionColumns.Add(m_CreateDefaultOptiowColumn(Column_1));
         optionColumns.Add(m_CreateDefaultOptiowColumn(Column_2));
+        optionColumns.Add(m_CreateDefaultOptiowColumn(Column_3));
         optionColumns.Add(m_CreateDefaultOptiowColumn(Column_4));
 
         return optionColumns.ToArray();
@@ -321,6 +325,7 @@ public class SelectOptionLogicTest
         options.AddRange(m_CreateDefaultOptions(Column_0));
         options.AddRange(m_CreateDefaultOptions(Column_1));
         options.AddRange(m_CreateDefaultOptions(Column_2));
+        options.AddRange(m_CreateDefaultOptions(Column_3));
         options.AddRange(m_CreateDefaultOptions(Column_4));
 
         return options.ToArray();
