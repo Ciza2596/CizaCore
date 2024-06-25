@@ -254,6 +254,12 @@ namespace CizaCore.UI
             }
         }
 
+        public void EnableInteractable() =>
+            _monoSettings.TitleButton.interactable = true;
+
+        public void DisableInteractable() =>
+            _monoSettings.TitleButton.interactable = false;
+
         public void SetOptions(string[] options)
         {
             ClearOptions();

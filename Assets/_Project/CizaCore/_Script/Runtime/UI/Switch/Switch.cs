@@ -38,6 +38,12 @@ namespace CizaCore.UI
 
         public bool IsOn => _monoSettings.Toggle.isOn;
 
+        public void EnableInteractable() =>
+            _monoSettings.Toggle.interactable = true;
+
+        public void DisableInteractable() =>
+            _monoSettings.Toggle.interactable = false;
+
         public void SetIsOn(bool isOn)
         {
             if (!IsAwaken)
