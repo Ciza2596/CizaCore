@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/_Example/UI/Scene/UIExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/_Example/UI/Scene/UIExample.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +20,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/_Project/_Example/UI/_Script/DropdownExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/ConfirmLogicTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/MathUtilsTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@2.0.7/Editor/PlasticSCM/UI/OverlayRect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.7.5/Editor/Window/TimelineWindowTimeControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Toggle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/16d1a1e3fafa4d23a275526c945e1b62469200/5c/7170bfb1/CancellationTokenSource.cs" root0="FORCE_HIGHLIGHTING" />
@@ -86,10 +88,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17457">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="17457" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -234,6 +236,13 @@
       <workItem from="1717234716411" duration="545000" />
       <workItem from="1717314374391" duration="616000" />
       <workItem from="1717502468481" duration="1972000" />
+      <workItem from="1717504612426" duration="447000" />
+      <workItem from="1717898428892" duration="144000" />
+      <workItem from="1719322932499" duration="342000" />
+      <workItem from="1722236019817" duration="6000" />
+      <workItem from="1725166801189" duration="263000" />
+      <workItem from="1725238456655" duration="616000" />
+      <workItem from="1725254511773" duration="2672000" />
     </task>
     <servers />
   </component>
@@ -277,19 +286,6 @@
           <line>24</line>
           <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicExtensionTest.cs" initialLine="24" containingFunctionPresentation="Method '_02_ToOptionColumns'" />
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Dropdown/Dropdown.cs</url>
-          <line>501</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/UI/Dropdown/Dropdown.cs" initialLine="476" containingFunctionPresentation="Method 'Closed'">
-            <startOffsets>
-              <option value="16086" />
-            </startOffsets>
-            <endOffsets>
-              <option value="16149" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs</url>

@@ -54,12 +54,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultText: Select the value
+  _isEnableDefault: 0
   _defaultIndex: 0
   _options:
   - Option1
   - Option2
   - Option3
-  _maxDropdownHeight: 150
+  _maxDropdownHeight: 300
   _animationSettings:
     _animationKind: 3
     _shrinkingCurve:
@@ -1239,11 +1240,11 @@ MonoBehaviour:
   m_Content: {fileID: 134676141637452094}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 0
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 7482188659357406381}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 8823671140118437066}
