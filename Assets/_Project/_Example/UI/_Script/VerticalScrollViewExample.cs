@@ -1,4 +1,3 @@
-using CizaCore;
 using CizaCore.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,15 +16,15 @@ namespace ScrollRectExample
         }
 
         [Button]
-        private void SetIndex(int index, bool isImmediately) =>
-            _verticalScrollView.SetIndex(index, isImmediately);
+        private void SetIndex(int index, bool hasTransition) =>
+            _verticalScrollView.SetIndex(index, hasTransition);
 
         [Button]
-        private void MoveToUp(bool isImmediately) =>
-            _verticalScrollView.MoveToUp(isImmediately);
+        private void MoveToUp(bool hasTransition) =>
+            _verticalScrollView.MoveToUp(hasTransition);
 
         [Button]
-        private void MoveToDown(bool isImmediately) =>
-            _verticalScrollView.MoveToDown(isImmediately);
+        private void MoveToDown(bool hasTransition) =>
+            _verticalScrollView.MoveToDown(hasTransition);
     }
 }
