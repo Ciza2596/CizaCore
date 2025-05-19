@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d57a49f-d74a-4a55-9acb-5707607f9771" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CizaCore/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +44,7 @@
     &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -51,18 +54,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/cizahuang/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
-      &quot;/Users/cizahuang/.local/share/Symbols/src&quot;
-    ]
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.8f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.43f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -70,7 +66,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.8f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.43f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -82,6 +78,9 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
       <option name="selectedOptions">
         <list />
       </option>
@@ -92,6 +91,9 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
       <option name="selectedOptions">
         <list />
       </option>
@@ -242,6 +244,8 @@
       <workItem from="1725166801189" duration="263000" />
       <workItem from="1725238456655" duration="616000" />
       <workItem from="1725254511773" duration="3404000" />
+      <workItem from="1746776961267" duration="3975000" />
+      <workItem from="1747449699377" duration="1314000" />
     </task>
     <servers />
   </component>
@@ -249,6 +253,11 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -259,37 +268,37 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs</url>
           <line>65</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" initialLine="65" containingFunctionPresentation="Method 'Limit'" />
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/Script/Runtime/Common/Utility/Bound2DUtils.cs" containingFunctionPresentation="Method 'Limit'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs</url>
           <line>32</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" initialLine="30" containingFunctionPresentation="Method '_03_ToArray'" />
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" containingFunctionPresentation="Method '_03_ToArray'" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs</url>
           <line>13</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs" initialLine="10" containingFunctionPresentation="Method '_01_GetNormalizedTime'" />
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/TimeUtilsTest.cs" containingFunctionPresentation="Method '_01_GetNormalizedTime'" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs</url>
           <line>90</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" initialLine="61" containingFunctionPresentation="Method '_05_ToArray_With_Length'" />
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/StringExtensionTest.cs" containingFunctionPresentation="Method '_05_ToArray_With_Length'" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicExtensionTest.cs</url>
           <line>24</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicExtensionTest.cs" initialLine="24" containingFunctionPresentation="Method '_02_ToOptionColumns'" />
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/Example/_Test/SelectOptionLogicExtensionTest.cs" containingFunctionPresentation="Method '_02_ToOptionColumns'" />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs</url>
           <line>112</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" initialLine="113" containingFunctionPresentation="Method '_06_Tick'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/RollingLogicTest.cs" containingFunctionPresentation="Method '_06_Tick'">
             <startOffsets>
               <option value="2598" />
             </startOffsets>
@@ -302,7 +311,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>429</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="429" containingFunctionPresentation="Method 'TryGetYCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryGetYCoordinate'">
             <startOffsets>
               <option value="16045" />
             </startOffsets>
@@ -315,7 +324,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>432</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="432" containingFunctionPresentation="Method 'TryGetYCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryGetYCoordinate'">
             <startOffsets>
               <option value="16093" />
             </startOffsets>
@@ -328,7 +337,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>436</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="436" containingFunctionPresentation="Method 'TryGetYCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryGetYCoordinate'">
             <startOffsets>
               <option value="16168" />
             </startOffsets>
@@ -341,7 +350,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>376</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="376" containingFunctionPresentation="Method 'TryVerticalMove'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryVerticalMove'">
             <startOffsets>
               <option value="14012" />
             </startOffsets>
@@ -354,7 +363,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>384</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="384" containingFunctionPresentation="Method 'TryVerticalMove'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryVerticalMove'">
             <startOffsets>
               <option value="14314" />
             </startOffsets>
@@ -367,7 +376,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>363</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="363" containingFunctionPresentation="Method 'TryVerticalMove'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryVerticalMove'">
             <startOffsets>
               <option value="13585" />
             </startOffsets>
@@ -380,7 +389,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>370</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="370" containingFunctionPresentation="Method 'TryVerticalMove'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryVerticalMove'">
             <startOffsets>
               <option value="13887" />
             </startOffsets>
@@ -393,7 +402,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs</url>
           <line>175</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" initialLine="175" containingFunctionPresentation="Method '_10_TryMoveToUp'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" containingFunctionPresentation="Method '_10_TryMoveToUp'">
             <startOffsets>
               <option value="7110" />
             </startOffsets>
@@ -406,7 +415,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>372</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="372" containingFunctionPresentation="Method 'TryVerticalMove'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TryVerticalMove'">
             <startOffsets>
               <option value="13914" />
             </startOffsets>
@@ -419,7 +428,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs</url>
           <line>171</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" initialLine="171" containingFunctionPresentation="Method '_10_TryMoveToUp'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" containingFunctionPresentation="Method '_10_TryMoveToUp'">
             <startOffsets>
               <option value="6902" />
             </startOffsets>
@@ -432,7 +441,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs</url>
           <line>278</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" initialLine="278" containingFunctionPresentation="Method 'SetAndCheckCurrentCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/_Example/_Test/SelectOptionLogicTest.cs" containingFunctionPresentation="Method 'SetAndCheckCurrentCoordinate'">
             <startOffsets>
               <option value="11519" />
             </startOffsets>
@@ -445,7 +454,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>293</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="293" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
             <startOffsets>
               <option value="10758" />
             </startOffsets>
@@ -458,7 +467,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>297</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="297" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
             <startOffsets>
               <option value="10890" />
             </startOffsets>
@@ -471,7 +480,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>300</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="300" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
             <startOffsets>
               <option value="10955" />
             </startOffsets>
@@ -484,7 +493,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs</url>
           <line>302</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" initialLine="302" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
+          <properties documentPath="$PROJECT_DIR$/Assets/_Project/CizaCore/_Script/Runtime/Logic/SelectOptionLogic/SelectOptionLogic.cs" containingFunctionPresentation="Method 'TrySetCurrentCoordinate'">
             <startOffsets>
               <option value="10982" />
             </startOffsets>
