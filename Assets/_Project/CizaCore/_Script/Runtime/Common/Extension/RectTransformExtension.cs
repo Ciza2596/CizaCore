@@ -13,13 +13,6 @@ namespace CizaCore
 			return screenPoint;
 		}
 
-		public static Rect GetRect(this RectTransform rectTransform)
-		{
-			var canvas = rectTransform.GetComponentInParent<Canvas>();
-			var rectTransformPosition = canvas.renderMode == RenderMode.ScreenSpaceCamera ? canvas.worldCamera.WorldToScreenPoint(rectTransform.position) : rectTransform.position;
-			return new Rect(rectTransformPosition.x, rectTransformPosition.y, rectTransform.rect.width, rectTransform.rect.height);
-		}
-
 		public static Vector2 GetCenterPosition(this RectTransform rectTransform)
 		{
 			var canvas = rectTransform.GetComponentInParent<Canvas>();

@@ -19,6 +19,15 @@ namespace CizaCore.UI
 
 		protected bool _isToUp;
 
+		protected virtual Camera Camera
+		{
+			get
+			{
+				var canvas = GetComponentInParent<Canvas>();
+				return canvas.renderMode == RenderMode.ScreenSpaceCamera ? canvas.worldCamera : null;
+			}
+		}
+
 
 		protected float _targetValue = 1;
 
@@ -137,10 +146,11 @@ namespace CizaCore.UI
 			var next = _monoSettings.VerticalLayoutGroupHeight.GetChild<RectTransform>(nextIndex);
 			var nextCenterPosition = next.GetCenterPosition();
 			var nextPosition = nextCenterPosition + (new Vector2(0, next.rect.height / 2) * GetDirection());
-			var viewportRect = _monoSettings.ScrollRect.viewport.GetRect();
+			var viewport = _monoSettings.ScrollRect.viewport;
 
-			if (!viewportRect.Contains(nextPosition))
-				CalculateTargetValue(_monoSettings.ScrollRect.viewport, nextPosition);
+			if (RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport, nextPosition, Camera, out var localNextPosition))
+				if (!viewport.rect.Contains(localNextPosition))
+					CalculateTargetValue(_monoSettings.ScrollRect.viewport, nextPosition);
 
 			if (!hasTransition)
 				TickValueImmediately();
